@@ -17,8 +17,13 @@ class ProductsController extends Controller
     ################################################################
     #        Products Category  SECTION
     ################################################################
-    public function product_categories(){
-        $items = ProductCategory::all();
+    public function product_categories($id =null){
+        if ($id !=null){
+            $items = ProductCategory::where('parent_id',$id)->get();
+        }else{
+            $items = ProductCategory::all();
+        }
+
         return view('Admin.pages.products.categories',compact(['items']));
     }
 
@@ -26,6 +31,25 @@ class ProductsController extends Controller
     public function product_category_store(Request $request){
         try {
             $productcat = new ProductCategory();
+
+            $image = $request->file('image');
+            #image upload
+            if ($image) {
+                $path = "/photos/categories/";
+                $imagepath = public_path() . $path;
+                if ($image->isValid()) {
+                    $newimagename = rand(1, 100) . time() . '.' . $image->getClientOriginalExtension();
+
+                    $location = $imagepath . '/' . $newimagename;
+                    $imageurl = $path . '/' . $newimagename; //for DB
+                    makedirectory($path);
+                    $response = compressImage(['source' => $image, 'destination' => $location]);
+                    if ($response != true){
+                        $image->move($imagepath, $newimagename);
+                    }
+                }
+                $productcat->image = $imageurl;
+            }
 
             $productcat->show = 0 ;
             $productcat->save() ;

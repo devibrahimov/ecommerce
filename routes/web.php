@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-    Route::group(['prefix'=>'lm-admin'],function (){
+    Route::group(['prefix'=>'idare-etme-paneli'],function (){
         Route::get('/giris','UserController@login')->name('login');
         Route::post('/giris','UserController@logincontrol');
 
@@ -66,7 +66,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('/xidmət-deactive/{id}','Admin\CorporateController@servicedeactive')->name('servicedeactive');
 
 
-        Route::get('/mehsul-kategoriyası','Admin\ProductsController@product_categories')->name('product_categories');
+        Route::get('/mehsul-kategoriyası-{id?}','Admin\ProductsController@product_categories')->name('product_categories');
         Route::post('/mehsul-kategoriyası','Admin\ProductsController@product_category_store') ;
         Route::post('/mehsul-kategoriyası/{id}','Admin\ProductsController@product_category_update')->name('product_category_update') ;
         Route::delete('/mehsul-kategoriyası-sil/{id}','Admin\ProductsController@product_category_delete')->name('productcatdelete');

@@ -10,19 +10,36 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
  * @Date :    20.06.2021
  */
 
-
-
     function adjustment(){
-        $adjustment = \App\Models\Adjustment::first();
-        if ($adjustment != null){
-            return $adjustment;
-        }else{
+        $db = DB::connection() ;
+        if (isset($db)){
+            if (\Illuminate\Support\Facades\Schema::hasTable('adjustment')){
+                $adjustment = \App\Models\Adjustment::first();
+                if ($adjustment != null){
+                    return $adjustment;
+                } else{
+                    return  (object) [
+                        'multilang' => 0,
+                        'default_lang' => 'az',
+                        'models' => null
+                    ];
+                }
+            }else{
+                return  (object) [
+                    'multilang' => 0,
+                    'default_lang' => 'az',
+                    'models' => null
+                ];
+            }
+        } else{
             return  (object) [
                 'multilang' => 0,
                 'default_lang' => 'az',
                 'models' => null
             ];
         }
+
+
     }
 
     function setting(){
