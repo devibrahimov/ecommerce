@@ -1,0 +1,348 @@
+
+
+.rtl {
+  direction: rtl; 
+}
+
+.ltr {
+  direction: ltr; 
+}
+
+.rtl .pull-left{
+  float: right !important;
+}
+
+.rtl .pull-right{
+  float: left !important;
+}
+
+.rtl .main-menu .navigation > li{
+  float: right;
+}
+
+.rtl .main-menu{
+  float: right;
+}
+
+.rtl .cta-section{
+  text-align: right;
+}
+
+.rtl .main-menu .navigation > li:first-child{
+  margin-left: 15px !important;
+  margin-right: 0px;
+}
+
+.rtl .main-menu .navigation > li:last-child{
+  margin-right: 15px !important;
+  margin-left: 0px;
+}
+
+.rtl .main-menu .navigation > li > ul > li > a, 
+.rtl .main-menu .navigation > li > .megamenu li > a{
+  text-align: right;
+}
+
+.rtl .main-menu .navigation li.dropdown .megamenu li h4{
+  text-align: right;
+}
+
+.rtl .main-menu .navigation > li > ul > li > ul > li > a{
+  text-align: right;
+}
+
+.rtl .main-menu .navigation > li > ul > li.dropdown > a:after{
+  right: inherit;
+  left: 0px;
+}
+
+.rtl .mobile-menu{
+  text-align: right;
+}
+
+.rtl .mobile-menu .nav-logo{
+  text-align: right;
+}
+
+.rtl .mobile-menu .navigation li > a:before{
+  left: inherit;
+  right: 0px;
+}
+
+.rtl .mobile-menu .navigation li.dropdown .dropdown-btn{
+  right: inherit;
+  left: 6px;
+}
+
+.rtl .mobile-menu .navigation li.dropdown .dropdown-btn.open{
+  transform: rotate(-90deg);
+}
+
+.rtl .banner-carousel{
+  direction: ltr;
+}
+
+.rtl .scroll-top{
+  right: inherit;
+  left: 30px;
+}
+
+.rtl .preloader-close{
+  right: inherit;
+  left: 0px;
+  text-align: right;
+}
+
+.rtl .header-top .info li{
+  margin-right: 0px;
+  margin-left: 25px;
+}
+
+.rtl .header-top .info li i{
+  margin: 0px 10px;
+}
+
+.rtl .header-top .info li:before{
+  right: inherit;
+  left: -15px;
+}
+
+.rtl .main-header.style-three .outer-box .logo-box{
+  left: inherit;
+  right: 0px;
+}
+
+.rtl .main-header.style-three .outer-box {
+  padding: 0px 270px 0px 90px;
+}
+
+.rtl .main-header.style-three .outer-box .other-option{
+  right: inherit;
+  left: 0px;
+}
+
+.rtl .main-header.style-three .menu-area{
+  margin-left: 0px;
+  margin-right: 35px;
+}
+
+.rtl .main-header .main-menu .navigation > li > a:after{
+  right: inherit;
+  left: -20px;
+}
+
+.rtl .main-menu .navigation > li > ul > li > a:hover{
+  padding-left: 0px;
+  padding-right: 11px;
+}
+
+.rtl .main-menu .navigation > li > ul > li > a:before{
+  left: inherit;
+  right: 0px;
+  content: "\f104";
+}
+
+.rtl .main-menu .navigation > li > ul > li > ul > li > a:hover{
+  padding-left: 0px;
+  padding-right: 11px;
+}
+
+.rtl .main-menu .navigation > li > ul > li > ul > li > a:before{
+  left: inherit;
+  right: 0px;
+  content: "\f104";
+}
+
+.rtl .banner-carousel .content-box{
+  text-align: right;
+}
+
+.rtl .banner-section .banner-bottom .single-item .inner-box{
+  text-align: right;
+  padding-left: 30px;
+  padding-right: 105px;
+}
+
+.rtl .banner-section .banner-bottom .single-item .inner-box .icon-box{
+  left: inherit;
+  right: 37px;
+}
+
+.rtl .banner-section .banner-bottom .single-item .inner-box .link{
+  right: inherit;
+  left: 0px;
+}
+
+.rtl .content_block_6 .content-box{
+  text-align: right;
+}
+
+.rtl .content_block_6 .content-box .link a i{
+  margin-left: 0px;
+  margin-right: 8px;
+}
+
+.rtl .content_block_6 .content-box .inner-box{
+  padding-left: 30px;
+  padding-right: 200px;
+}
+
+.rtl .content_block_6 .content-box .inner-box .image-box{
+  left: inherit;
+  right: 30px;
+}
+
+.rtl .content_block_6 .content-box .inner-box .image-box:before{
+  right: inherit;
+  left: -32px;
+}
+
+.rtl .content_block_6 .content-box .inner-box .list li{
+  padding-left: 0px;
+  padding-right: 26px;
+}
+
+.rtl .content_block_6 .content-box .inner-box .list li:before{
+  left: inherit;
+  right: 0px;
+}
+
+.rtl .service-block-three .inner-box .lower-content{
+  text-align: right;
+}
+
+.rtl .service-block-three .inner-box .image-box .icon-box{
+  left: inherit;
+  right: 0px;
+}
+
+.rtl .funfact-section .sec-title{
+  text-align: right;
+}
+
+.rtl .team-block-two .inner-box .content-box .share-option{
+  left: inherit;
+  right: 20px;
+}
+
+.rtl .four-item-carousel{
+  direction: ltr;
+}
+
+.rtl .chooseus-section .sec-title{
+  text-align: right;
+}
+
+.rtl .chooseus-section .owl-nav{
+  right: inherit;
+  left: 0px;
+}
+
+.rtl .pricing-block-two .pricing-table{
+  text-align: right;
+}
+
+.rtl .pricing-block-two .pricing-table .header-inner .table-header h4:before{
+  left: inherit;
+  right: 0px;
+}
+
+.rtl .pricing-block-two .pricing-table{
+  padding-left: 0px;
+  padding-right: 270px;
+}
+
+.rtl .pricing-block-two .pricing-table .header-inner{
+  left: inherit;
+  right: 30px;
+}
+
+.rtl .pricing-block-two .pricing-table .table-content .list li{
+  padding-left: 0px;
+  padding-right: 26px;
+}
+
+.rtl .pricing-block-two .pricing-table .table-content .list li:before{
+  left: inherit;
+  right: 0px;
+}
+
+.rtl .single-item-carousel{
+  direction: ltr;
+}
+
+.rtl .testimonial-style-three .inner-container{
+  padding-left: 0px;
+  padding-right: 605px;
+}
+
+.rtl .testimonial-style-three .inner-container .video-inner{
+  left: inherit;
+  right: 15px;
+}
+
+.rtl .testimonial-style-three .inner-container .testimonial-content{
+  text-align: right;
+}
+
+.rtl .testimonial-style-three .inner-container .testimonial-content .inner-box .author-box{
+  padding-left: 0px;
+  padding-right: 90px;
+}
+
+.rtl .testimonial-style-three .inner-container .testimonial-content .inner-box .author-box .author-thumb{
+  left: inherit;
+  right: 0px;
+}
+
+.rtl .testimonial-style-three .owl-nav{
+  right: inherit;
+  left: -50px;
+}
+
+.rtl .news-block-three .inner-box .image-box .post-date{
+  right: inherit;
+  left: 15px;
+}
+
+.rtl .news-block-three .inner-box .image-box .category{
+  left: inherit;
+  right: 15px;
+}
+
+.rtl .news-block-three .inner-box .image-box .category a i{
+  margin-right: 0px;
+  margin-left: 7px;
+}
+
+.rtl .news-block-three .inner-box .lower-content{
+  text-align: right;
+}
+
+.rtl .news-block-three .inner-box .lower-content .bottom-box .comment-box a i{
+  margin-right: 0px;
+  margin-left: 8px;
+}
+
+.rtl .contact-section .bg-layer{
+  left: inherit;
+  right: 0px;
+}
+
+.rtl .contact-section .pattern-layer{
+  display: none;
+}
+
+.rtl .content_block_8 .content-box{
+  text-align: right;
+}
+
+.rtl .footer-top-three{
+  text-align: right;
+}
+
+.rtl .social-style-two li{
+  float: right;
+  margin-right: 0px;
+  margin-left: 10px;
+}
