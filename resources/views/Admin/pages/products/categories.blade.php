@@ -13,8 +13,9 @@
                         <h3>Yeni Kateqoriya Əlavə Et</h3>
                     </div>
                    <div class="card-body">
-                       <form class="pl-3 pr-3" action="{{route('product_categories')}}" method="post">
+                       <form class="pl-3 pr-3" action="{{route('product_categories',$id)}}" method="post">
                            <div class="row">
+                               @if($id ==null)
                                <div class="input-group mb-3 col-12">
                                    <div class="input-group-prepend">
                                        <span class="input-group-text">Yükləmə</span>
@@ -24,16 +25,9 @@
                                        <label class="custom-file-label" for="inputGroupFile01">Şəkil seçin</label>
                                    </div>
                                </div>
+                                @endif
 
-{{--                               <div class="form-group mb-3 col-12">--}}
-{{--                                   <label for="categories">Kategoriya</label>--}}
-{{--                                   <select name="category"   id="categories" class="custom-select mr-sm-2">--}}
-{{--                                       <option value="{{null}}">Ana Kateqoriya</option>--}}
-{{--                                       @foreach($items as $cat)--}}
-{{--                                           <option  value="{{$cat->id}}"> {{isset(getproductcategorycontent($cat->id,defaultLang())->name)? getproductcategorycontent($cat->id,defaultLang())->name: ''}}</option>--}}
-{{--                                       @endforeach--}}
-{{--                                   </select>--}}
-{{--                               </div>--}}
+
                            </div>
                            @csrf
                            @foreach(languages() as $lang)
@@ -85,8 +79,7 @@
                                               <button type="button" onclick="document.getElementById('deleteproductcat{{$item->id}}').submit()" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i>
                                               </button>
                                               <form id="deleteproductcat{{$item->id}}"
-                                                    action="{{route('productcatdelete',$item->id)}}"
-                                                    method="post">
+                                                    action="{{route('productcatdelete',$item->id)}}" method="post">
                                                   @csrf
                                                   @method('DELETE')
                                               </form>
@@ -99,16 +92,18 @@
                                            aria-hidden="true">
                                           <div class="modal-dialog">
                                               <div class="modal-content">
-
                                                   <div class="modal-body">
-                                                      <div class="text-center mt-2 mb-4">
-                                                          <a href="#" class="text-success">
-                                                <span> <img  src="{{setting()->logo}}" alt=""
-                                                             height="180px"></span>
-                                                          </a>
-                                                      </div>
+                                                      <form class="pl-3 pr -3" action="{{route('product_category_update',$item->id)}}" method="post" >
+                                                          <div class="form-group mb-3 col-12">
+                                                              <label for="categories">Kategoriya</label>
 
-                                                      <form class="pl-3 pr-3" action="{{route('product_category_update',$item->id)}}" method="post" >
+                                                              <select name="parent"   id="categories" class="custom-select mr-sm-2">
+                                                                  <option value="{{null}}">Ana Kateqoriya</option>
+                                                                  @foreach(allProductCategories() as $parentcat)
+                                                                      <option {{$parentcat->id ==$item->parent_id ? 'selected': ''}} value="{{$parentcat->id}}"> {{$parentcat->name}}</option>
+                                                                  @endforeach
+                                                              </select>
+                                                          </div>
                                                           @csrf
                                                           @foreach(languages() as $lang)
                                                               <div class="form-group">
@@ -118,11 +113,9 @@
                                                               </div>
                                                           @endforeach
                                                           <div class="form-group text-center">
-                                                              <button class="btn btn-primary" type="submit">Redaktə et</button>
+                                                              <button class="btn btn-primary" name="catupdate{{$item->id}}" type="submit">Redaktə et</button>
                                                           </div>
-
                                                       </form>
-
                                                   </div>
                                               </div><!-- /.modal-content -->
                                           </div><!-- /.modal-dialog -->

@@ -4,18 +4,28 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
+                <li class="list-divider"></li>
                 <li class="sidebar-item"> <a class="sidebar-link sidebar-link active" href="{{route('admin.index')}}"
                                              aria-expanded="false"><i  class="icon-chart"></i><span
                             class="hide-menu">Dashboard</span></a></li>
 
 
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link" href="{{route('product_categories')}}"
+                       aria-expanded="false"><i  class="fas fa-th-large"></i><span
+                            class="hide-menu">Sifarişlər</span>
+                    </a>
+                </li>
+
+
+
+                <li class="list-divider"></li>
+                <li class="nav-small-cap"><span class="hide-menu">FİRMA MƏUMATLARI</span></li>
+
                 <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{route('admincarousels')}}"
                                              aria-expanded="false"><i  class=" icon-screen-desktop"></i><span
                             class="hide-menu">Manşet</span></a></li>
-                <li class="list-divider"></li>
-
-                <li class="nav-small-cap"><span class="hide-menu">FİRMA MƏUMATLARI</span></li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link" href="{{route('adminaboutus')}}"
@@ -83,29 +93,39 @@
                     </a>
                 </li>
 
-
                 <li class="list-divider"></li>
-                <li class="nav-small-cap"><span class="hide-menu">Blog</span></li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="{{route('blog_categories')}}"
+                    <a class="sidebar-link sidebar-link" href="{{route('product_categories')}}"
                        aria-expanded="false"><i  class="fas fa-th-large"></i><span
-                            class="hide-menu">Blog Kategoriyası</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="{{route('blogcreate')}}"
-                       aria-expanded="false"><i  class=" far fa-edit"></i><span
-                            class="hide-menu">Yeni Blog</span>
+                            class="hide-menu">İstifadəçilər Siyahısı</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="{{route('adminblogs')}}"
-                       aria-expanded="false"><i  class="far fa-newspaper"></i><span
-                            class="hide-menu">Bloglar</span>
-                    </a>
-                </li>
+
+
+{{--                <li class="list-divider"></li>--}}
+{{--                <li class="nav-small-cap"><span class="hide-menu">Blog</span></li>--}}
+
+{{--                <li class="sidebar-item">--}}
+{{--                    <a class="sidebar-link sidebar-link" href="{{route('blog_categories')}}"--}}
+{{--                       aria-expanded="false"><i  class="fas fa-th-large"></i><span--}}
+{{--                            class="hide-menu">Blog Kategoriyası</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="sidebar-item">--}}
+{{--                    <a class="sidebar-link sidebar-link" href="{{route('blogcreate')}}"--}}
+{{--                       aria-expanded="false"><i  class=" far fa-edit"></i><span--}}
+{{--                            class="hide-menu">Yeni Blog</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+
+{{--                <li class="sidebar-item">--}}
+{{--                    <a class="sidebar-link sidebar-link" href="{{route('adminblogs')}}"--}}
+{{--                       aria-expanded="false"><i  class="far fa-newspaper"></i><span--}}
+{{--                            class="hide-menu">Bloglar</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
 
 {{--                <li class="sidebar-item">--}}
 {{--                    <a class="sidebar-link sidebar-link" href="#/hakkimizda.php"--}}

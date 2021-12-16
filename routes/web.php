@@ -66,10 +66,11 @@ use Illuminate\Support\Facades\Route;
         Route::get('/xidmət-deactive/{id}','Admin\CorporateController@servicedeactive')->name('servicedeactive');
 
 
-        Route::get('/mehsul-kategoriyası-{id?}','Admin\ProductsController@product_categories')->name('product_categories');
-        Route::post('/mehsul-kategoriyası','Admin\ProductsController@product_category_store') ;
-        Route::post('/mehsul-kategoriyası/{id}','Admin\ProductsController@product_category_update')->name('product_category_update') ;
+        Route::get('/mehsul-kategoriyası/{id?}','Admin\ProductsController@product_categories')->name('product_categories');
+        Route::post('/mehsul-kategoriyası/{id?}','Admin\ProductsController@product_category_store') ;
+        Route::post('/mehsul-kategoriyası-update/{id}','Admin\ProductsController@product_category_update')->name('product_category_update') ;
         Route::delete('/mehsul-kategoriyası-sil/{id}','Admin\ProductsController@product_category_delete')->name('productcatdelete');
+
         Route::get('/mehsullarimiz','Admin\ProductsController@products')->name('adminproducts');
         Route::get('/mehsullarimiz/{id}','Admin\ProductsController@admincatproducts')->name('admincatproducts');
         Route::get('/yeni-mehsul-yarat','Admin\ProductsController@newproduct')->name('newproduct');

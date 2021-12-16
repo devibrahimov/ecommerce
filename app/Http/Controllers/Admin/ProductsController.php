@@ -18,17 +18,15 @@ class ProductsController extends Controller
     #        Products Category  SECTION
     ################################################################
     public function product_categories($id =null){
-        if ($id !=null){
-            $items = ProductCategory::where('parent_id',$id)->get();
-        }else{
-            $items = ProductCategory::all();
-        }
 
-        return view('Admin.pages.products.categories',compact(['items']));
+            $items = ProductCategory::where('parent_id',$id)->get();
+
+
+        return view('Admin.pages.products.categories',compact(['items','id']));
     }
 
 
-    public function product_category_store(Request $request){
+    public function product_category_store(Request $request,$id=null){
         try {
             $productcat = new ProductCategory();
 
@@ -52,6 +50,7 @@ class ProductsController extends Controller
             }
 
             $productcat->show = 0 ;
+            $productcat->parent_id = $id ;
             $productcat->save() ;
 
             $datacontent = [];
@@ -90,10 +89,10 @@ class ProductsController extends Controller
 
         # step 1_________________________;
         try {
-
             $ProductCategory = ProductCategory::find($id);
-
-# end step 1_________________________;
+            $ProductCategory->parent_id = $request->parent;
+            $ProductCategory->save();
+        # end step 1_________________________;
             $productcategory_content = DB::table('product_categories_content')->where('base_id', $id)->get();
             $datacontent = [];
 
@@ -110,7 +109,6 @@ class ProductsController extends Controller
                         array_push($datacontent, $data);
                     }
                 }
-
             }
 
             else {
@@ -127,7 +125,7 @@ class ProductsController extends Controller
                                 'lang' => $lang->code,
                                 'name' => $name,
                             ];
-                            DB::table('product_categories_content')->where('id',$thisrow->id)->update($data);
+                            DB::table('product_categories_content')->where('content_id',$thisrow->id)->update($data);
                         }//end if null
 
                     }
