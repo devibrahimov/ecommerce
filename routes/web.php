@@ -56,15 +56,25 @@ use Illuminate\Support\Facades\Route;
         Route::post('/haqqımızda','Admin\CorporateController@aboutusstore');
         Route::post('/haqqımızda/{id}','Admin\CorporateController@aboutusupdate')->name('adminaboutusupdate');
 
-        Route::get('/xidmətlərimiz','Admin\CorporateController@services')->name('adminservices');
-        Route::get('/yeni-xidmət-yarat','Admin\CorporateController@newservice')->name('newservice');
-        Route::post('/yeni-xidmət-yarat','Admin\CorporateController@servicestore');
-        Route::get('/xidmət-redaktəsi/{id}','Admin\CorporateController@serviceedit')->name('serviceupdate');
-        Route::post('/xidmət-redaktəsi/{id}','Admin\CorporateController@serviceupdate');
-        Route::delete('/xidmət-sil/{id}','Admin\CorporateController@servicedelete')->name('servicedelete');
-        Route::get('/xidmət-active/{id}','Admin\CorporateController@serviceactive')->name('serviceactive');
-        Route::get('/xidmət-deactive/{id}','Admin\CorporateController@servicedeactive')->name('servicedeactive');
+        Route::get('/sehifeler','Admin\CorporateController@services')->name('adminservices');
+        Route::get('/yeni-sehife-yarat','Admin\CorporateController@newservice')->name('newservice');
+        Route::post('/yeni-sehife-yarat','Admin\CorporateController@servicestore');
+        Route::get('/sehife-redaktəsi/{id}','Admin\CorporateController@serviceedit')->name('serviceupdate');
+        Route::post('/sehife-redaktəsi/{id}','Admin\CorporateController@serviceupdate');
+        Route::delete('/sehife-sil/{id}','Admin\CorporateController@servicedelete')->name('servicedelete');
+        Route::get('/sehife-active/{id}','Admin\CorporateController@serviceactive')->name('serviceactive');
+        Route::get('/sehife-deactive/{id}','Admin\CorporateController@servicedeactive')->name('servicedeactive');
 
+
+//        Route::get('/xidmətlərimiz','Admin\CorporateController@services')->name('adminservices');
+//        Route::get('/yeni-xidmət-yarat','Admin\CorporateController@newservice')->name('newservice');
+//        Route::post('/yeni-xidmət-yarat','Admin\CorporateController@servicestore');
+//        Route::get('/xidmət-redaktəsi/{id}','Admin\CorporateController@serviceedit')->name('serviceupdate');
+//        Route::post('/xidmət-redaktəsi/{id}','Admin\CorporateController@serviceupdate');
+//        Route::delete('/xidmət-sil/{id}','Admin\CorporateController@servicedelete')->name('servicedelete');
+//        Route::get('/xidmət-active/{id}','Admin\CorporateController@serviceactive')->name('serviceactive');
+//        Route::get('/xidmət-deactive/{id}','Admin\CorporateController@servicedeactive')->name('servicedeactive');
+//
 
         Route::get('/mehsul-kategoriyası/{id?}','Admin\ProductsController@product_categories')->name('product_categories');
         Route::post('/mehsul-kategoriyası/{id?}','Admin\ProductsController@product_category_store') ;
@@ -124,19 +134,21 @@ use Illuminate\Support\Facades\Route;
                'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]  ], function(){ //...
 
                Route::get('/','Site\GeneralController@index')->name('site.index');
-               Route::get('/hakkimizda','Site\GeneralController@about')->name('site.about');
-               Route::get('/metbuatda','Site\GeneralController@press')->name('site.press');
-               Route::get('/sual-cavab','Site\GeneralController@faq')->name('site.faq');
-               Route::get('/kurslar-ve-xidmetler','Site\GeneralController@services')->name('site.services');
-               Route::get('/kurslar-ve-xidmetler/{id}/{slug}','Site\GeneralController@serviceDetail')->name('site.serviceDetail');
+
                Route::get('/mehsullar','Site\GeneralController@products')->name('site.products');
                Route::get('/mehsullar/{id}-{slug}','Site\GeneralController@productcategory')->name('site.productcategory');
                Route::get('/mehsul/{id}-{slug}','Site\GeneralController@productDetail')->name('site.productDetail');
                Route::get('/elaqe','Site\GeneralController@contact')->name('site.contact');
-               Route::get('/qaleriya','Site\GeneralController@gallery')->name('site.gallery');
-               Route::get('/xeberler','Site\GeneralController@blogs')->name('site.blogs');
-               Route::get('/xeberler/{id}{slug}','Site\GeneralController@blogcat')->name('site.blogcat');
-               Route::get('/blog/{id}/{slug}','Site\GeneralController@blogdetail')->name('site.blogdetail');
+               Route::get('/{slug}','Site\GeneralController@serviceDetail')->name('page');
+
+                            Route::get('/kurslar-ve-xidmetler','Site\GeneralController@services')->name('site.services');
+//               Route::get('/hakkimizda','Site\GeneralController@about')->name('site.about');
+                            //               Route::get('/metbuatda','Site\GeneralController@press')->name('site.press');
+//               Route::get('/sual-cavab','Site\GeneralController@faq')->name('site.faq');
+//               Route::get('/qaleriya','Site\GeneralController@gallery')->name('site.gallery');
+//               Route::get('/xeberler','Site\GeneralController@blogs')->name('site.blogs');
+//               Route::get('/xeberler/{id}{slug}','Site\GeneralController@blogcat')->name('site.blogcat');
+//               Route::get('/blog/{id}/{slug}','Site\GeneralController@blogdetail')->name('site.blogdetail');
         });
     }
     else{

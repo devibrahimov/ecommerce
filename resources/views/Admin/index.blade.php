@@ -324,7 +324,7 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer text-center text-muted">
-            Bütün hüquqlar  <a href="https://lumusoft.com">LumuSoft</a> tərəfindən qorunur.
+            Bütün hüquqlar  <a href="https://dreamart.az">Dreamart</a> tərəfindən qorunur.
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->

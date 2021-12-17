@@ -10,6 +10,7 @@ use App\Models\ServiceContent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CorporateController extends Controller
 {
@@ -314,6 +315,7 @@ class CorporateController extends Controller
                         'service_id' => $service->id,
                         'lang' => $lang,
                         'name' => $name,
+                        'slug' => Str::slug($name),
                         'content' => $content,
                         'meta_content' => $metacontent,
                         'meta_keywords' => $metakeywords
@@ -416,6 +418,7 @@ class CorporateController extends Controller
                             'service_id' => $service->id,
                             'lang' => $lang,
                             'name' => $name,
+                            'slug' => Str::slug($name),
                             'content' => $content,
                             'meta_content' => $metacontent,
                             'meta_keywords' => $metakeywords
@@ -443,6 +446,7 @@ class CorporateController extends Controller
                                 'service_id' => $service->id,
                                 'lang' => $lang->code,
                                 'name' => $name,
+                                'slug' => Str::slug($name),
                                 'content' => $content,
                                 'meta_content' => $metacontent,
                                 'meta_keywords' => $metakeywords
@@ -462,6 +466,7 @@ class CorporateController extends Controller
                                 'service_id' => $service->id,
                                 'lang' => $lang->code,
                                 'name' => $name,
+                                'slug' => Str::slug($name),
                                 'content' => $content,
                                 'meta_content' => $metacontent,
                                 'meta_keywords' => $metakeywords

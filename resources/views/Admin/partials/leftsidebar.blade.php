@@ -36,8 +36,8 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link" href="{{route('adminservices')}}"
-                       aria-expanded="false"><i  class=" fas fa-ambulance"></i><span
-                            class="hide-menu">Xidmətlərimiz</span>
+                       aria-expanded="false"><i  class=" fas fa-file"></i><span
+                            class="hide-menu">Səhifələr</span>
                     </a>
                 </li>
 

@@ -25,6 +25,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     {!! setting()->g_analytcs_script !!}
     @yield('css')
+    <style>
+       .lang-search .border-primary {
+            border-color: #193d73!important;
+        }
+    </style>
 </head>
 
 <body>
@@ -39,7 +44,7 @@
     <div class="modal-content1">
         <span class="close1">x</span>
         <div class="leftModalImg">
-            <img src="img/2.jpg">
+            <img src="/img/2.jpg">
         </div>
         <div class="rightModalText">
             <h3>4PCS HOOK + PICK SET -1PC</h3>

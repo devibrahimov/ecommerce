@@ -52,15 +52,15 @@
     </div>
     <ul class="header-logo">
         <li class="left-logo">
-            <a href="index.html"> <img src="/assets/img/protool.png" /></a>
+            <a href="{{route('site.index')}}"> <img src="{{setting()->logo}}"width="200px"   alt="logo-{{setting()->title}}" title="logo-{{setting()->title}}"></a>
         </li>
         <li class="border_right">
             <div class="img-left">
                 <i class="fas fa-headset"></i>
             </div>
             <div class="time-right">
-                <p>Запрос 24/7 </p>
-                <p>+994 51 230 48 46 </p>
+                <p>{{__('content.workstime')}} </p>
+                <p>{{contact()->number}} </p>
             </div>
         </li>
         <li>
@@ -68,119 +68,32 @@
                 <i class="fas fa-truck-moving"></i>
             </div>
             <div class="time-right">
-                <p>Бесплатная доставка </p>
-                <p> При заказе выше 100 AZN </p>
+                <p> {{__('content.orderingamount')}} </p>
+                <p>{{__('content.freeshipping')}} </p>
             </div>
         </li>
         <div class="lang-search">
             <div class="lang-up">
-                <a href="#"><img src="/assets/img/ru.png" /> Rus </a>
-                <a href="#"><img src="/assets/img/az.png" /> Aze </a>
-                <a href="#"><img src="/assets/img/en.png" /> Eng </a>
+
+                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                     @if(controlhaslang($localeCode) == true)
+
+                <a  hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
+                    class="{{ LaravelLocalization::getCurrentLocale()==$localeCode?'border border-primary border-2 p-1':'' }}">
+                    <img src="/assets/img/{{ $localeCode }}.png" /> {{  ucfirst($properties['native']) }} </a>
+
+                     @endif
+                 @endforeach
+
             </div>
             <form>
-                <input type="text" placeholder="Axtarış..." />
+                <input type="text" placeholder="{{__('content.search')}}..." />
                 <button type="button"><i class="fas fa-search"></i></button>
             </form>
         </div>
     </ul>
     <div class="header-down">
-        <nav>
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown" id="myDropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Покупайте По Категориям
-                        <i style="margin-left: 10px;" class="fas fa-bars"></i></a>
-                    <ul class="dropdown-menu" id="indexDropdown">
-                        <li> <a class="dropdown-item" href="category.html"> One-Key </a></li>
-                        <li>
-                            <a class="dropdown-item" href="category.html"> Аккумуляторы <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-                            <ul class="submenu dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Молотки отбойные</a></li>
-                                <li><a class="dropdown-item" href="#">Дрели</a></li>
-                                <li> <a class="dropdown-item" href="#"> Аккумуляторы <i
-                                            class="fas fa-long-arrow-alt-right"></i></a>
-                                    <ul class="submenu dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
-                                <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="dropdown-item" href="products.html"> Лобзики </a></li>
-                        <li><a class="dropdown-item" href="products.html"> Перфораторы </a></li>
-                        <li><a class="dropdown-item" href="products.html"> Лобзики </a></li>
-                        <li>
-                            <a class="dropdown-item" href="#"> Аккумуляторы <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-
-                            <ul class="submenu dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Перфораторы</a></li>
-                                <li><a class="dropdown-item" href="#">Дрели</a></li>
-                                <li> <a class="dropdown-item" href="#"> Аккумуляторы <i
-                                            class="fas fa-long-arrow-alt-right"></i></a>
-                                    <ul class="submenu dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
-                                <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="dropdown-item" href="products.html"> Перфораторы </a></li>
-                        <li><a class="dropdown-item" href="products.html"> Лобзики </a></li>
-                        <li>
-                            <a class="dropdown-item" href="products.htm"> Аккумуляторы <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-
-                            <ul class="submenu dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Перфораторы</a></li>
-                                <li><a class="dropdown-item" href="#">Дрели</a></li>
-                                <li> <a class="dropdown-item" href="#"> Аккумуляторы <i
-                                            class="fas fa-long-arrow-alt-right"></i></a>
-                                    <ul class="submenu dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
-                                <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="dropdown-item" href="products.html"> Перфораторы </a></li>
-                        <li><a class="dropdown-item" href="products.html"> Лобзики </a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="ulMenu">
-                <div class="mobilClose">
-                    <a ><i class="fas fa-times"></i></a>
-                </div>
-                <li>
-                    <a href="about.html">Şirkət</a>
-                </li>
-                <li>
-                    <a href="service.html">Xidmətlər</a>
-                </li>
-                <li>
-                    <a href="contact.html">Bizimlə Əlaqə</a>
-                </li>
-                <li>
-                    <a href="delivery.html">Çatdırılma</a>
-                </li>
-                <li>
-                    <a href="category.html">Bütün Kateqoriyalar</a>
-                </li>
-            </ul>
-            <div class="barclick" >
-                <li>
-                    <a href="#"> <i style=" font-size: 20px; color:aliceblue" class="fas fa-bars"></i></a>
-                </li>
-            </div>
-        </nav>
+      @include('Template.layouts.navbar')
     </div>
 </header>
 

@@ -50,7 +50,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         return \App\Models\Contact::first();
     }
 
-    function allServices(){
+    function allPages(){
 
          if ( adjustment()->multilang == 1) {
              $locale = LaravelLocalization::getCurrentLocale();
@@ -58,6 +58,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         if ( adjustment()->multilang == 0){
             $locale = adjustment()->default_lang;
         }
+
 
         $otherservices = DB::table('services')
          ->leftjoin('services_content','services.id','=','services_content.service_id')

@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="btn-list">
                         <a href="{{route('newservice')}}" class="btn btn-success"><i class="fas fa-plus-circle"></i>
-                            Yeni Ximət Əlavə Edin </a>
+                            Yeni Səhifə Əlavə Edin </a>
                     </div>
                 </div>
             </div>

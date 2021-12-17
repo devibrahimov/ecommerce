@@ -83,25 +83,11 @@ alistProfil.forEach((a1) => {
 
 
 
-String.prototype.rtrim = function (s) {
-    if (s == undefined)
-        s = '\\s';
-    return this.replace(new RegExp("[" + s + "]*$"), '');
-};
-String.prototype.ltrim = function (s) {
-    if (s == undefined)
-        s = '\\s';
-    return this.replace(new RegExp("^[" + s + "]*"), '');
-};
-
-let locationurl = window.location.pathname;
-
-let locationTrim = locationurl.rtrim('/');
-
-let pathArray = locationTrim.split('/');
-
+let pathArray = window.location.pathname.split('/');
+let a = pathArray.pop().split(".")[0]
+let b = 'index'
 if (window.innerWidth >= 1200) {
-   if (pathArray.length <= 2) {
+   if (a == b) {
       document.getElementById('indexDropdown').classList = 'dropdown-menu show';
    }
 } else {

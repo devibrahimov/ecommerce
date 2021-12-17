@@ -1,0 +1,108 @@
+@font-face {
+    font-family: Muli;
+    src: url("../fonts/Muli-Light.ttf");
+}
+
+.servicePage{
+    width: 74%;
+    height: auto;
+    margin: 30px auto 0px;
+    display: flex;
+    justify-content: flex-end;
+}
+.servicePage p a{
+    font-size: 15px;
+    color:#000;
+}
+.servicePage p a:hover{
+    color:#ed0a21;
+    transition: 0.2s;
+}
+
+/* serviceTitle */
+.serviceTitle{
+    width: 74%;
+    height: auto;
+    margin: 10px auto;
+    display: flex;
+    justify-content: flex-start;
+}
+.serviceTitle h4{
+    color:#000;
+    font-weight: bold;
+}
+/* container-service */
+.container-service {
+    width: 74%;
+    height: auto;
+    margin: 30px auto;
+}
+.item_background {
+    flex-basis: 100%;
+    height: 360px;
+    background-image: url("../img/protol2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+.item_background .text {
+    flex-basis: 50%;
+    margin-left: 10%;
+    position: relative;
+    top: -5%;
+}
+
+/* containers3 */
+.service-text{
+    width: 74%;
+    height: auto;
+    margin: 40px auto 80px;
+}
+.service-text .right-content p{
+    line-height: 24px;
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 1700px){
+    .servicePage {
+        width: 80%;
+    }
+    /* serviceTitle */
+    .serviceTitle {
+        width: 80%;  
+    }
+     /* container-service */
+    .container-service {
+        width: 80%;
+    }
+     /* service-text */
+     .service-text {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 1600px){
+    .servicePage {
+        width: 90%;
+    }
+    /* serviceTitle */
+    .serviceTitle {
+        width: 90%;  
+    }
+     /* container-service */
+    .container-service {
+        width: 90%;
+    }
+     /* service-text */
+     .service-text {
+        width: 90%;
+    }
+}
+
+
+@media only screen and (max-width: 600px){
+    .container-service .item_background {
+        height: 242px !important;
+    }
+}

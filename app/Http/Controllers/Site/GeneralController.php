@@ -108,28 +108,23 @@ class GeneralController extends Controller
         return View::make("Template.pages.services",compact(['page', 'services' ]));
     }
 
-    public function serviceDetail($id,$slug){
+    public function serviceDetail($slug){
         if ( adjustment()->multilang == 1) {
             $locale = LaravelLocalization::getCurrentLocale();
         }
         if ( adjustment()->multilang == 0){
             $locale = adjustment()->default_lang;
         }
+
         $service  = DB::table('services')
             ->leftjoin('services_content','services.id','=','services_content.service_id')
-            ->orderBy('desk')->where('lang',$locale)->where('service_id',$id)->first();
-        $randblogs = DB::table('blogs')
-            ->leftjoin('blog_contents','blogs.id','=','blog_contents.blog_id')
-            ->where('lang',$locale)->inRandomOrder()->get();
-        $otherservices = DB::table('services')
-            ->leftjoin('services_content','services.id','=','services_content.service_id')
-            ->orderBy('desk')->where('lang',$locale)->where('service_id','!=',$id)
-            ->where('active',1)->get();
+            ->orderBy('desk')->where('lang',$locale)->where('slug',$slug)->first();
+
         $meta_content = $service->meta_content ;
         $meta_keywords = $service->meta_keywords ;
 
         $page = 'service';
-        return View::make("Template.pages.serviceDetail",compact(['page', 'service' ,'otherservices','randblogs','meta_content','meta_keywords']));
+        return View::make("Template.pages.page",compact(['page', 'service' ,'meta_content','meta_keywords']));
     }
 
     public function blogs(){

@@ -10,7 +10,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Yeni Xidmət Əlavə Edin</h4>
+                    <h4 class="card-title">Yeni Səhifə Əlavə Edin</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{route('newservice')}}" method="post"   enctype="multipart/form-data">
@@ -23,18 +23,18 @@
                         <div class="form-group col-5">
                             <label for="">Şəkil</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input  " required name="image" accept="image/jpeg ,image/png " id="inputGroupFile01">
-                                <label class="custom-file-label" for="inputGroupFile01">Şəkil seçin</label>
+                                <input type="file" class="custom-file-input" required name="image" accept="image/jpeg ,image/png " id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01">Səhifə Şəkilini seçin</label>
 
                             </div>
                         </div>
-                        <div class="form-group col-5">
-                            <label for="">İkon</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="icon"  accept="image/png"  id="inputGroupFile01">
-                                <label class="custom-file-label" for="inputGroupFile01">İkon seçin</label>
-                            </div>
-                        </div>
+{{--                        <div class="form-group col-5">--}}
+{{--                            <label for="">İkon</label>--}}
+{{--                            <div class="custom-file">--}}
+{{--                                <input type="file" class="custom-file-input" name="icon"  accept="image/png"  id="inputGroupFile01">--}}
+{{--                                <label class="custom-file-label" for="inputGroupFile01">İkon seçin</label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                         <hr>
                         <div class="form-group">
@@ -55,11 +55,11 @@
                                     <div class="tab-pane @if($loop->first) show active @endif " id="{{$lang->code}}">
                                         <div class="row">
                                             <div class="form-group col-12">
-                                                <label for="">Başlıq ({{$lang->name}})</label>
+                                                <label for="">Səhifə Başlıqı ({{$lang->name}})</label>
                                                 <input type="text" class="form-control"  name="name_{{$lang->code}}"  >
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="">Açıqlama ({{$lang->name}}) </label>
+                                                <label for="">Mətn ({{$lang->name}}) </label>
                                                 <textarea type="text" class="form-control mycontent"
                                                           name="content_{{$lang->code}}" ></textarea>
                                             </div>
