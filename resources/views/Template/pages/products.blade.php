@@ -1,113 +1,410 @@
 @extends('Template.index')
 
 @section('css')
-
-    <style>
-        .sortable-masonry .filters .filter-tabs li {
-
-            color: #111;
-            padding: 19px 0px 17px 0px;
-            margin: 0px -1.5px;
-        }
-        .sortable-masonry .filters .filter-tabs li a {
-
-            color: #111;
-            padding: 19px 0px 17px 0px;
-            margin: 0px -1.5px;
-        }
-        .project-page-section .project-block-one .inner-box {
-            margin-bottom: 6px;
-        }
-        .project-block-one h2  {
-            position: relative;
-            font-size: larger;
-            font-weight: 450;
-            color: #111111;
-            margin: 0px;
-            transition: all 500ms ease;
-            font-family: serif!imporant;
-        }
-        .project-block-one p  {
-            font-size: 15px;!imporant;
-        }
-        .image-box img{
-            width:100%;height:230px;object-fit: cover;
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/css/products.css">
 @endsection
 
 
 @section('content')
 
 
-    <!-- Page Title -->
-    <section class="page-title" style="background-image: url(/assets/images/background/page-title.jpg);">
-        <div class="auto-container">
-            <div class="content-box">
-                <div class="title">
-                    <h1>{{__('content.products')}}</h1>
-                </div>
-                <ul class="bread-crumb clearfix">
-                    <li><a href="{{route('site.index')}}">{{__('content.home')}}</a></li>
-                    <li>{{__('content.products')}}</li>
-                </ul>
-            </div>
+    <div class="productPage">
+        <h4> {{$category->name}}</h4>
+        <div >
+            <p>
+                <a href="{{route('site.index')}}"> {{__('content.home') }} </a>
+                <span> <i class="fas fa-angle-double-right"></i> </span>
+                <span>{{__('content.products')}} </span>
+            </p>
+
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Сортировка по умолчанию</option>
+                <option value="1">Сортировать по популярности</option>
+                <option value="2">Сортировать по последнему</option>
+                <option value="3">Сортировать по последнему</option>
+            </select>
+
         </div>
-    </section>
-    <!-- End Page Title -->
+    </div>
 
-
-    <!-- project-page-section -->
-    <section class="project-page-section three-column">
-
-        <div class="container-fluid">
-            <div class="sortable-masonry">
-            <div class="filters centred">
-                <ul class="filter-tabs filter-btns clearfix">
-
-
-                    @foreach($categories as $cat)
-                        <li class="filter {{isset($catid)&&$catid==$cat->id? 'active':''}}" data-role="button" data-filter="
-                        .alaram">
-
-                            <a href="{{route('site.productcategory',['id'=>$cat->id ,'slug'=>\Illuminate\Support\Str::slug
-                            (getproductcategorycontent($cat->id,LaravelLocalization::getCurrentLocale())->name)])}}">
-                                {{isset(getproductcategorycontent($cat->id,LaravelLocalization::getCurrentLocale())->name)? getproductcategorycontent($cat->id,LaravelLocalization::getCurrentLocale())->name: ''}}
-                            </a>
-                        </li>
-                    @endforeach
-
-                </ul>
-                </div>
-            </div>
-        </div>
-        <div class="auto-container" style="    margin-bottom: 60px;">
-            <div class="sortable-masonry">
-                <div class="items-container row clearfix">
-                    @if(isset($products))
-                        @foreach($products as $product)
-                        <div class="col-lg-4 mt-3  col-md-6 col-sm-12 masonry-item small-column all outdoor installation">
-                            <a href="{{route('site.productDetail',['id'=>$product->id,
-                            'slug'=>\Illuminate\Support\Str::slug($product->name)])}}">
-                                <div class="project-block-one">
-                                    <figure class="image-box" style="border: 0.5px solid #c0c0c0;border-radius: 5px">
-                                        <img src="{{$product->imagepath}}" alt="{{setting()->title.'-'.
-                                        $product->name}}">
-                                    </figure>
-                                    <h2 class="mt-2">{{$product->name}}</h2>
-                                    <p>{{ html_entity_decode(substr( strip_tags($product->content) ,0,150)) }} ...</p>
-                                </div>
-                            </a>
+    <div class="containers">
+        <div class="left-container">
+            <h3>Последний Добавленный</h3>
+            <ul class="left-item">
+                <li>
+                    <div class="left-img">
+                        <img src="img/smallimg.jpg" />
+                    </div>
+                    <div class="right-text">
+                        <p>4PCS HOOK + PICK SET -1PC</p>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
                         </div>
-                        @endforeach
-                    @endif
+                        <span><b>28</b>AZN</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="left-img">
+                        <img src="img/smallimg.jpg" />
+                    </div>
+                    <div class="right-text">
+                        <p>4PCS HOOK + PICK SET -1PC</p>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <span><b>28</b>AZN</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="left-img">
+                        <img src="img/smallimg.jpg" />
+                    </div>
+                    <div class="right-text">
+                        <p>4PCS HOOK + PICK SET -1PC</p>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <span><b>28</b>AZN</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="left-img">
+                        <img src="img/smallimg.jpg" />
+                    </div>
+                    <div class="right-text">
+                        <p>4PCS HOOK + PICK SET -1PC</p>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <span><b>28</b>AZN</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="left-img">
+                        <img src="img/smallimg.jpg" />
+                    </div>
+                    <div class="right-text">
+                        <p>4PCS HOOK + PICK SET -1PC</p>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <span><b>28</b>AZN</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="right-container">
+            <div class="container-products">
+                <div class="card">
+                    <img class="card-img-top" src="./img/smallimg.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/2.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a ><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <a class="soldout" href="productdetail.html">
+                        <span>SATILIB</span>
+                    </a>
+                    <div class="card-body " >
+                        <p class="card-text"> 4PCS HOOK + PICK SET -1PC </p>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <p class="card-text"><span>28</span>AZN</p>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./img/smallimg.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/2.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <div class="card-body">
+                        <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
+                        <p class="card-text"><span>28</span>AZN</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./img/2.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/smallimg.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <div class="card-body">
+                        <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
+                        <p class="card-text"><span>28</span>AZN</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./img/smallimg.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/2.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a ><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <div class="card-body">
+                        <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
+                        <p class="card-text"><span>28</span>AZN</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./img/smallimg.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/smallimg.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a ><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <div class="card-body">
+                        <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
+                        <p class="card-text"><span>28</span>AZN</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./img/smallimg.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/smallimg.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a ><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <div class="card-body">
+                        <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
+                        <p class="card-text"><span>28</span>AZN</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./img/2.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/smallimg.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a ><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <div class="card-body">
+                        <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
+                        <p class="card-text"><span>28</span>AZN</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./img/2.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/smallimg.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a ><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <div class="card-body">
+                        <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
+                        <p class="card-text"><span>28</span>AZN</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./img/smallimg.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/2.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a ><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <div class="soldout">
+                        <span>SATILIB</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <p class="card-text"><span>28</span>AZN</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./img/smallimg.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/2.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a ><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <div class="soldout">
+                        <span>SATILIB</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <p class="card-text"><span>28</span>AZN</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./img/smallimg.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/2.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a ><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <div class="soldout">
+                        <span>SATILIB</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <p class="card-text"><span>28</span>AZN</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="./img/smallimg.jpg" alt="Card image">
+                    <img class="card-img-top2" src="./img/2.jpg" alt="Card image">
+                    <ul class="butons">
+                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                        <li class="eye"><a><i class="far fa-eye"></i></a></li>
+                        <li class="compareOpen"><a ><i class="fas fa-compress-alt"></i></a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <div class="soldout">
+                        <span>SATILIB</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+                        <p class="card-text"><span>28</span>AZN</p>
+                    </div>
                 </div>
             </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </section>
-    <!-- project-page-section end -->
-
-
+    </div>
 
 @endsection
 

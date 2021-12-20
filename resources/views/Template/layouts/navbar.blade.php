@@ -82,7 +82,7 @@
             <a href="#">{{__('content.contact')}}</a>
         </li>
         <li>
-            <a href="#">{{__('content.allcats')}}</a>
+            <a href="{{route('site.allcategories')}}">{{__('content.allcats')}}</a>
         </li>
     </ul>
     <div class="barclick" >

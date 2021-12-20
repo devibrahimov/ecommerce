@@ -1,12 +1,57 @@
 <?php
-/**
- * @CompanyURI: https://lumusoft.com
- * @Description: Developed by LUMUSOFT Software team.
- * @Version: 1.0.0
- * @Date :    27.06.2021
- */
+
+return
+    [
+        'menu' => 'Menu',
+        'home' => 'Ana Səhifə',
+        'about' => 'Şirkət',
+        'services' => 'Xidmətlər',
+        'products' => 'Məhsullar',
+        'delivery' => 'Çatdırılma',
+        'allcats' => 'Bütün Kateqoriyalar',
+        'movies' => 'Videolar',
+        'blog' => 'Xəbərlər',
+        'blogs' => 'Xəbərlər',
+        'categories' => 'Kategoriyalar',
+        'sss' => 'Tez-tez Soruşulan Suallar',
+        'contact' => 'Bizimlə Əlaqə',
+        'number' => 'Nömrə',
+        'phone' => 'Telefon',
+        'email' => 'E-Poçt',
+        'fax' => 'Fax',
+        'address' => 'Adres',
+        'goto' => 'Keçid et',
+        'readmore' => 'Damanını Oxu',
+        'otherServices' => 'Digər Xidmətlər',
+        'aboutimagetext' => 'Hakkımızda Səhifəsi Şəkilin altındakı kiçik yazı mətni buraya yazılacaq',
+        'blogsheaderContent' => 'Blog yazılarımız Sizlərin bilgilənməniz üçün vardır.oxuyun faydalanın',
+        'servicesTitle' => 'Texniki Servis.',
+        'servicesContent' => 'Texniki  Servis ile elaqe saxlamaq ucun asagidaki nomre ile elaqe saxlayin.',
+        'tecniqueServiceNumber' => '+994 77 329 42 62',
+        'Contact Information' => 'Əlaqə məlumatı',
+        'Get in Touch With Us' => 'Bizimlə əlaqə qurun',
+        'contactInformContent' => 'Bizimlə əlaqə Saxlayın.',
+        'First Name' => 'Ad',
+        'Last Name' => 'Soyad',
+        'Email' => 'E-Poçt',
+        'Phone Number' => 'Nömrə',
+        'Message' => 'Mesaj',
+        'Send' => 'Göndər',
+        'workstime' => 'Qaynar Xətt 24/7',
+        'workinghourstart' => 'İş Saatı (Başlama)',
+        'workinghourend' => 'İş Saatı (Bitmə)',
+        'freeshipping' => 'Pulsuz çatdırılma',
+        'orderingamount' => '100 AZN-dən yuxarı sifariş etdikdə',
+        'Registerform' => 'Qeydiyyat Formu',
+        'RegisterformContent' => 'Aşağıdakı formu doldurun.Və whatsapp üzərindən və göndərin.Biz Sizə Geri dönüş edəcəyik',
+        'search' => 'Axtarış',
+        'Interesting & amazing facts about company' =>'Şirkət haqqında və təcrübəsi hakkında faktlar',
+        'Years of experience'=>'İl Təcrübəmiz var',
+        'Team members'=>'Komanda Üzvü',
+        'Finished Project'=>'Bitmiş Proyektlər',
+        'satisfied customer'=>'Məmnun Müştəri',
 
 
-return [
-    'Home Main' => 'Home Main'
-];
+
+
+    ];

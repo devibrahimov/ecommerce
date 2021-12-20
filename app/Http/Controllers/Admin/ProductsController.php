@@ -201,11 +201,6 @@ class ProductsController extends Controller
     ################################################################
 
 
-
-
-
-
-
     ################################################################
     #        productS SECTION
     ################################################################
@@ -251,7 +246,15 @@ class ProductsController extends Controller
     }
 
     public function newproduct(){
-        $categories = ProductCategory::all();
+        if ( adjustment()->multilang == 1) {
+            $locale = LaravelLocalization::getCurrentLocale();
+        }
+        if ( adjustment()->multilang == 0){
+            $locale = adjustment()->default_lang;
+        }
+        $categories = DB::table('product_categories')
+            ->leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
+            ->where('lang',$locale)->get();
         return view('Admin.pages.products.create',compact(['categories']));
     }
 
@@ -262,10 +265,10 @@ class ProductsController extends Controller
             $product = new Product();
 
             $product->category_id = $request->category;
-//            $product->price = $request->price;
-//            $product->sale_price = $request->sale_price;
+            $product->price = $request->price;
+            $product->sale_price = $request->sale_price;
             $product->stock = $request->stock;
-//            $product->sku = $request->sku;
+            $product->sku = $request->sku;
             $product->save();
 
             #image upload

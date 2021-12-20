@@ -134,6 +134,7 @@ use Illuminate\Support\Facades\Route;
                'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]  ], function(){ //...
 
                Route::get('/','Site\GeneralController@index')->name('site.index');
+               Route::get('/butun-kategoriyalar/{id?}{slug?}','Site\GeneralController@allcategories')->name('site.allcategories');
 
                Route::get('/mehsullar','Site\GeneralController@products')->name('site.products');
                Route::get('/mehsullar/{id}-{slug}','Site\GeneralController@productcategory')->name('site.productcategory');

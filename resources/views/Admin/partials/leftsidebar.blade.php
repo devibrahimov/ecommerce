@@ -5,20 +5,17 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="list-divider"></li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link active" href="{{route('admin.index')}}"
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link active" href="{{route('admin.index')}}"
                                              aria-expanded="false"><i  class="icon-chart"></i><span
                             class="hide-menu">Dashboard</span></a></li>
 
-
-
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="{{route('product_categories')}}"
+                    <a class="sidebar-link sidebar-link" href="#"
                        aria-expanded="false"><i  class="fas fa-th-large"></i><span
                             class="hide-menu">Sifarişlər</span>
                     </a>
                 </li>
-
-
 
                 <li class="list-divider"></li>
                 <li class="nav-small-cap"><span class="hide-menu">FİRMA MƏUMATLARI</span></li>
@@ -96,7 +93,7 @@
                 <li class="list-divider"></li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="{{route('product_categories')}}"
+                    <a class="sidebar-link sidebar-link" href="#"
                        aria-expanded="false"><i  class="fas fa-th-large"></i><span
                             class="hide-menu">İstifadəçilər Siyahısı</span>
                     </a>

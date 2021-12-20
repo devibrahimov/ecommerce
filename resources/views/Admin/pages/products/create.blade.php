@@ -41,8 +41,6 @@
                     <form action="{{route('newproduct')}}" method="post"   enctype="multipart/form-data">
                     <div class="row">
                         @csrf
-
-
                         <div class="form-group col-12">
                          <div class="row image-files">
                              <div class=" col-2 m-3 ">
@@ -125,33 +123,43 @@
                          </div>
                         </div>
 
+
                         <div class="form-group col-12">
                             <div class="row">
                                 <div class="form-group col-3">
                                     <label for="categories">Kategoriya</label>
-                                    <select name="category" required id="categories" class="custom-select mr-sm-2">
-                                        @foreach($categories as $cat)
-                                            <option  value="{{$cat->id}}"> {{isset(getproductcategorycontent($cat->id,defaultLang())->name)? getproductcategorycontent($cat->id,defaultLang())->name: ''}}</option>
-                                        @endforeach
-                                    </select>
+{{--                                    <select name="category" required id="categories" class="custom-select mr-sm-2">--}}
+{{--                                        @foreach($categories as $cat)--}}
+{{--                                            <option  value="{{$cat->id}}"> {{$cat->name}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+
                                 </div>
-{{--                                <div class="form-group col-2">--}}
-{{--                                    <label for="">Qiymət </label>--}}
-{{--                                    <input type="number" class="form-control"  name="price"  >--}}
-{{--                                </div>--}}
-{{--                                <div class="form-group col-2">--}}
-{{--                                    <label for="">Endirimli Qiymət </label>--}}
-{{--                                    <input type="number" class="form-control"  name="price"  >--}}
-{{--                                </div>--}}
+
+
+
+                                <div class="form-group col-2">
+                                    <label for="">Qiymət </label>
+                                    <input type="number" class="form-control"  name="price"  >
+                                </div>
+                                <div class="form-group col-2">
+                                    <label for="">Endirimli Qiymət </label>
+                                    <input type="number" class="form-control"  name="price"  >
+                                </div>
                                 <div class="form-group col-2">
                                     <label for="">Stok sayısı </label>
                                     <input type="number" class="form-control"  name="stock"  >
                                 </div>
-{{--                                <div class="form-group col-3">--}}
-{{--                                    <label for="">SKU </label>--}}
-{{--                                    <input type="number" class="form-control"  name="price"  >--}}
-{{--                                </div>--}}
+                                <div class="form-group col-3">
+                                    <label for="">SKU </label>
+                                    <input type="number" class="form-control"  name="price"  >
+                                </div>
                             </div>
+
+
+
+
+
 
 {{--                            <div class="row">--}}
 {{--                                <div class="form-group col-6">--}}
