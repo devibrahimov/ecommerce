@@ -24,12 +24,12 @@ class CustomerRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => '.required|string',
-            'surname' => '.required|string',
-            'phone_number' => '.required|string|unique:customers',
-            'email' => '.required|string|email|unique:customers',
-            'password' => '.required|string|min:6|confirmed',
-            'adress' => '.required|string',
+            'name' => 'required|string',
+            'surname' => 'required|string',
+            'phone_number' => 'required|string|unique:customers',
+            'email' => 'required|string|email|unique:customers',
+            'password' => 'required|string|min:6|confirmed',
+            'adress' => 'required|string',
 
         ];
     }

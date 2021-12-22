@@ -19,6 +19,15 @@
     </div>
 
     <div class="container_register">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{route('customer.register')}}" method="post">
             <div class="form_group">
                 <div class="form-tema">
@@ -65,7 +74,7 @@
             </div>
             <div class="form_group">
                 <div class="btns">
-                    <button type="button">Register</button>
+                    <button type="submit">{{__('content.register')}}</button>
                     <button type="button">Login</button>
                 </div>
             </div>
