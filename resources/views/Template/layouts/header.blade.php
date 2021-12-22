@@ -11,8 +11,8 @@
             <div class="login">
                 <h4>Şəxsi Kabinet</h4>
                 <p><a href="profile.html">Users: <span>Beyler</span></a></p>
-                <p><a href="login.html">Login</a></p>
-                <p><a href="register.html">Register</a></p>
+                <p><a href="{{route('customer.login')}}">Login</a></p>
+                <p><a href="{{route('customer.register')}}">Qeydiyyat</a></p>
                 <p><a href="#">Log out</a></p>
             </div>
             <div class="opencart">

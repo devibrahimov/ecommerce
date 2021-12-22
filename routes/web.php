@@ -126,6 +126,16 @@ use Illuminate\Support\Facades\Route;
     });
 //end middleware
 
+    Route::group(['prefix'=>'istifadeci'],function (){
+        Route::get('/giris','Site\CustomerAuthController@login')->name('customer.login');
+        Route::post('/giris','Site\CustomerAuthController@logincontrol');
+    });
+
+
+
+
+
+
     if (adjustment()->multilang == 1){
 
         Route::group(
@@ -140,11 +150,13 @@ use Illuminate\Support\Facades\Route;
                Route::get('/mehsullar/{id}-{slug}','Site\GeneralController@productcategory')->name('site.productcategory');
                Route::get('/mehsul/{id}-{slug}','Site\GeneralController@productDetail')->name('site.productDetail');
                Route::get('/elaqe','Site\GeneralController@contact')->name('site.contact');
-               Route::get('/{slug}','Site\GeneralController@serviceDetail')->name('page');
+               Route::get('/sehife-{slug}','Site\GeneralController@serviceDetail')->name('page');
 
-                            Route::get('/kurslar-ve-xidmetler','Site\GeneralController@services')->name('site.services');
+               Route::get('/kurslar-ve-xidmetler','Site\GeneralController@services')->name('site.services');
+               Route::get('/istifadeci-qeydiyyati','Site\CustomerAuthController@register')->name('customer.register');
+               Route::post('/istifadeci-qeydiyyati','Site\CustomerAuthController@registerstore') ;
 //               Route::get('/hakkimizda','Site\GeneralController@about')->name('site.about');
-                            //               Route::get('/metbuatda','Site\GeneralController@press')->name('site.press');
+//               Route::get('/metbuatda','Site\GeneralController@press')->name('site.press');
 //               Route::get('/sual-cavab','Site\GeneralController@faq')->name('site.faq');
 //               Route::get('/qaleriya','Site\GeneralController@gallery')->name('site.gallery');
 //               Route::get('/xeberler','Site\GeneralController@blogs')->name('site.blogs');
