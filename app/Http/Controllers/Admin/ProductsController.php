@@ -92,6 +92,26 @@ class ProductsController extends Controller
         # step 1_________________________;
         try {
             $ProductCategory = ProductCategory::find($id);
+            $image = $request->file('image');
+
+            #image upload
+            if ($image) {
+                $path = "/photos/categories/";
+                $imagepath = public_path() . $path;
+                if ($image->isValid()) {
+                    $newimagename = rand(1, 100) . time() . '.' . $image->getClientOriginalExtension();
+
+                    $location = $imagepath . '/' . $newimagename;
+                    $imageurl = $path . '/' . $newimagename; //for DB
+                    makedirectory($path);
+                    $response = compressImage(['source' => $image, 'destination' => $location]);
+                    if ($response != true){
+                        $image->move($imagepath, $newimagename);
+                    }
+                }
+                $ProductCategory->image = $imageurl;
+            }
+
             $ProductCategory->parent_id = $request->parent;
             $ProductCategory->save();
         # end step 1_________________________;

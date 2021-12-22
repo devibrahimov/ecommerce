@@ -15,7 +15,7 @@
                    <div class="card-body">
                        <form class="pl-3 pr-3" action="{{route('product_categories',$id)}}" method="post" enctype="multipart/form-data">
                            <div class="row">
-                               @if($id ==null)
+
                                <div class="input-group mb-3 col-12">
                                    <div class="input-group-prepend">
                                        <span class="input-group-text">Yükləmə</span>
@@ -25,7 +25,7 @@
                                        <label class="custom-file-label" for="inputGroupFile01">Şəkil seçin</label>
                                    </div>
                                </div>
-                                @endif
+
 
 
                            </div>
@@ -93,7 +93,18 @@
                                           <div class="modal-dialog">
                                               <div class="modal-content">
                                                   <div class="modal-body">
-                                                      <form class="pl-3 pr -3" action="{{route('product_category_update',$item->id)}}" method="post" >
+                                                      <form class="pl-3 pr -3" action="{{route('product_category_update',$item->id)}}" method="post" enctype="multipart/form-data">
+
+                                                          <div class="input-group mb-3 col-12">
+                                                              <div class="input-group-prepend">
+                                                                  <span class="input-group-text">Yükləmə</span>
+                                                              </div>
+                                                              <div class="custom-file">
+                                                                  <input type="file" class="custom-file-input" required name="image" id="inputGroupFile01">
+                                                                  <label class="custom-file-label" for="inputGroupFile01">Şəkil seçin</label>
+                                                              </div>
+                                                          </div>
+
                                                           <div class="form-group mb-3 col-12">
                                                               <label for="categories">Kategoriya</label>
 

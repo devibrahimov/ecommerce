@@ -137,13 +137,18 @@ class GeneralController extends Controller
             ->leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
             ->where('id',$id)->where('lang',$locale)->first();
 
-        $products = DB::table('products')->where('category_id',$id)
-            ->leftjoin('products_content','products.id','=','products_content.product_id')
-            ->leftJoin('products_images', function ($join) {
-                $join->on('products.id', '=', 'products_images.product_id')->where('cover','=',1);
-            })
-            ->where('lang',$locale)->where('active',1)->get();
+//        $products = DB::table('products')->where('category_id',$id)
+//            ->leftjoin('products_content','products.id','=','products_content.product_id')
+//            ->leftJoin('products_images', function ($join) {
+//                $join->on('products.id', '=', 'products_images.product_id')->where('cover','=',1);
+//            })
+//
+//            ->where('lang',$locale)->where('active',1)->get();
+//
 
+        $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
+            ->where('category_id',$id)
+            ->where('lang',$locale)->where('active',1)->paginate(20);
         $page = 'products';
 
         return View::make("Template.pages.products",compact(['category','products','page' ]));
@@ -164,7 +169,7 @@ class GeneralController extends Controller
             ->leftjoin('products_content','products.id','=','products_content.product_id')
             ->where('lang',$locale)->find($id);
         $product->images = Product::find($id)->images;
-//var_dump($product);die;
+
         $page = 'products';
         $catid = $id;
         return View::make("Template.pages.productDetail",compact(['categories','product','page','catid']));
