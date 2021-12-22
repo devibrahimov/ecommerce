@@ -13,7 +13,8 @@ return
         'blog' => 'Xəbərlər',
         'blogs' => 'Xəbərlər',
         'categories' => 'Kategoriyalar',
-        'sss' => 'Tez-tez Soruşulan Suallar',
+        'register' => 'Qeydiyyat',
+        'login' => 'Giriş',
         'contact' => 'Bizimlə Əlaqə',
         'number' => 'Nömrə',
         'phone' => 'Telefon',
@@ -50,8 +51,10 @@ return
         'Team members'=>'Komanda Üzvü',
         'Finished Project'=>'Bitmiş Proyektlər',
         'satisfied customer'=>'Məmnun Müştəri',
-
-
-
-
+        'name' => 'Ad',
+        'surname' => 'Soyad',
+        'phone_number' => 'Telefon nömrəsi',
+        'password' => 'Şifrə',
+        'confirmPassword' => 'Şifrə Təkrar',
+        'adress' => 'Adres',
     ];

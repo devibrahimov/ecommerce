@@ -21,14 +21,14 @@
         <form>
             <div class="form_group">
                 <div class="form-tema">
-                    <label for="exampleFormControlInput1" class="form-label">Имя пользователя или адрес эл-почты
+                    <label for="exampleFormControlInput1" class="form-label">{{__('content.email')}}
                     </label>
                     <input type="text" class="form-control">
                 </div>
             </div>
             <div class="form_group">
                 <div class="form-tema">
-                    <label for="exampleFormControlInput1" class="form-label">Password</label>
+                    <label for="exampleFormControlInput1" class="form-label">{{__('content.password')}}</label>
                     <input type="password" class="form-control">
                 </div>
             </div>

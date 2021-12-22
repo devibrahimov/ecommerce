@@ -13,7 +13,19 @@ class CustomerAuthController extends Controller
 
     public function registerstore(Request $request){
 
-    }public function login(){
+        $request->name;
+        $request->surname;
+        $request->phone_number;
+        $request->email;
+        $request->password;
+        $request->password_confirm;
+        $request->adress;
+
+    }
+
+
+
+    public function login(){
         return view('Template.pages.customer.login');
     }
 
