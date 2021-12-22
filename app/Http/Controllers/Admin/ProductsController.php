@@ -31,6 +31,7 @@ class ProductsController extends Controller
             $productcat = new ProductCategory();
 
             $image = $request->file('image');
+
             #image upload
             if ($image) {
                 $path = "/photos/categories/";
@@ -51,6 +52,7 @@ class ProductsController extends Controller
 
             $productcat->show = 0 ;
             $productcat->parent_id = $id ;
+
             $productcat->save() ;
 
             $datacontent = [];
@@ -252,8 +254,7 @@ class ProductsController extends Controller
         if ( adjustment()->multilang == 0){
             $locale = adjustment()->default_lang;
         }
-        $categories = DB::table('product_categories')
-            ->leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
+        $categories = ProductCategory::leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
             ->where('lang',$locale)->get();
         return view('Admin.pages.products.create',compact(['categories']));
     }
@@ -348,10 +349,17 @@ class ProductsController extends Controller
     } //end productstore
 
     public function productedit($id){
+        if ( adjustment()->multilang == 1) {
+            $locale = LaravelLocalization::getCurrentLocale();
+        }
+        if ( adjustment()->multilang == 0){
+            $locale = adjustment()->default_lang;
+        }
         $product = Product::find($id);
         $product->content = DB::table('products_content')->where('product_id',$id)->get();
         $product->images = ProductImage::where('product_id',$id)->get();
-        $categories = ProductCategory::all();
+        $categories = ProductCategory::leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
+            ->where('lang',$locale)->get();
 
         return view('Admin.pages.products.edit',compact(['product','categories']));
     }//end productedit

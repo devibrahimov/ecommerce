@@ -32,29 +32,8 @@ class GeneralController extends Controller
 //            ->rightjoin('carousel_content','carousel.id','=','carousel_content.carousel_id')
 //            ->orderBy('desk')->where('active',1)->get();
 
-        $about = DB::table('about_us')
-            ->leftjoin('aboutus_content','about_us.id','=','aboutus_content.about_id')
-            ->where('lang',$locale)->first();
-
-        $services = DB::table('services')
-            ->leftjoin('services_content','services.id','=','services_content.service_id')
-            ->orderBy('desk')->where('lang',$locale)->where('active',1)->get();
-
-        $faqs = DB::table('faqs')
-            ->leftjoin('faq_contents','faqs.id','=','faq_contents.faq_id')
-            ->orderBy('faq_id','DESC')->where('lang',$locale)->take(6,1)->get();
-
-        $press = DB::table('press')->where('athome',1)->first();
-
-//        $blogs = DB::table('blogs')
-//            ->leftjoin('blog_contents','blogs.id','=','blog_contents.blog_id')
-//            ->where('lang',$locale)->take(3,1)->get();
-
-        $blog = DB::table('blogs')
-            ->leftjoin('blog_contents','blogs.id','=','blog_contents.blog_id')
-            ->where('lang',$locale)->latest()->first();
         $page = 'index';
-        return View::make("Template.pages.home",compact(['page','about','carousel','services','press','blog','faqs']));
+        return View::make("Template.pages.home",compact(['page', 'carousel' ]));
     }
 
 
@@ -137,11 +116,8 @@ class GeneralController extends Controller
         }
         $categories = ProductCategory::all();
 
-        $products = DB::table('products')
-            ->leftjoin('products_content','products.id','=','products_content.product_id')
-            ->leftJoin('products_images', function ($join) {
-                $join->on('products.id', '=', 'products_images.product_id')->where('cover','=',1);
-            })
+        $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
+
             ->where('lang',$locale)->where('active',1)->get();
 
         $page = 'products';

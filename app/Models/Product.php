@@ -11,6 +11,11 @@ class Product extends Model
 
 
     public function images(){
-        return $this->hasMany('App\Models\ProductImage');
+        return $this->hasMany('App\Models\ProductImage','product_id');
     }
 }
+
+//
+//->leftJoin('products_images', function ($join) {
+//    $join->on('products.id', '=', 'products_images.product_id')->where('cover','=',1);
+//})

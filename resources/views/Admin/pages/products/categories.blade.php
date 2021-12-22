@@ -13,7 +13,7 @@
                         <h3>Yeni Kateqoriya Əlavə Et</h3>
                     </div>
                    <div class="card-body">
-                       <form class="pl-3 pr-3" action="{{route('product_categories',$id)}}" method="post">
+                       <form class="pl-3 pr-3" action="{{route('product_categories',$id)}}" method="post" enctype="multipart/form-data">
                            <div class="row">
                                @if($id ==null)
                                <div class="input-group mb-3 col-12">
