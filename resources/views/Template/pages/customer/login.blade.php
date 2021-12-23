@@ -18,20 +18,21 @@
         </div>
     </div>
     <div class="container_login">
-        <form>
+        <form method="post" action="{{route('customer.login')}}">
             <div class="form_group">
                 <div class="form-tema">
                     <label for="exampleFormControlInput1" class="form-label">{{__('content.email')}}
                     </label>
-                    <input type="text" class="form-control">
+                    <input type="text" name="email" class="form-control">
                 </div>
             </div>
             <div class="form_group">
                 <div class="form-tema">
                     <label for="exampleFormControlInput1" class="form-label">{{__('content.password')}}</label>
-                    <input type="password" class="form-control">
+                    <input type="password" name="password" class="form-control">
                 </div>
             </div>
+            @csrf
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required="">
                 <label class="form-check-label" for="invalidCheck">
@@ -41,7 +42,7 @@
             <div class="form_group">
                 <div class="btns">
                     <button type="button">Register</button>
-                    <button type="button">Login</button>
+                    <button type="submit">{{__('content.login')}}</button>
                 </div>
             </div>
             <div class="form_group">

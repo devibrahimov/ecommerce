@@ -131,6 +131,11 @@ use Illuminate\Support\Facades\Route;
         Route::post('/giris','Site\CustomerAuthController@logincontrol');
     });
 
+    Route::group(['middleware'=>'customerauth','prefix'=>'istifadeci'],function (){
+
+      Route::post('/cixisih-et','Site\CustomerAuthController@logout')->name('customer.logout');
+    });
+
 
 
 
