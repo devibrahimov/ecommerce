@@ -33,7 +33,7 @@ class ProductCategory extends Model
         return $this->hasMany(self::class , 'parent_id' ,'id')
             ->join('product_categories_content','product_categories.id','=','product_categories_content.base_id')
             ->where('lang',$locale);
-       // ->with('children')
+
     }
 
     public function parents(){

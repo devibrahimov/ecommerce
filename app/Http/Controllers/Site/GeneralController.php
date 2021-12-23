@@ -118,7 +118,7 @@ class GeneralController extends Controller
 
         $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
 
-            ->where('lang',$locale)->where('active',1)->get();
+            ->where('lang',$locale)->where('active',1)->paginate(20);
 
         $page = 'products';
         return View::make("Template.pages.products",compact(['categories','products','page']));
