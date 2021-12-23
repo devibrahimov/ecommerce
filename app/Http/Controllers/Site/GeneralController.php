@@ -137,14 +137,6 @@ class GeneralController extends Controller
             ->leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
             ->where('id',$id)->where('lang',$locale)->first();
 
-//        $products = DB::table('products')->where('category_id',$id)
-//            ->leftjoin('products_content','products.id','=','products_content.product_id')
-//            ->leftJoin('products_images', function ($join) {
-//                $join->on('products.id', '=', 'products_images.product_id')->where('cover','=',1);
-//            })
-//
-//            ->where('lang',$locale)->where('active',1)->get();
-//
 
         $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
             ->where('category_id',$id)
@@ -152,6 +144,28 @@ class GeneralController extends Controller
         $page = 'products';
 
         return View::make("Template.pages.products",compact(['category','products','page' ]));
+
+    }
+
+
+
+    public function productsearch(Request $request){
+
+        if ( adjustment()->multilang == 1) {
+            $locale = LaravelLocalization::getCurrentLocale();
+        }
+        if ( adjustment()->multilang == 0){
+            $locale = adjustment()->default_lang;
+        }
+
+
+
+        $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
+            ->where('name','LIKE','%'.$request->axtaris.'%')
+            ->where('lang',$locale)->where('active',1)->paginate(20);
+        $page = 'products';
+
+        return View::make("Template.pages.products",compact([ 'products','page' ]));
 
     }
 
@@ -336,7 +350,4 @@ class GeneralController extends Controller
 
     }
 
-    public function registerform(Request $request){
-        var_dump($request->all());
-    }
 }

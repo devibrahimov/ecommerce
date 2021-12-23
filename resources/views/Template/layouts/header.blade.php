@@ -85,9 +85,9 @@
                  @endforeach
 
             </div>
-            <form>
-                <input type="text" placeholder="{{__('content.search')}}..." />
-                <button type="button"><i class="fas fa-search"></i></button>
+            <form action="{{route('site.productsearch')}}" method="get">
+                <input type="text" name="axtaris" placeholder="{{__('content.search')}}..." />
+                <button type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
     </ul>

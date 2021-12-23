@@ -154,6 +154,7 @@ use Illuminate\Support\Facades\Route;
                Route::get('/mehsullar','Site\GeneralController@products')->name('site.products');
                Route::get('/mehsullar/{id}-{slug}','Site\GeneralController@productcategory')->name('site.productcategory');
                Route::get('/mehsul/{id}-{slug}','Site\GeneralController@productDetail')->name('site.productDetail');
+               Route::get('/mehsul-axtarisi/{axtaris?}','Site\GeneralController@productsearch')->name('site.productsearch');
                Route::get('/elaqe','Site\GeneralController@contact')->name('site.contact');
                Route::get('/sehife-{slug}','Site\GeneralController@serviceDetail')->name('page');
 
@@ -184,7 +185,7 @@ use Illuminate\Support\Facades\Route;
     }
 
     Route::post('/mesaj-gonder','Site\GeneralController@sendmessage')->name('sendmessage');
-    Route::get('/qeydiyyat-formu','Site\GeneralController@registerform')->name('registerform');
+
 
 
 Route::get('/clear',function (){

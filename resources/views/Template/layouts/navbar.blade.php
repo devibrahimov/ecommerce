@@ -6,7 +6,6 @@
             <ul class="dropdown-menu" id="indexDropdown">
 
                 @foreach(productcategoriesParents() as $category)
-
                 <li> <a class="dropdown-item" href=" @if(!count($category->children))
                     {{route('site.productcategory',['id'=>$category->id , 'slug'=>\Illuminate\Support\Str::slug($category->name)])}}
                     @else # @endif"> {{$category->name}}
