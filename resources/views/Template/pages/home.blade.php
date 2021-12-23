@@ -2,20 +2,45 @@
 
 
 @section('css')
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 @endsection
 
 
 @section('content')
 
-        <div class="container-one">
-            <div class="item_background">
-                <div class="text">
-                    <p>M18HCCT-201C</p>
-                    <h3>Пресс-инструмент One-Key </h3>
-                    <a href="#">Купить</a>
+    <div class="container-one">
+        <div class="swiper mySwiper item_Slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="item_background">
+                        <div class="text">
+                            <p>M18HCCT-201C</p>
+                            <h3>Пресс-инструмент One-Key </h3>
+                            <a href="#">Купить</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="item_background">
+                        <div class="text">
+                            <p>M18HCCT-201C</p>
+                            <h3>Пресс-инструмент One-Key </h3>
+                            <a href="#">Купить</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="item_background">
+                        <div class="text">
+                            <p>M18HCCT-201C</p>
+                            <h3>Пресс-инструмент One-Key </h3>
+                            <a href="#">Купить</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
         <div class="container2">
             <div class="item1"></div>
             <div class="item2">
@@ -480,6 +505,12 @@
 
 @endsection
 @section('js')
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {});
+    </script>
 @endsection
 
 
