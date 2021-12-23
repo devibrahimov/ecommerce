@@ -74,11 +74,10 @@
         </li>
         <div class="lang-search">
             <div class="lang-up">
-
                  @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                      @if(controlhaslang($localeCode) == true)
 
-                <a  hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
+                <a hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
                     class="{{ LaravelLocalization::getCurrentLocale()==$localeCode?'border border-primary border-2 p-1':'' }}">
                     <img src="/assets/img/{{ $localeCode }}.png" /> {{  ucfirst($properties['native']) }} </a>
 

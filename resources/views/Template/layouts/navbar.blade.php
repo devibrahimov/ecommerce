@@ -4,67 +4,18 @@
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Покупайте По Категориям
                 <i style="margin-left: 10px;" class="fas fa-bars"></i></a>
             <ul class="dropdown-menu" id="indexDropdown">
-                <li> <a class="dropdown-item" href="category.html"> One-Key </a></li>
-                <li>
-                    <a class="dropdown-item" href="category.html"> Аккумуляторы <i
-                            class="fas fa-long-arrow-alt-right"></i></a>
-                    <ul class="submenu dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Молотки отбойные</a></li>
-                        <li><a class="dropdown-item" href="#">Дрели</a></li>
-                        <li> <a class="dropdown-item" href="#"> Аккумуляторы <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-                            <ul class="submenu dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
-                        <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
-                    </ul>
-                </li>
-                <li><a class="dropdown-item" href="products.html"> Лобзики </a></li>
-                <li><a class="dropdown-item" href="products.html"> Перфораторы </a></li>
-                <li><a class="dropdown-item" href="products.html"> Лобзики </a></li>
-                <li>
-                    <a class="dropdown-item" href="#"> Аккумуляторы <i
-                            class="fas fa-long-arrow-alt-right"></i></a>
 
-                    <ul class="submenu dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Перфораторы</a></li>
-                        <li><a class="dropdown-item" href="#">Дрели</a></li>
-                        <li> <a class="dropdown-item" href="#"> Аккумуляторы <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-                            <ul class="submenu dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
-                        <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
-                    </ul>
-                </li>
-                <li><a class="dropdown-item" href="products.html"> Перфораторы </a></li>
-                <li><a class="dropdown-item" href="products.html"> Лобзики </a></li>
-                <li>
-                    <a class="dropdown-item" href="products.htm"> Аккумуляторы <i
-                            class="fas fa-long-arrow-alt-right"></i></a>
+                @foreach(productcategoriesParents() as $category)
 
-                    <ul class="submenu dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Перфораторы</a></li>
-                        <li><a class="dropdown-item" href="#">Дрели</a></li>
-                        <li> <a class="dropdown-item" href="#"> Аккумуляторы <i
-                                    class="fas fa-long-arrow-alt-right"></i></a>
-                            <ul class="submenu dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
-                        <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
-                    </ul>
+                <li> <a class="dropdown-item" href=" @if(!count($category->children))
+                    {{route('site.productcategory',['id'=>$category->id , 'slug'=>\Illuminate\Support\Str::slug($category->name)])}}
+                    @else # @endif"> {{$category->name}}
+                        @if(count($category->children)) <i  class="fas fa-long-arrow-alt-right"></i> @endif </a>
+                            @if(count($category->children))
+                                @include('Template.layouts.category-partial',['children' => $category->children])
+                            @endif
                 </li>
-                <li><a class="dropdown-item" href="products.html"> Перфораторы </a></li>
-                <li><a class="dropdown-item" href="products.html"> Лобзики </a></li>
+                @endforeach
             </ul>
         </li>
     </ul>
@@ -79,7 +30,7 @@
         @endforeach
 
         <li>
-            <a href="#">{{__('content.contact')}}</a>
+            <a href="{{route('site.contact')}}">{{__('content.contact')}}</a>
         </li>
         <li>
             <a href="{{route('site.allcategories')}}">{{__('content.allcats')}}</a>

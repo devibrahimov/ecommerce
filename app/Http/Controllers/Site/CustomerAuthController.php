@@ -17,7 +17,6 @@ class CustomerAuthController extends Controller
 
         $customer = Customer::create($request->validated());
 
-
     }
 
 

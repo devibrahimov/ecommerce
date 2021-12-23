@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Language;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /**
  * @CompanyURI: https://lumusoft.com
@@ -98,14 +99,37 @@ function controlhaslang($localeCode){
                 return $result->lang ;
 
     }
-//
-//function thiscategory($id){
-//    if ( adjustment()->multilang == 1) {
-//        $locale = LaravelLocalization::getCurrentLocale();
-//    }
-//    if ( adjustment()->multilang == 0){
-//        $locale = adjustment()->default_lang;
-//    }
-//    return DB::table('product_categories')->leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
-//        ->where('id',$id)->where('lang',$locale)->first();
-//}
+
+function productcategoriesParents(){
+    if ( adjustment()->multilang == 1) {
+        $locale = LaravelLocalization::getCurrentLocale();
+    }
+    if ( adjustment()->multilang == 0){
+        $locale = adjustment()->default_lang;
+    }
+
+    return \App\Models\ProductCategory::where('parent_id',null)
+        ->with('children')
+        ->leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
+        ->where('lang',$locale)->get();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
