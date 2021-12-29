@@ -2,18 +2,29 @@
 <header>
     <div class="header-up">
         <div class="top-cart">
-            <a href="wishlist.html" class="color_gray"><span>İstək Siyahısı</span> (<b>0</b>)</a>
+          @auth('customer')
+            <a href="{{route('customer.wishlist')}}" class="color_gray"><span>{{__('content.wishlist')}}</span>  </a>
+             @endauth
             <a href="#" class="shopping_bag">
                 <i class="fas fa-shopping-bag"></i>
                 <span class="price">199</span> <span>AZN</span> (<span class="count">1</span>)
             </a>
             <a href="#" class="Login_Registr">Daxil ol </a>
             <div class="login">
+                @auth('customer')
                 <h4>Şəxsi Kabinet</h4>
-                <p><a href="profile.html">Users: <span>Beyler</span></a></p>
+                <p><a href="{{route('customer.profil')}}">Users: <span>{{ auth('customer')->user()->name}}</span></a></p>
+                <p  onclick="event.preventDefault(); document.getElementById('logoutform').submit()"> <a href="#">Log out</a></p>
+
+                    <form action="{{route('customer.logout')}}" method="post" id="logoutform" style="display: none">
+                        @csrf
+                    </form>
+                @endauth
+
+                @guest('customer')
                 <p><a href="{{route('customer.login')}}"> {{__('content.login')}} </a></p>
                 <p><a href="{{route('customer.register')}}"> {{__('content.register')}} </a></p>
-                <p><a href="#">Log out</a></p>
+                @endguest
             </div>
             <div class="opencart">
                 <div class="cartItem">

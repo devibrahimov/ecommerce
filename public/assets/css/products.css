@@ -51,6 +51,7 @@
 }
 .container-products .card img {
     width: 90%;
+    margin: 0px auto;
 }
 .card .card-img-top2 {
     position: absolute;
@@ -140,7 +141,7 @@
 
 
 @media only screen and (max-width: 1700px){
-    .productPage{  
+    .productPage{
        width: 80%;
     }
     .containers {
@@ -150,7 +151,7 @@
 
 @media only screen and (max-width: 1600px){
     .productPage {
-        width: 90%;       
+        width: 90%;
     }
     /* containers */
     .containers {

@@ -23,6 +23,13 @@ return
         'address' => 'Adres',
         'goto' => 'Keçid et',
         'readmore' => 'Damanını Oxu',
+        'wishlist' => 'Bəyəndiklərim',
+        'photo' => 'Şəkil',
+        'productname' => 'Məhsul adı',
+        'price' => 'Qiymət',
+        'instock' => 'Stokda',
+
+
         'otherServices' => 'Digər Xidmətlər',
         'aboutimagetext' => 'Hakkımızda Səhifəsi Şəkilin altındakı kiçik yazı mətni buraya yazılacaq',
         'blogsheaderContent' => 'Blog yazılarımız Sizlərin bilgilənməniz üçün vardır.oxuyun faydalanın',

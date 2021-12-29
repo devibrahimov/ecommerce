@@ -43,18 +43,16 @@
     <div class="modal-content1">
         <span class="close1">x</span>
         <div class="leftModalImg">
-            <img src="/img/2.jpg">
+            <img class="productimage" src="/img/2.jpg">
         </div>
         <div class="rightModalText">
-            <h3>4PCS HOOK + PICK SET -1PC</h3>
-            <p><strong>28</strong> AZN</p>
-            <p>Полностью металлическая рабочая часть для большей прочности и защиты от ржавчины</p>
-            <p>Покрытие хромом противостоит коррозии</p>
-            <p><b>Артикул:</b> 4932373387</p>
-            <p>Полностью металлическая рабочая часть для большей прочности и защиты от ржавчины</p>
-            <p>Покрытие хромом противостоит коррозии</p>
-            <p><b>Артикул:</b> 4932373387</p>
-            <p><b>Артикул:</b> 4932373387</p>
+            <h3 class="productnameh3">4PCS HOOK + PICK SET -1PC</h3>
+            <p><strong class="productprice">28</strong> AZN</p>
+            <p class="shortdescription">Полностью металлическая рабочая часть для большей прочности и защиты от ржавчины</p>
+            <p ><b>SKU:</b> <span class="sku">4932373387</span></p>
+            <p class="productdescription"> </p>
+            <p><b>Stok sayısı:</b> <span class="productstock"></span></p>
+            <p><b>Артикул:</b> <span class="productcategory"></span></p>
         </div>
     </div>
 </div>
@@ -106,8 +104,69 @@
 <script src="/assets/js/script.js"></script>
 <script src="/assets/js/jquery.js"></script>
 
-
+<script src="/general/sweetalert.min.js"></script>
 @yield('js')
+<script>
 
+    $(document).ready(function(){
+
+    $('.productreview').on("click",function (e){
+        e.preventDefault()
+        let dataId=$(this).attr("data-id")
+        if (dataId){
+
+            $.getJSON( "{{route('site.productjson')}}/"+dataId, function( data ) {
+                console.log(data)
+                $( ".productimage" ).attr( "src",data.images[0].imagepath );
+                $( ".productnameh3" ).html( data.name );
+                $( ".productprice" ).html( data.sale_price );
+                $( ".shortdescription" ).html(data.meta_content  );
+                $( ".sku" ).html( data.sku  );
+                $( ".productstock" ).html( data.stock  );
+                $( ".productdescription" ).html( data.content  );
+                $( ".productcategory" ).html( data.category  );
+                // alert( "Load was performed." );
+            });
+
+        }else{
+            alert(null)
+        }
+
+    });
+
+        $(".addtowishlist").on('click', function(evt) {
+            var link_data = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                url: "{{route('customer.addtowishlist')}}",
+                data: ({product_id: link_data}),
+                success: function(data) {
+                    data = JSON.parse(data);
+                    swal({
+                        title: data.title,
+                        text: data.text,
+                        icon: data.icon,
+                        button: data.button,
+
+                    });
+                }
+            });
+        });
+
+    });
+</script>
+@if(session()->has('feedback'))
+    @php $feedback =  session()->get('feedback') ; @endphp
+    <script>
+
+        swal({
+            title: "{{ $feedback['title']}}",
+            text: "{{ $feedback['text']}}",
+            icon: "{{ $feedback['icon']}}",
+            button: "{{ $feedback['button']}}",
+
+        });
+    </script>
+@endif
 </body>
 </html>

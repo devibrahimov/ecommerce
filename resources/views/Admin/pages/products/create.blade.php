@@ -319,9 +319,14 @@
                                             </div>
 
                                             <div class="form-group col-12">
-                                                <label for="">Açıqlama ({{$lang->name}}) </label>
+                                                <label for="">Kiçik  Açıqlama ({{$lang->name}}) </label>
                                                 <textarea type="text"   class="form-control mycontent"
                                                           name="content_{{$lang->code}}" ></textarea>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="">Uzun Açıqlama ({{$lang->name}}) </label>
+                                                <textarea type="text"   class="form-control mycontent"
+                                                          name="description_{{$lang->code}}" ></textarea>
                                             </div>
 
                                         </div>

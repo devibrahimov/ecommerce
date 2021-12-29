@@ -519,7 +519,7 @@
                                                 </div>
                                                 <div class="list-group" id="list-tab" role="tablist">
                                                     @foreach($categories as $cat)
-                                                        {{--                                                    <option value="{{$cat->id}}"> </option>--}}
+                                                        {{-- <option value="{{$cat->id}}"> </option>--}}
                                                         <a class="list-group-item list-group-item-action "
                                                            id="list-home-list"
                                                            href="{{route('admincatproducts',$cat->id)}}">
@@ -552,16 +552,13 @@
                                             class="fas fa-file-excel"> </i>
                                         Excel Çıxdısı al </a>
 
-
                                     <div class="btn-group mr-2 float-right" role="group" aria-label="First group">
                                         {!! $products->links('vendor.pagination.admin-pagination') !!}
                                     </div>
+
                                     <div class="input-group  mr-3 float-right" style="width: 25%">
-
-                                        <input type="text" class="form-control" placeholder="Axtar"
-                                               aria-label="Input group example" aria-describedby="btnGroupAddon">
+                                        <input type="text" class="form-control" placeholder="Axtar" aria-label="Input group example" aria-describedby="btnGroupAddon">
                                     </div>
-
                                 </div>
                                 <div class="card-body b-l calender-sidebar">
 
@@ -598,7 +595,7 @@
                                                     @foreach(languages() as $lang)
                                                                 @if(productlangcontrol($product->id,$lang->code) != null)
                                                                     <span
-                                                                        class=" mt-1 ml-1 flag-icon flag-icon-{{productlangcontrol($product->id,$lang->code)}}"> </span>
+                                                                        class=" mt-1 ml-1 flag-icon flag-icon-{{productlangcontrol($product->id,$lang->code)=='en'?'gb' :productlangcontrol($product->id,$lang->code)}}"> </span>
                                                                 @endif
                                                             @endforeach
                                                       </span>

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('/giris','UserController@login')->name('login');
         Route::post('/giris','UserController@logincontrol');
 
-    Route::group(['middleware'=>'auth'],function (){
+    Route::group(['middleware'=>'administrator'],function (){
         Route::post('/cixis','UserController@logout')->name('adminlogoutform');
         Route::get('/kur-mezenneleri','Admin\ApiController@getCurrencies')->name('getCurrencies');
 
@@ -131,17 +131,13 @@ use Illuminate\Support\Facades\Route;
         Route::post('/giris','Site\CustomerAuthController@logincontrol');
     });
 
-    Route::group(['middleware'=>'customerauth','prefix'=>'istifadeci'],function (){
-
-      Route::post('/cixisih-et','Site\CustomerAuthController@logout')->name('customer.logout');
-    });
 
 
 
 
 
 
-    if (adjustment()->multilang == 1){
+if (adjustment()->multilang == 1){
 
         Route::group(
             [
@@ -149,18 +145,35 @@ use Illuminate\Support\Facades\Route;
                'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]  ], function(){ //...
 
                Route::get('/','Site\GeneralController@index')->name('site.index');
-               Route::get('/butun-kategoriyalar/{id?}{slug?}','Site\GeneralController@allcategories')->name('site.allcategories');
-
-               Route::get('/mehsullar','Site\GeneralController@products')->name('site.products');
-               Route::get('/mehsullar/{id}-{slug}','Site\GeneralController@productcategory')->name('site.productcategory');
-               Route::get('/mehsul/{id}-{slug}','Site\GeneralController@productDetail')->name('site.productDetail');
-               Route::get('/mehsul-axtarisi/{axtaris?}','Site\GeneralController@productsearch')->name('site.productsearch');
                Route::get('/elaqe','Site\GeneralController@contact')->name('site.contact');
                Route::get('/sehife-{slug}','Site\GeneralController@serviceDetail')->name('page');
+
+               Route::get('/butun-kategoriyalar/{id?}{slug?}','Site\ProductsController@allcategories')->name('site.allcategories');
+               Route::get('/mehsullar','Site\ProductsController@products')->name('site.products');
+               Route::get('/mehsullar/{id}-{slug}','Site\ProductsController@productcategory')->name('site.productcategory');
+               Route::get('/mehsul/{id}-{slug}','Site\ProductsController@productDetail')->name('site.productDetail');
+               Route::get('/mehsul-axtarisi/{axtaris?}','Site\ProductsController@productsearch')->name('site.productsearch');
+               Route::get('/mehsul-json/{id?}','Site\ProductsController@productjson')->name('site.productjson');
+
+
 
                Route::get('/kurslar-ve-xidmetler','Site\GeneralController@services')->name('site.services');
                Route::get('/istifadeci-qeydiyyati','Site\CustomerAuthController@register')->name('customer.register');
                Route::post('/istifadeci-qeydiyyati','Site\CustomerAuthController@registerstore') ;
+
+
+            Route::group(['middleware'=>'customerauth','prefix'=>'istifadeci'],function (){
+
+                Route::post('/cixisih-et','Site\CustomerAuthController@logout')->name('customer.logout');
+                Route::get('/profil','Site\CustomerController@profil')->name('customer.profil');
+                Route::get('/favorilerime-elave-et','Site\CustomerController@addtowishlist')->name('customer.addtowishlist');
+                Route::get('/favorilerim','Site\CustomerController@wishlist')->name('customer.wishlist');
+
+            });
+
+
+
+
 //               Route::get('/hakkimizda','Site\GeneralController@about')->name('site.about');
 //               Route::get('/metbuatda','Site\GeneralController@press')->name('site.press');
 //               Route::get('/sual-cavab','Site\GeneralController@faq')->name('site.faq');
@@ -171,21 +184,32 @@ use Illuminate\Support\Facades\Route;
         });
     }
     else{
-        Route::get('/','Site\GeneralController@index')->name('site.index');
-        Route::get('/hakkimizda','Site\GeneralController@about')->name('site.about');
-        Route::get('/metbuatda','Site\GeneralController@press')->name('site.press');
-        Route::get('/sual-cavab','Site\GeneralController@faq')->name('site.faq');
-        Route::get('/kurslar-ve-xidmetler','Site\GeneralController@services')->name('site.services');
-        Route::get('/kurslar-ve-xidmetler/{id}/{slug}','Site\GeneralController@serviceDetail')->name('site.serviceDetail');
-        Route::get('/elaqe','Site\GeneralController@contact')->name('site.contact');
-        Route::get('/qaleriya','Site\GeneralController@gallery')->name('site.gallery');
-        Route::get('/bloglar','Site\GeneralController@blogs')->name('site.blogs');
-        Route::get('/bloglar/{id}{slug}','Site\GeneralController@blogcat')->name('site.blogcat');
-        Route::get('/blog/{id}/{slug}','Site\GeneralController@blogdetail')->name('site.blogdetail');
+//        Route::get('/','Site\GeneralController@index')->name('site.index');
+//        Route::get('/hakkimizda','Site\GeneralController@about')->name('site.about');
+//        Route::get('/metbuatda','Site\GeneralController@press')->name('site.press');
+//        Route::get('/sual-cavab','Site\GeneralController@faq')->name('site.faq');
+//        Route::get('/kurslar-ve-xidmetler','Site\GeneralController@services')->name('site.services');
+//        Route::get('/kurslar-ve-xidmetler/{id}/{slug}','Site\GeneralController@serviceDetail')->name('site.serviceDetail');
+//        Route::get('/elaqe','Site\GeneralController@contact')->name('site.contact');
+//        Route::get('/qaleriya','Site\GeneralController@gallery')->name('site.gallery');
+//        Route::get('/bloglar','Site\GeneralController@blogs')->name('site.blogs');
+//        Route::get('/bloglar/{id}{slug}','Site\GeneralController@blogcat')->name('site.blogcat');
+//        Route::get('/blog/{id}/{slug}','Site\GeneralController@blogdetail')->name('site.blogdetail');
     }
 
     Route::post('/mesaj-gonder','Site\GeneralController@sendmessage')->name('sendmessage');
 
+
+
+Route::get('/file-test-etmek',function (){
+    $domain = 'https://protool.az/' ;
+    $a =  file_get_contents($domain) ;
+    var_dump($a) ;
+
+    echo $domain ;
+    echo $a ;
+
+}) ;
 
 
 Route::get('/clear',function (){

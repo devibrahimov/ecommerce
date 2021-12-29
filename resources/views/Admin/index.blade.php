@@ -249,7 +249,7 @@
                             <img src="{{setting()->favicon}}" alt="user" class="rounded-circle"
                                  width="40">
                             <span class="ml-2 d-none d-lg-inline-block"><span>Salam,</span> <span
-                                    class="text-dark">{{auth()->user()->name}}</span> <i data-feather="chevron-down"
+                                    class="text-dark">{{auth()->guard('administrator')->user()->name}}</span> <i data-feather="chevron-down"
                                                                           class="svg-icon"></i></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
@@ -364,8 +364,7 @@
 <script src="/general/sweetalert.min.js"></script>
 @yield('js')
 @if(session()->has('feedback'))
-    @php $feedback =  session()->get('feedback') ;
-       @endphp
+ @php $feedback =  session()->get('feedback') ; @endphp
 <script>
 
     swal({

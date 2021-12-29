@@ -275,7 +275,7 @@ class ProductsController extends Controller
             $locale = adjustment()->default_lang;
         }
         $categories = ProductCategory::leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
-            ->where('lang',$locale)->get();
+            ->where('lang',$locale)->where('parent_id',null)->get();
         return view('Admin.pages.products.create',compact(['categories']));
     }
 
@@ -332,6 +332,7 @@ class ProductsController extends Controller
 
                 $name = request('name_' . $lang);
                 $content = request('content_' . $lang);
+                $description = request('description_' . $lang);
                 $metacontent = request('metacontent_' . $lang);
                 $metakeywords = request('metakeywords_' . $lang);
 
@@ -341,6 +342,7 @@ class ProductsController extends Controller
                         'lang' => $lang,
                         'name' => $name,
                         'content' => $content,
+                        'description' => $description,
                         'meta_content' => $metacontent,
                         'meta_keywords' => $metakeywords
                     ];
@@ -379,7 +381,7 @@ class ProductsController extends Controller
         $product->content = DB::table('products_content')->where('product_id',$id)->get();
         $product->images = ProductImage::where('product_id',$id)->get();
         $categories = ProductCategory::leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
-            ->where('lang',$locale)->get();
+            ->where('lang',$locale)->where('parent_id',null)->get();
 
         return view('Admin.pages.products.edit',compact(['product','categories']));
     }//end productedit
@@ -407,6 +409,7 @@ class ProductsController extends Controller
                     $lang = $lang->code;
                     $name = request('name_' . $lang);
                     $content = request('content_' . $lang);
+                    $description = request('description_' . $lang);
                     $metacontent = request('metacontent_' . $lang);
                     $metakeywords = request('metakeywords_' . $lang);
 
@@ -416,6 +419,7 @@ class ProductsController extends Controller
                             'lang' => $lang,
                             'name' => $name,
                             'content' => $content,
+                            'description' => $description,
                             'meta_content' => $metacontent,
                             'meta_keywords' => $metakeywords
                         ];
@@ -431,6 +435,7 @@ class ProductsController extends Controller
                     if ( $thisrow != NULL) {
                         $name = request('name_' . $lang->code);
                         $content = request('content_' . $lang->code);
+                        $description = request('description_' . $lang->code);
                         $metacontent = request('metacontent_' . $lang->code);
                         $metakeywords = request('metakeywords_' . $lang->code);
 
@@ -440,6 +445,7 @@ class ProductsController extends Controller
                                 'lang' => $lang->code,
                                 'name' => $name,
                                 'content' => $content,
+                                'description' => $description,
                                 'meta_content' => $metacontent,
                                 'meta_keywords' => $metakeywords
                             ];
@@ -450,6 +456,7 @@ class ProductsController extends Controller
                     else {//endif language code
                         $name = request('name_' . $lang->code);
                         $content = request('content_' . $lang->code);
+                        $description = request('description_' . $lang->code);
                         $metacontent = request('metacontent_' . $lang->code);
                         $metakeywords = request('metakeywords_' . $lang->code);
 
@@ -459,6 +466,7 @@ class ProductsController extends Controller
                                 'lang' => $lang->code,
                                 'name' => $name,
                                 'content' => $content,
+                                'description' => $description,
                                 'meta_content' => $metacontent,
                                 'meta_keywords' => $metakeywords
                             ];

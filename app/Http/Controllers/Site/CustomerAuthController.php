@@ -52,6 +52,6 @@ class CustomerAuthController extends Controller
         \auth()->guard('customer')->logout();
         \request()->session()->flush();
         \request()->session()->regenerate();
-        return redirect()->route('site.home');
+        return redirect()->route('site.index');
     }
 }

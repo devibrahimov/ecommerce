@@ -28,30 +28,14 @@ class GeneralController extends Controller
             $locale = adjustment()->default_lang;
         }
 
-        $carousel =  Carousel::where('active',1)->get() ;
-//            ->rightjoin('carousel_content','carousel.id','=','carousel_content.carousel_id')
-//            ->orderBy('desk')->where('active',1)->get();
+        $carousel =  Carousel::where('active',1)
+           ->leftjoin('carousel_content','carousel.id','=','carousel_content.carousel_id')
+           ->orderBy('desk')->where('active',1)->get();
 
         $page = 'index';
         return View::make("Template.pages.home",compact(['page', 'carousel' ]));
     }
 
-
-    public function allcategories(  $id = null,  $slug = null){
-
-        if ( adjustment()->multilang == 1) {
-            $locale = LaravelLocalization::getCurrentLocale();
-        }
-        if ( adjustment()->multilang == 0){
-            $locale = adjustment()->default_lang;
-        }
-
-        $categories = DB::table('product_categories')
-            ->leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
-            ->where('parent_id',$id)->where('lang',$locale)->get();
-
-        return View::make("Template.pages.allcategories",compact(['categories']));
-    }
 
 
     //sehhifeler edildi burda
@@ -105,89 +89,6 @@ class GeneralController extends Controller
         return View::make("Template.pages.page",compact(['page', 'service' ,'meta_content','meta_keywords']));
     }
 
-
-    public function products(){
-
-        if ( adjustment()->multilang == 1) {
-            $locale = LaravelLocalization::getCurrentLocale();
-        }
-        if ( adjustment()->multilang == 0){
-            $locale = adjustment()->default_lang;
-        }
-        $categories = ProductCategory::all();
-
-        $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
-
-            ->where('lang',$locale)->where('active',1)->paginate(20);
-
-        $page = 'products';
-        return View::make("Template.pages.products",compact(['categories','products','page']));
-    }
-
-
-    public function productcategory($id,$slug){
-
-        if ( adjustment()->multilang == 1) {
-            $locale = LaravelLocalization::getCurrentLocale();
-        }
-        if ( adjustment()->multilang == 0){
-            $locale = adjustment()->default_lang;
-        }
-        $category = DB::table('product_categories')
-            ->leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
-            ->where('id',$id)->where('lang',$locale)->first();
-
-
-        $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
-            ->where('category_id',$id)
-            ->where('lang',$locale)->where('active',1)->paginate(20);
-        $page = 'products';
-
-        return View::make("Template.pages.products",compact(['category','products','page' ]));
-
-    }
-
-
-
-    public function productsearch(Request $request){
-
-        if ( adjustment()->multilang == 1) {
-            $locale = LaravelLocalization::getCurrentLocale();
-        }
-        if ( adjustment()->multilang == 0){
-            $locale = adjustment()->default_lang;
-        }
-
-
-
-        $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
-            ->where('name','LIKE','%'.$request->axtaris.'%')
-            ->where('lang',$locale)->where('active',1)->paginate(20);
-        $page = 'products';
-
-        return View::make("Template.pages.products",compact([ 'products','page' ]));
-
-    }
-
-    public function productDetail($id,$slug){
-
-        if ( adjustment()->multilang == 1) {
-            $locale = LaravelLocalization::getCurrentLocale();
-        }
-        if ( adjustment()->multilang == 0){
-            $locale = adjustment()->default_lang;
-        }
-        $categories = ProductCategory::all();
-
-        $product = DB::table('products')
-            ->leftjoin('products_content','products.id','=','products_content.product_id')
-            ->where('lang',$locale)->find($id);
-        $product->images = Product::find($id)->images;
-
-        $page = 'products';
-        $catid = $id;
-        return View::make("Template.pages.productDetail",compact(['categories','product','page','catid']));
-    }
 
     public function contact(){
         $page = 'contact';

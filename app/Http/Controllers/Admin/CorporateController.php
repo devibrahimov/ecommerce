@@ -99,6 +99,7 @@ class CorporateController extends Controller
                 'button' => 'Bağla' ];
             return back()->with('feedback', $feedbackdata);
         }
+
         DB::commit();
         $feedbackdata = ['title' => 'Başarılı !',
             'text' => 'Hakkımızda məlumatları yaddaşa yazıldı',

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function login(){
-        if (Auth::check()){
+        if (Auth::guard('administrator')->check() ){
             return redirect()->route('admin.index');
         }else{
             return view('Admin.login');
@@ -29,14 +29,13 @@ class UserController extends Controller
               'password.required'=>'Email alanını boş bırakamazsınız'
           ]);
 
-          if ( auth()->attempt([
-              'email'=>$request->email,
-              'password'=> $request->password,
-          ])){
+          if ( $a= auth()->guard('administrator')->attempt(['email'=>$request->email,'password'=> $request->password]) ){
               request()->session()->regenerate();
-              return redirect()->intended(route('admin.index')) ;
+
+              return redirect()->intended('/') ;
           }else{
-              $errors = ['email'=>'Hatalı Giriş'];
+              $errors = ['email'=>'Yanlış giriş məlumatları'];
+
               return back()->withErrors($errors);
           }
 
@@ -46,7 +45,7 @@ class UserController extends Controller
 
 
     public function logout(){
-        auth()->logout();
+        \auth()->guard('administrator')->logout();
        \request()->session()->flush();
        \request()->session()->regenerate();
         return redirect()->route('site.index');

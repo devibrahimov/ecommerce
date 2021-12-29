@@ -304,9 +304,14 @@
                                                            value="{{isset(getproductcontent($product->id,$lang->code)->meta_keywords)?getproductcontent($product->id,$lang->code)->meta_keywords:null}}">
                                                 </div>
                                                 <div class="form-group col-12">
-                                                    <label for="">Açıqlama ({{$lang->name}}) </label>
+                                                    <label for="">Kiçik Açıqlama ({{$lang->name}}) </label>
                                                     <textarea type="text"   class="form-control mycontent"
                                                               name="content_{{$lang->code}}" >{!!isset(getproductcontent($product->id,$lang->code)->content)?getproductcontent($product->id,$lang->code)->content:null!!}</textarea>
+                                                </div>
+                                                <div class="form-group col-12">
+                                                    <label for="">Uzun Açıqlama ({{$lang->name}}) </label>
+                                                    <textarea type="text"   class="form-control mycontent"
+                                                              name="description_{{$lang->code}}" >{!!isset(getproductcontent($product->id,$lang->code)->description)?getproductcontent($product->id,$lang->code)->description:null!!}</textarea>
                                                 </div>
                                             </div>
                                         </div>

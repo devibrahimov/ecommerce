@@ -11,33 +11,18 @@
     <div class="container-one">
         <div class="swiper mySwiper item_Slider">
             <div class="swiper-wrapper">
+                @foreach($carousel as $item)
                 <div class="swiper-slide">
-                    <div class="item_background">
+                    <div class="item_background" style="background-image: url('{{$item->image}}')">
                         <div class="text">
-                            <p>M18HCCT-201C</p>
-                            <h3>Пресс-инструмент One-Key </h3>
-                            <a href="#">Купить</a>
+                            <p>{{$item->title}}</p>
+                            <h3>{{$item->header}} </h3>
+                            <p>{{$item->content}}</p>
+                            <a href="{{$item->url}}">{{__('content.goto')}}</a>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="item_background">
-                        <div class="text">
-                            <p>M18HCCT-201C</p>
-                            <h3>Пресс-инструмент One-Key </h3>
-                            <a href="#">Купить</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="item_background">
-                        <div class="text">
-                            <p>M18HCCT-201C</p>
-                            <h3>Пресс-инструмент One-Key </h3>
-                            <a href="#">Купить</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
