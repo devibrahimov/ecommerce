@@ -27,9 +27,8 @@ $(".close1").on("click", function () {
 
 
 ///cartitem
-
 $( ".shopping_bag" ).on("click",function(){
-    $( ".opencart" ).slideToggle();
+        $( ".opencart" ).slideToggle();
 })
 
 
@@ -45,7 +44,7 @@ $(window).scroll(function () {
 $(".backtotop a").click(function () {
     $("html, body").animate({ scrollTop: 10 }, 1000);
     return false;
-}) 
+})
 
 //mobil
 $(".barclick li").on("click",function(){
@@ -59,5 +58,5 @@ $(".mobilClose a").on("click",function(){
 
 //login-register
 $(".Login_Registr").on("click",function(){
-    $(".login").fadeToggle("slow");
+        $(".login").fadeToggle("slow");
 })

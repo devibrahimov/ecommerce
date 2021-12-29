@@ -137,7 +137,7 @@
 {{--                                                                                alt="logo-{{setting()->title}}" width="200px" ></a></figure>--}}
 {{--                </div>--}}
 {{--                <div class="menu-area clearfix">--}}
-{{--                    <div   class="langlistmobile">--}}
+{{--                    <div class="langlistmobile">--}}
 
 {{--                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)--}}
 {{--                            @if(controlhaslang($localeCode) == true)--}}

@@ -136,12 +136,22 @@
 
         $(".addtowishlist").on('click', function(evt) {
             var link_data = $(this).data('id');
+            var wishproduct = $(this) ;
             $.ajax({
                 type: "GET",
                 url: "{{route('customer.addtowishlist')}}",
                 data: ({product_id: link_data}),
                 success: function(data) {
                     data = JSON.parse(data);
+                    if(data.icon =='success'){
+                        wishproduct.addClass('mywish')
+                        $('.wishcontent').text("{{__('content.removefromwishlist')}}")
+                    }
+                    if(data.icon =='warning'){
+                        wishproduct.removeClass('mywish')
+
+                        $('.wishcontent').text("{{__('content.addtowishlist')}}")
+                    }
                     swal({
                         title: data.title,
                         text: data.text,

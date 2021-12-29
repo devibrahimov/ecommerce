@@ -182,5 +182,32 @@ function deleteimage($imagepath ){
     if(file_exists($imagepath)){
         unlink($imagepath );
     }
-}
 
+
+
+}
+function hasmywishlist($productid,$userid){
+   $result = \App\Models\Wishlist::where('user_id',$userid)->where('product_id',$productid)->first();
+      if ($result !=null){
+          return true;
+
+      }else{
+          return false;
+      }
+    }
+
+    function randomproductslist(){
+        if ( adjustment()->multilang == 1) {
+            $locale = LaravelLocalization::getCurrentLocale();
+        }
+        if ( adjustment()->multilang == 0){
+            $locale = adjustment()->default_lang;
+        }
+
+      return  \App\Models\Product::leftjoin('products_content','products.id','=','products_content.product_id')
+            ->where('lang',$locale)
+            ->leftjoin('products_images',function($join){
+                $join->on('products.id','=','products_images.product_id')->where('cover',1);
+            })->inRandomOrder()->take(6)->get();
+
+    }

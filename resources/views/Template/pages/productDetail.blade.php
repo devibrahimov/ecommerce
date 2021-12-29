@@ -3,6 +3,12 @@
 @section('css')
     <link rel="stylesheet" href="/assets/css/productdetail.css">
     <link rel="stylesheet"  href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <style>
+        .mywish {
+            color:#ed0b21 ;
+        }
+    </style>
 @endsection
 
 
@@ -22,114 +28,7 @@
     </div>
     <div class="containers">
         <div class="left-container">
-            <h3>Последний Добавленный</h3>
-            <ul class="left-item">
-                <li>
-                    <div class="left-img">
-                        <img src=/assets"img/smallimg.jpg" />
-                    </div>
-                    <div class="right-text">
-                        <p>4PCS HOOK + PICK SET -1PC</p>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <span><b>28</b>AZN</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="left-img">
-                        <img src=/assets"img/smallimg.jpg" />
-                    </div>
-                    <div class="right-text">
-                        <p>4PCS HOOK + PICK SET -1PC</p>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <span><b>28</b>AZN</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="left-img">
-                        <img src=/assets"img/smallimg.jpg" />
-                    </div>
-                    <div class="right-text">
-                        <p>4PCS HOOK + PICK SET -1PC</p>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <span><b>28</b>AZN</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="left-img">
-                        <img src=/assets"img/smallimg.jpg" />
-                    </div>
-                    <div class="right-text">
-                        <p>4PCS HOOK + PICK SET -1PC</p>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <span><b>28</b>AZN</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="left-img">
-                        <img src=/assets"img/smallimg.jpg" />
-                    </div>
-                    <div class="right-text">
-                        <p>4PCS HOOK + PICK SET -1PC</p>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <span><b>28</b>AZN</span>
-                    </div>
-                </li>
-            </ul>
+           @include('Template.layouts.leftcontainer')
         </div>
         <div class="right-container">
             <div class="items">
@@ -137,44 +36,46 @@
                     <div style="--swiper-navigation-color: #fff;  --swiper-pagination-color: #fff"
                          class="swiper mySwiper2">
                         <div class="swiper-wrapper">
+                        @foreach( $product->images  as $image)
                             <div class="swiper-slide">
-                                <img src="/assets/img/pp.jpg" />
+                                <img src="{{$image->imagepath}}" />
                             </div>
-                            <div class="swiper-slide">
-                                <img src="/assets/img/smallimg.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/assets/img/2.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/assets/img/smallimg.jpg" />
-                            </div>
+                        @endforeach
+
                         </div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
                     <div thumbsSlider="" class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="/assets/img/pp.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/assets/img/smallimg.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/assets/img/2.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="/assets/img/smallimg.jpg" />
-                            </div>
+
+                            @foreach( $product->images  as $image)
+                                <div class="swiper-slide">
+                                    <img src="{{$image->imagepath}}" />
+                                </div>
+                                @endforeach
+
+
                         </div>
                     </div>
                 </div>
                 <div class="product-about">
-                    <h4>{{$product->name}} </h4>
+                    <h4>{{$product->name}}  </h4>
                    <div>{!! $product->content !!}</div>
+                    @auth('customer')
+                    <p>
+                        <i class="fas fa-heart  addtowishlist  @auth('customer') {{hasmywishlist($product->id,auth('customer')->user()->id)==true?'mywish' :''}}  @endauth"data-id="{{$product->id}}"  ></i>
+
+                        @if(hasmywishlist($product->id,auth('customer')->user()->id)==false)
+                           <span class="wishcontent">  {{__('content.addtowishlist')}}</span>
+                        @else
+                           <span class="wishcontent"> {{__('content.removefromwishlist')}}</span>
+                        @endif
+                    </p>
+                    @endauth
+                   @if($product->stock >0)
                     <p style="color:green"><i class="far fa-check-circle"></i> <span>1</span> in stock</p>
-                    <p><i class="far fa-heart"></i>  add to wishlist</p>
+
                     <div class="Qty">Qty:
                         <button type="button">1</button>
                         <p>
@@ -183,8 +84,10 @@
                         </p>
                         <a>Add to Cart</a>
                     </div>
-                    <p><b>Артикул:</b> 4932373387</p>
-                    <p><b>Артикул:</b> 4932373387</p>
+                    @endif
+
+                    <p><b>SKU:</b> {{$product->sku}} </p>
+                    <p><b>{{__('content.category')}}:</b> {{$product->category }}</p>
                 </div>
             </div>
             <div class="comment">
@@ -370,7 +273,5 @@
 @section('js')
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="/assets/js/script.js"></script>
     <script src="/assets/js/swiper.js"></script>
-    <script src="/assets/js/jquery.js"></script>
 @endsection

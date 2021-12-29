@@ -29,6 +29,14 @@ return
         'price' => 'Qiymət',
         'instock' => 'Stokda',
 
+        'name' => 'Ad',
+        'surname' => 'Soyad',
+        'phone_number' => 'Telefon nömrəsi',
+        'password' => 'Şifrə',
+        'confirmPassword' => 'Şifrə Təkrar',
+        'category' => 'Kateqoriya',
+        'addtowishlist' => 'Favorilərimə əlavə et',
+        'removefromwishlist' => 'Favorilərimdən çıxart',
 
         'otherServices' => 'Digər Xidmətlər',
         'aboutimagetext' => 'Hakkımızda Səhifəsi Şəkilin altındakı kiçik yazı mətni buraya yazılacaq',
@@ -58,10 +66,4 @@ return
         'Team members'=>'Komanda Üzvü',
         'Finished Project'=>'Bitmiş Proyektlər',
         'satisfied customer'=>'Məmnun Müştəri',
-        'name' => 'Ad',
-        'surname' => 'Soyad',
-        'phone_number' => 'Telefon nömrəsi',
-        'password' => 'Şifrə',
-        'confirmPassword' => 'Şifrə Təkrar',
-        'adress' => 'Adres',
     ];

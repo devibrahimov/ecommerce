@@ -145,12 +145,18 @@
             </div>
             <div class="foot-box ">
                 <div class="icons">
-                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.instagram.com"><i class="fab fa-pinterest"></i></a>
-                    <a href="https://www.instagram.com"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                @if(contact()->facebook != null)
+                   <a href="{{contact()->facebook}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                @endif
+                @if(contact()->linkedin != null)
+                    <a href="{{contact()->linkedin}}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                @endif
+                @if(contact()->instagram != null)
+                     <a href="{{contact()->instagram}}" target="_blank"><i class="fab fa-instagram"></i></a>
+                @endif
+                @if(contact()->youtube != null)
+                    <a href="{{contact()->youtube}}" target="_blank"><i class="fab fa-youtube"></i></a>
+                @endif
                 </div>
             </div>
         </div>
@@ -158,33 +164,35 @@
     <div class="foot">
         <div class="foot-items">
             <div class="itemFoot">
-                <img src="/assets/img/footlogo.png" />
+                <a href="{{route('site.index')}}"> <img src="{{setting()->footer_logo}}"width="200px"   alt="logo-{{setting()->title}}" title="logo-{{setting()->title}}"></a>
                 <p>
-                    Each client is given the opportunity to select the necessary equipment and get advice from
-                    specialists.
+                    {{setting()->meta_content}}
                 </p>
             </div>
             <div class="itemFoot">
                 <div class="text-foot">
                     <h3>Pages</h3>
-                    <p><a href="#">Haqqımızda</a></p>
-                    <p><a href="#">Bizimlə Əlaqə</a></p>
-                    <p><a href="#">Tez-tez verilən suallar</a></p>
-                    <p><a href="#">Şərtlər və qaydalar</a></p>
-                    <p><a href="#">Register</a></p>
-                    <p><a href="#">Login</a></p>
+                    @foreach(allPages() as $page)
+                        <p>
+                            <a href="{{route('page',$page->slug)}}">{{$page->name}}</a>
+                        </p>
+                    @endforeach
+
+                    <p>
+                        <a href="{{route('site.contact')}}">{{__('content.contact')}}</a>
+                    </p>
+                    <p>
+                        <a href="{{route('site.allcategories')}}">{{__('content.allcats')}}</a>
+                    </p>
                 </div>
             </div>
             <div class="itemFoot">
                 <div class="text-foot foot-contact">
                     <h3>Store Info</h3>
-                    <p><a target="_blank" href="http://maps.google.com/"><span><i
-                                    class="fas fa-map-marker-alt"></i></span> Ağ şəhər,Mərkəzi bulvar 8, Kaya Dizayn
-                            yanı,ProTool</a> </p>
-                    <p><a href="tel:(+994) 51 230 48 46"><i class="fas fa-phone-alt"></i> Mob: (+994) 51 230 48
-                            46</a></p>
-                    <p><a href="mailto: ryobi@protool.az"><i class="far fa-envelope"></i> E-mail:
-                            ryobi@protool.az</a></p>
+                    <p><a target="_blank" href="{{route('site.contact')}}"><span><i
+                                    class="fas fa-map-marker-alt"></i></span>{{contact()->address}}</a> </p>
+                    <p><a href="tel:{{contact()->number}}"><i class="fas fa-phone-alt"></i> Mob:{{contact()->number}}</a></p>
+                    <p><a href="mailto:{{contact()->email}}"><i class="far fa-envelope"></i> E-mail:{{contact()->email}}</a></p>
                 </div>
             </div>
         </div>
