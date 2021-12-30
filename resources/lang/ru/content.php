@@ -19,7 +19,7 @@ return
         'phone' => 'Telefon',
         'email' => 'E-Poçt',
         'fax' => 'Fax',
-        'address' => 'Adres',
+        'adress' => 'Adres',
         'goto' => 'Keçid et',
         'readmore' => 'Damanını Oxu',
         'otherServices' => 'Digər Xidmətlər',

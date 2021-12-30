@@ -74,15 +74,15 @@
                     </p>
                     @endauth
                    @if($product->stock >0)
-                    <p style="color:green"><i class="far fa-check-circle"></i> <span>1</span> in stock</p>
+                    <p style="color:green"><i class="far fa-check-circle"></i> {{__('content.instock',['qty'=>$product->stock])}}   </p>
 
                     <div class="Qty">Qty:
-                        <button type="button">1</button>
+                        <button type="button" class="quantity">1</button>
                         <p>
-                            <span><i class="fas fa-angle-up"></i></span>
-                            <span><i class="fas fa-angle-down"></i></span>
+                            <span class="qtyUp"><i class="fas fa-angle-up"></i></span>
+                            <span class="qtyDown"><i class="fas fa-angle-down"></i></span>
                         </p>
-                        <a>Add to Cart</a>
+                        <a class="addtocart" data-quantity="1" data-id="{{$product->id}}">Add to Cart</a>
                     </div>
                     @endif
 
@@ -203,7 +203,7 @@
                                 <li><a href="#"><i class="far fa-heart"></i></a></li>
                                 <li class="eye"><a><i class="far fa-eye"></i></a></li>
                                 <li><a href="#"><i class="fas fa-bars"></i></a></li>
-                                <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                                <li><a class="addtocart" data-quantity="1"><i class="fas fa-shopping-cart"></i></a></li>
                             </ul>
                             <div class="card-body">
                                 <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
@@ -219,7 +219,7 @@
                                 <li><a href="#"><i class="far fa-heart"></i></a></li>
                                 <li class="eye"><a><i class="far fa-eye"></i></a></li>
                                 <li><a href="#"><i class="fas fa-bars"></i></a></li>
-                                <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                                <li><a class="addtocart" data-quantity="3"><i class="fas fa-shopping-cart"></i></a></li>
                             </ul>
                             <div class="card-body">
                                 <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
@@ -274,4 +274,47 @@
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="/assets/js/swiper.js"></script>
+
+    <script>
+
+        let quantity = $('.quantity');
+
+
+
+        $('.qtyDown').on('click',function (e) {
+
+            if(parseInt(quantity.text())>1){
+
+                qty = parseInt(quantity.text())-1
+                quantity.text(qty)
+                let etarget=$(e.currentTarget).parent().parent().children(".addtocart");
+                dataquantity = parseInt(etarget.attr('data-quantity'))-1;
+                etarget.attr('data-quantity',dataquantity)
+                daity =  etarget.attr('data-quantity');
+                console.log(daity)
+
+
+            }else{
+                alert(quantity.text())
+            }
+
+        })
+
+
+        $('.qtyUp').on('click',function (e) {
+
+            qty = parseInt(quantity.text())+1
+            quantity.text(qty)
+            let etarget=$(e.currentTarget).parent().parent().children(".addtocart");
+            dataquantity = parseInt(etarget.attr('data-quantity'))+1;
+            etarget.attr('data-quantity',dataquantity)
+            daity =  etarget.attr('data-quantity');
+            console.log(daity)
+
+        });
+
+
+
+
+    </script>
 @endsection

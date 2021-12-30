@@ -19,28 +19,35 @@
     </div>
     <div class="containers-Profil">
         <div class="left_itm">
+
             <div class="profil-box">
                 <a  data-list="Dashboard" class="activeList"><i class="fas fa-home"></i> Dashboard </a>
             </div>
+
             <div class="profil-box">
                 <a  data-list="Orders"><i class="fas fa-shopping-bag"></i> Orders</a>
             </div>
 
             <div class="profil-box">
-                <a  data-list="sifre"><i class="fas fa-edit"></i>  sifre yenile    </a>
+                <a  data-list="sifre"><i class="fas fa-edit"></i> Şifre yenilə </a>
             </div>
+
             <div class="profil-box">
-                <a  data-list="Account"><i class="fas fa-user"></i> Account details </a>
+                <a  data-list="Account"><i class="fas fa-user"></i>{{__('content.userAccount')}}</a>
             </div>
+
             <div class="profil-box">
                 <a href="#" ><i class="fas fa-shopping-cart"></i> cart </a>
             </div>
+
             <div class="profil-box">
                 <a href="{{route('customer.wishlist')}}" ><i class="fas fa-heart"></i> {{__('content.wishlist')}} </a>
             </div>
+
             <div class="profil-box">
                 <a  data-list="Logout"><i class="fas fa-sign-out-alt"></i> Logout </a>
             </div>
+
         </div>
         <div class="right_itm">
             <div class="dashboard">
@@ -83,72 +90,64 @@
             </div>
             <div class="password">
                 <h3>sifre yenile</h3>
-                <form>
+                <form action="{{route('passwordupdate')}}" method="post" name="passwdupdate" >
+                        @csrf
                     <div class="form_group">
                         <div class="form-tema">
-                            <label for="exampleFormControlInput1" class="form-label">password</label>
-                            <input type="password" class="form-control">
+                            <label for="exampleFormControlInput1" class="form-label">{{__('content.password')}}</label>
+                            <input type="password" class="form-control" name="oldpassword">
                         </div>
                     </div>
                     <div class="form_group">
                         <div class="form-tema">
-                            <label for="exampleFormControlInput1" class="form-label">password</label>
-                            <input type="password" class="form-control">
+                            <label for="exampleFormControlInput1" class="form-label">{{__('content.newpassword')}}</label>
+                            <input type="password" class="form-control" name="password">
                         </div>
                     </div>
                     <div class="form_group">
                         <div class="form-tema">
-                            <label for="exampleFormControlInput1" class="form-label">password</label>
-                            <input type="password" class="form-control">
+                            <label for="exampleFormControlInput1" class="form-label">{{__('content.confirmPassword')}}</label>
+                            <input type="password" class="form-control" name="password_confirmation">
                         </div>
                     </div>
                     <div class="form_group">
-                        <button type="button">Save change</button>
+                        <button type="submit" name="passwdupdate">{{__('content.changepassword')}}</button>
                     </div>
-                </form>
+                 </form>
             </div>
             <div class="account">
                 <h3>Account Details</h3>
-                <form>
+                <form action="{{route('accountupdate')}}" method="post" name="account" >
                     <div class="form_group">
                         <div class="form-tema">
-                            <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                            <input type="text" class="form-control">
+                            <label for="exampleFormControlInput1" class="form-label">{{__('content.name')}}</label>
+                            <input type="text" class="form-control" name="name" required value="{{$user->name}}">
                         </div>
                     </div>
                     <div class="form_group">
                         <div class="form-tema">
-                            <label for="exampleFormControlInput1" class="form-label">First Name</label>
-                            <input type="text" class="form-control">
+                            <label for="exampleFormControlInput1" class="form-label">{{__('content.surname')}}</label>
+                            <input type="text" class="form-control" name="surname" required value="{{$user->surname}}">
                         </div>
                     </div>
                     <div class="form_group">
                         <div class="form-tema">
-                            <label for="exampleFormControlInput1" class="form-label">E-mail</label>
-                            <input type="email" class="form-control">
+                            <label for="exampleFormControlInput1" class="form-label">{{__('content.phone_number')}}</label>
+                            <input type="text" class="form-control" name="phone_number" required value="{{$user->phone_number}}">
                         </div>
                     </div>
+
                     <div class="form_group">
                         <div class="form-tema">
-                            <label for="exampleFormControlInput1" class="form-label">password</label>
-                            <input type="password" class="form-control">
+                            <label for="exampleFormControlTextarea1" class="form-label">{{__('content.address')}}</label>
+                            <textarea class="form-control" rows="6" name="adress" required >{{$user->adress}}</textarea>
                         </div>
                     </div>
+
+                    @csrf
+
                     <div class="form_group">
-                        <div class="form-tema">
-                            <label for="exampleFormControlInput1" class="form-label">password</label>
-                            <input type="password" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form_group">
-                        <div class="form-tema">
-                            <label for="exampleFormControlTextarea1" class="form-label">Mesajınız (istəyə
-                                görə)</label>
-                            <textarea class="form-control" rows="6"></textarea>
-                        </div>
-                    </div>
-                    <div class="form_group">
-                        <button type="button">Save change</button>
+                        <button  type="submit" name="account">Save change</button>
                     </div>
                 </form>
             </div>

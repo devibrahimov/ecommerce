@@ -3,7 +3,7 @@
 $products = randomproductslist();
 @endphp
 
-<h3>Последний Добавленный</h3>
+<h3>{{__('content.otherProducts')}}</h3>
 <ul class="left-item">
     @foreach($products as $product)
     <li>

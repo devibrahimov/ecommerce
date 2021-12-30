@@ -129,6 +129,14 @@ use Illuminate\Support\Facades\Route;
     Route::group(['prefix'=>'istifadeci'],function (){
         Route::get('/giris','Site\CustomerAuthController@login')->name('customer.login');
         Route::post('/giris','Site\CustomerAuthController@logincontrol');
+
+        Route::group(['middleware'=>'customerauth' ],function (){
+
+            Route::post('/customeredit','Site\CustomerAuthController@accountupdate')->name('accountupdate');
+            Route::post('/passwordupdate','Site\CustomerAuthController@passwordupdate')->name('passwordupdate');
+        });
+
+
     });
 
 
@@ -165,9 +173,14 @@ if (adjustment()->multilang == 1){
             Route::group(['middleware'=>'customerauth','prefix'=>'istifadeci'],function (){
 
                 Route::post('/cixisih-et','Site\CustomerAuthController@logout')->name('customer.logout');
+                Route::get('/', function (){
+                    return redirect()->route('customer.profil');
+                });
+
                 Route::get('/profil','Site\CustomerController@profil')->name('customer.profil');
-                Route::get('/favorilerime-elave-et','Site\CustomerController@addtowishlist')->name('customer.addtowishlist');
                 Route::get('/favorilerim','Site\CustomerController@wishlist')->name('customer.wishlist');
+                Route::get('/favorilerime-elave-et','Site\CustomerController@addtowishlist')->name('customer.addtowishlist');
+                Route::get('/sebete-elave-et','Site\CustomerController@addtocart')->name('customer.addtocart');
 
             });
 

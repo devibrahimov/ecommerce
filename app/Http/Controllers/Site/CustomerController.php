@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\Customer;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +15,8 @@ class CustomerController extends Controller
 
     public function profil(){
         $customer =  Auth::guard('customer')->user()->name;
-       return view('Template.pages.customer.profil ');
+        $user = Customer::find(Auth::guard('customer')->user()->id);
+       return view('Template.pages.customer.profil ',compact(['user']));
     }
 
     public function addtowishlist(Request $request){
@@ -60,11 +63,66 @@ class CustomerController extends Controller
            }
        }
     }
-
     public function wishlist(){
         $customer =  Auth::guard('customer')->user()->id;
         $wishlist = Wishlist::where('user_id',$customer)->get();
        // var_dump($wishlist);
         return view('Template.pages.customer.wishlist', compact(['wishlist']));
     }
+
+
+
+
+
+
+    public function addtocart(Request $request){
+        $customer_id =  Auth::guard('customer')->user()->id;
+        $product =  $request->product_id ;
+        $quantity =  $request->qty ;
+
+        $hasdata = Cart::where('customer_id',$customer_id)->where('product_id',$product)->first();
+
+        if ($hasdata){
+            $item =  Cart::find($hasdata->id);
+            $item->quantity+=$quantity;
+            $responce= $item->save();
+            if ($responce){
+                $responce=true;
+            }else{
+                $responce=false;
+            }
+        }else{
+
+            $data = [
+                'customer_id'=>$customer_id,
+                'product_id' => $product,
+                'quantity' => $quantity
+            ];
+            $responce = Cart::create($data);
+            if ($responce){
+                $responce=true;
+            }else{
+                $responce=false;
+            }
+        }
+
+        if ($responce==true){
+            $feedbackdata = json_encode(['title' => 'Başarılı !',
+                'text' => 'Mehsul sebete elave edildi',
+                'icon' => 'success',
+                'button' => 'Bağla' ],JSON_UNESCAPED_UNICODE);
+            return  $feedbackdata ;
+        }else{
+            $feedbackdata = json_encode(['title' => 'Başarılı !',
+                'text' => 'Mehsul sebete əlavə edərkən bir xeta oldu',
+                'icon' => 'danger',
+                'button' => 'Bağla' ],JSON_UNESCAPED_UNICODE);
+            return  $feedbackdata ;
+        }
+    }
+
+
+
+
+
 }

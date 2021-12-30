@@ -163,6 +163,31 @@
             });
         });
 
+        @auth('customer')
+        $('.addtocart').on('click',function () {
+
+            let qty =  $(this).attr('data-quantity');
+            let prid =  $(this).attr('data-id');
+            $.ajax({
+                type: "GET",
+                url: "{{route('customer.addtocart')}}",
+                data: ({product_id: prid,qty:qty}),
+                success: function(data) {
+                    data = JSON.parse(data);
+                    console.log(data)
+                    swal({
+                        title: data.title,
+                        text: data.text,
+                        icon: data.icon,
+                        button: data.button,
+
+                    });
+                }
+            });
+
+
+        });
+        @endauth
     });
 </script>
 @if(session()->has('feedback'))
