@@ -110,6 +110,30 @@
 
     $(document).ready(function(){
 
+        $.getJSON( "{{route('customer.getmycart')}}", function( data ) {
+            console.log(data)
+
+                var cartproducts =  '<div class="cartItem"> '+
+                    ' <div class="openLeftImg"> '+
+                    '     <img src="'+data[0].imagepath+'" /> '+
+                    ' </div> '+
+                    '<div class="openRightText"> '+
+                    '     <p>'+data[0].name+' </p> '+
+                    '     <p><span>1</span> x <span>19</span> AZN</p>' +
+                    ' </div>' +
+                    ' <div class="cartremove"> '+
+                    '     <span><i class="fas fa-times"></i></span> '+
+                    ' </div>' +
+                    '</div>';
+                $('.opencartitems').append(cartproducts)
+
+
+
+            // alert( "Load was performed." );
+        });
+
+
+
     $('.productreview').on("click",function (e){
         e.preventDefault()
         let dataId=$(this).attr("data-id")

@@ -181,6 +181,7 @@ if (adjustment()->multilang == 1){
                 Route::get('/favorilerim','Site\CustomerController@wishlist')->name('customer.wishlist');
                 Route::get('/favorilerime-elave-et','Site\CustomerController@addtowishlist')->name('customer.addtowishlist');
                 Route::get('/sebete-elave-et','Site\CustomerController@addtocart')->name('customer.addtocart');
+                Route::get('/sebetim','Site\CustomerController@getmycart')->name('customer.getmycart');
 
             });
 
