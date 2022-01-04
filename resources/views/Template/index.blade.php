@@ -17,7 +17,7 @@
 
     {!! setting()->any_meta_tags !!}
     <!-- LANGUAGE -->
-    <link rel="stylesheet" href="/assets/general/flag/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/general/flag/css/flag-icon.min.css">
     <link rel="stylesheet" href="/assets/css/header-footer.css">
     <link rel="stylesheet" href="/assets/css/index.css">
     <!-- fontawesome -->
@@ -43,7 +43,7 @@
     <div class="modal-content1">
         <span class="close1">x</span>
         <div class="leftModalImg">
-            <img class="productimage" src="/img/2.jpg">
+            <img class="productimage" src="/assets/img/2.jpg">
         </div>
         <div class="rightModalText">
             <h3 class="productnameh3">4PCS HOOK + PICK SET -1PC</h3>
@@ -73,7 +73,7 @@
             <tbody>
             <tr>
                 <td>
-                    <img src="./img/c3.jpg" />
+                    <img src="/assets/img/c3.jpg" />
                 </td>
                 <td class="tdText">1/4” 50pc Drive Ratchet & Socket Set –Metric Imperial</td>
                 <td>190AZN</td>
@@ -84,7 +84,7 @@
             </tr>
             <tr>
                 <td>
-                    <img src="./img/c3.jpg" />
+                    <img src="/assets/img/c3.jpg" />
                 </td>
                 <td class="tdText">1/4” 50pc Drive Ratchet & Socket Set –Metric Imperial</td>
                 <td>190AZN</td>
@@ -109,30 +109,34 @@
 <script>
 
     $(document).ready(function(){
+        function  getmycartlist() {
+            $('.opencartitems').html('')
+//(data[i].quantity* parseFloat(data[i].sale_price).toFixed(2))
+            $.getJSON( "{{route('customer.getmycart')}}", function(data) {
+         let   totalprice = 0 ;
+                $.each(data, function(i,item){
+                    totalprice+=data[i].quantity* parseFloat(data[i].sale_price)
+                    let cartproducts =  '<div class="cartItem"> '+
+                        ' <div class="openLeftImg"> '+
+                        '     <img src="'+item.imagepath+'" /> '+
+                        ' </div> '+
+                        '<div class="openRightText"> '+
+                        '     <p>'+data[i].name+' </p> '+
+                        '     <p><span>'+data[i].quantity+'</span> x <span>'+  parseFloat(data[i].sale_price).toFixed(2)  +'</span> AZN</p>' +
+                        ' </div>' +
+                        ' <div class="cartremove" > '+
+                        '     <span class="cartremovesdf" data-id="'+data[i].cart_id+'" ><i class="fas fa-times"></i></span> '+
+                        ' </div>' +
+                        '</div>';
 
-        $.getJSON( "{{route('customer.getmycart')}}", function( data ) {
-            console.log(data)
+                    $('.opencartitems').append(cartproducts)
+                    $('.opencartTotalPrice').html(totalprice.toFixed(2))
 
-                var cartproducts =  '<div class="cartItem"> '+
-                    ' <div class="openLeftImg"> '+
-                    '     <img src="'+data[0].imagepath+'" /> '+
-                    ' </div> '+
-                    '<div class="openRightText"> '+
-                    '     <p>'+data[0].name+' </p> '+
-                    '     <p><span>1</span> x <span>19</span> AZN</p>' +
-                    ' </div>' +
-                    ' <div class="cartremove"> '+
-                    '     <span><i class="fas fa-times"></i></span> '+
-                    ' </div>' +
-                    '</div>';
-                $('.opencartitems').append(cartproducts)
+                });
+            });
+        }
 
-
-
-            // alert( "Load was performed." );
-        });
-
-
+        getmycartlist();
 
     $('.productreview').on("click",function (e){
         e.preventDefault()
@@ -158,36 +162,36 @@
 
     });
 
-        $(".addtowishlist").on('click', function(evt) {
-            var link_data = $(this).data('id');
-            var wishproduct = $(this) ;
-            $.ajax({
-                type: "GET",
-                url: "{{route('customer.addtowishlist')}}",
-                data: ({product_id: link_data}),
-                success: function(data) {
-                    data = JSON.parse(data);
-                    if(data.icon =='success'){
-                        wishproduct.addClass('mywish')
-                        $('.wishcontent').text("{{__('content.removefromwishlist')}}")
-                    }
-                    if(data.icon =='warning'){
-                        wishproduct.removeClass('mywish')
-
-                        $('.wishcontent').text("{{__('content.addtowishlist')}}")
-                    }
-                    swal({
-                        title: data.title,
-                        text: data.text,
-                        icon: data.icon,
-                        button: data.button,
-
-                    });
+    $(".addtowishlist").on('click', function(evt) {
+        var link_data = $(this).data('id');
+        var wishproduct = $(this) ;
+        $.ajax({
+            type: "GET",
+            url: "{{route('customer.addtowishlist')}}",
+            data: ({product_id: link_data}),
+            success: function(data) {
+                data = JSON.parse(data);
+                if(data.icon =='success'){
+                    wishproduct.addClass('mywish')
+                    $('.wishcontent').text("{{__('content.removefromwishlist')}}")
                 }
-            });
-        });
+                if(data.icon =='warning'){
+                    wishproduct.removeClass('mywish')
 
-        @auth('customer')
+                    $('.wishcontent').text("{{__('content.addtowishlist')}}")
+                }
+                swal({
+                    title: data.title,
+                    text: data.text,
+                    icon: data.icon,
+                    button: data.button,
+
+                });
+            }
+        });
+    });
+
+    @auth('customer')
         $('.addtocart').on('click',function () {
 
             let qty =  $(this).attr('data-quantity');
@@ -198,7 +202,7 @@
                 data: ({product_id: prid,qty:qty}),
                 success: function(data) {
                     data = JSON.parse(data);
-                    console.log(data)
+
                     swal({
                         title: data.title,
                         text: data.text,
@@ -206,12 +210,45 @@
                         button: data.button,
 
                     });
+
+
+                    getmycartlist()
+
                 }
             });
 
 
         });
-        @endauth
+
+        $(document).on('click','.cartremovesdf',function () {
+
+            let prid =  $(this).attr('data-id');
+            console.log(prid)
+            $.ajax({
+                type: "GET",
+                url: "{{route('customer.removefromcart')}}",
+                data: ({id: prid }),
+                success: function(data) {
+                    data = JSON.parse(data);
+
+                    swal({
+                        title: data.title,
+                        text: data.text,
+                        icon: data.icon,
+                        button: data.button,
+
+                    });
+
+
+                    getmycartlist()
+
+                }
+            });
+
+
+        });
+
+    @endauth
     });
 </script>
 @if(session()->has('feedback'))

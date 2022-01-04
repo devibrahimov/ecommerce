@@ -73,6 +73,7 @@
                         @endif
                     </p>
                     @endauth
+                   @auth('customer')
                    @if($product->stock >0)
                     <p style="color:green"><i class="far fa-check-circle"></i> {{__('content.instock',['qty'=>$product->stock])}}   </p>
 
@@ -85,7 +86,7 @@
                         <a class="addtocart" data-quantity="1" data-id="{{$product->id}}">Add to Cart</a>
                     </div>
                     @endif
-
+                    @endauth
                     <p><b>SKU:</b> {{$product->sku}} </p>
                     <p><b>{{__('content.category')}}:</b> {{$product->category }}</p>
                 </div>

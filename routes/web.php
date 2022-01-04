@@ -181,7 +181,9 @@ if (adjustment()->multilang == 1){
                 Route::get('/favorilerim','Site\CustomerController@wishlist')->name('customer.wishlist');
                 Route::get('/favorilerime-elave-et','Site\CustomerController@addtowishlist')->name('customer.addtowishlist');
                 Route::get('/sebete-elave-et','Site\CustomerController@addtocart')->name('customer.addtocart');
-                Route::get('/sebetim','Site\CustomerController@getmycart')->name('customer.getmycart');
+                Route::get('/sebetim','Site\CustomerController@mycartpage')->name('customer.mycartpage');
+                Route::get('/sebetimdeki-mehsullar','Site\CustomerController@getmycart')->name('customer.getmycart');
+                Route::get('/sebetimden-cixart','Site\CustomerController@removefromcart')->name('customer.removefromcart');
 
             });
 

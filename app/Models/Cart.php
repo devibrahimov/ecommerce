@@ -8,7 +8,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class Cart extends Model
 {
       protected $table = 'customer_cart';
-    protected $guarded = [] ;
+      protected $guarded = [] ;
 
 
 

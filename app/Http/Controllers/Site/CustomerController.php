@@ -118,8 +118,19 @@ class CustomerController extends Controller
             return  $feedbackdata ;
         }
     }
+    public function removefromcart(Request $request){
+        $customer_id =  Auth::guard('customer')->user()->id;
+        $id =  $request->id ;
+
+        return Cart::where('customer_id',$customer_id)->where('id',$id)->delete();
+
+    }
 
 
+
+    public function mycartpage(){
+        return view('Template.pages.customer.cart');
+    }
 
     public function getmycart(){
           if ( adjustment()->multilang == 1) {
@@ -137,7 +148,8 @@ class CustomerController extends Controller
                         ->leftJoin('products_images',function($join){
                         $join->on('products.id', '=', 'products_images.product_id')->where('cover','=',1);
                          })
-                        ->get();
+                        ->orderBy('customer_cart.id', 'desc')->take(5)
+                        ->get(['products.*','products_content.*','products_images.*','customer_cart.*','customer_cart.id AS cart_id']);
 
         return  json_encode($products, JSON_UNESCAPED_UNICODE );
     }

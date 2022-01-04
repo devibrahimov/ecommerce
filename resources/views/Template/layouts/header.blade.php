@@ -5,9 +5,10 @@
           @auth('customer')
             <a href="{{route('customer.wishlist')}}" class="color_gray"><span>{{__('content.wishlist')}}</span>  </a>
              @endauth
+
             <a href="#" class="shopping_bag">
                 <i class="fas fa-shopping-bag"></i>
-                <span class="price">199</span> <span>AZN</span> (<span class="count">1</span>)
+                <span class="price">0</span> <span>AZN</span> (<span class="count">0</span>)
             </a>
             <a href="#" class="Login_Registr">Daxil ol </a>
             <div class="login">
@@ -26,18 +27,22 @@
                 <p><a href="{{route('customer.register')}}"> {{__('content.register')}} </a></p>
                 @endguest
             </div>
+            @auth('customer')
             <div class="opencart">
                 <div class="opencartitems">
 
                 </div>
+
                 <div class="subTotal">
-                    <p>Subtotal : <span>38</span> <span>AZN</span></p>
+                    <p>Subtotal : <span class="opencartTotalPrice">0</span> <span>AZN</span></p>
                     <div>
                         <a href="viewcart.html">ViewCart</a>
                         <a href="Checkout.html">Checkout</a>
                     </div>
                 </div>
+
             </div>
+                  @endauth
         </div>
     </div>
     <ul class="header-logo">

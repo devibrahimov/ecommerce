@@ -31,6 +31,8 @@ return
         'otherProducts' => 'Digər Məhsullarımız',
         'userAccount' => 'İstifadəçi Məlumatları',
         'instock' => 'Stokda :qty ədəd qalıb',
+        'cart' => 'Səbət',
+        'mycart' => 'Səbətim',
 
         'name' => 'Ad',
         'surname' => 'Soyad',

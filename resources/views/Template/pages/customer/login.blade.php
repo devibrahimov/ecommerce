@@ -33,12 +33,12 @@
                 </div>
             </div>
             @csrf
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required="">
-                <label class="form-check-label" for="invalidCheck">
-                    Keep me signed in
-                </label>
-            </div>
+{{--            <div class="form-check">--}}
+{{--                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required="">--}}
+{{--                <label class="form-check-label" for="invalidCheck">--}}
+{{--                    Keep me signed in--}}
+{{--                </label>--}}
+{{--            </div>--}}
             <div class="form_group">
                 <div class="btns">
                     <button type="button">Register</button>
