@@ -105,13 +105,13 @@
 <script src="/assets/js/jquery.js"></script>
 
 <script src="/general/sweetalert.min.js"></script>
-@yield('js')
+
 <script>
 
     $(document).ready(function(){
         function  getmycartlist() {
             $('.opencartitems').html('')
-//(data[i].quantity* parseFloat(data[i].sale_price).toFixed(2))
+
             $.getJSON( "{{route('customer.getmycart')}}", function(data) {
          let   totalprice = 0 ;
                 $.each(data, function(i,item){
@@ -124,8 +124,8 @@
                         '     <p>'+data[i].name+' </p> '+
                         '     <p><span>'+data[i].quantity+'</span> x <span>'+  parseFloat(data[i].sale_price).toFixed(2)  +'</span> AZN</p>' +
                         ' </div>' +
-                        ' <div class="cartremove" > '+
-                        '     <span class="cartremovesdf" data-id="'+data[i].cart_id+'" ><i class="fas fa-times"></i></span> '+
+                        ' <div   > '+
+                        '     <span class="cartremove" data-id="'+data[i].cart_id+'" ><i class="fas fa-times"></i></span> '+
                         ' </div>' +
                         '</div>';
 
@@ -220,10 +220,10 @@
 
         });
 
-        $(document).on('click','.cartremovesdf',function () {
+        $(document).on('click','.cartremove',function () {
 
             let prid =  $(this).attr('data-id');
-            console.log(prid)
+
             $.ajax({
                 type: "GET",
                 url: "{{route('customer.removefromcart')}}",
@@ -239,7 +239,6 @@
 
                     });
 
-
                     getmycartlist()
 
                 }
@@ -247,6 +246,8 @@
 
 
         });
+
+        //cartpage
 
     @endauth
     });
@@ -264,5 +265,6 @@
         });
     </script>
 @endif
+@yield('js')
 </body>
 </html>

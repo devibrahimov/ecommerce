@@ -21,114 +21,7 @@
     </div>
     <div class="containers">
         <div class="left-container">
-            <h3>Последний Добавленный</h3>
-            <ul class="left-item">
-                <li>
-                    <div class="left-img">
-                        <img src="img/smallimg.jpg" />
-                    </div>
-                    <div class="right-text">
-                        <p>4PCS HOOK + PICK SET -1PC</p>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <span><b>28</b>AZN</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="left-img">
-                        <img src="img/smallimg.jpg" />
-                    </div>
-                    <div class="right-text">
-                        <p>4PCS HOOK + PICK SET -1PC</p>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <span><b>28</b>AZN</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="left-img">
-                        <img src="img/smallimg.jpg" />
-                    </div>
-                    <div class="right-text">
-                        <p>4PCS HOOK + PICK SET -1PC</p>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <span><b>28</b>AZN</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="left-img">
-                        <img src="img/smallimg.jpg" />
-                    </div>
-                    <div class="right-text">
-                        <p>4PCS HOOK + PICK SET -1PC</p>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <span><b>28</b>AZN</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="left-img">
-                        <img src="img/smallimg.jpg" />
-                    </div>
-                    <div class="right-text">
-                        <p>4PCS HOOK + PICK SET -1PC</p>
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <span><b>28</b>AZN</span>
-                    </div>
-                </li>
-            </ul>
+            @include('Template.layouts.leftcontainer')
         </div>
         <div class="right-container">
             <table class="table table-wish">
@@ -142,25 +35,31 @@
                     <th scope="col">Subtotal</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="carttablelist">
+                @php $totalPrice = 0; @endphp
+                @foreach($cartproducts as $item)
                 <tr>
                     <td scope="row">
-                        <span><i class="fas fa-times"></i></span>
+                        <span class="removeFromCart" data-id="{{$item->cart_id}}" ><i class="fas fa-times"></i></span>
                     </td>
                     <td>
-                        <img src="./img/c3.jpg" />
+                        <img src="{{$item->imagepath}}" />
                     </td>
-                    <td>1/4” 50pc Drive Ratchet & Socket Set Metric Imperial</td>
-                    <td>190AZN</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->sale_price}} AZN</td>
                     <td class="qty">
-                        <button type="button">1</button>
+                        <button type="button">{{$item->quantity}}</button>
                         <p>
                             <span><i class="fas fa-angle-up"></i></span>
                             <span><i class="fas fa-angle-down"></i></span>
                         </p>
                     </td>
-                    <td>190AZN</td>
+                    @php $subtotal = $item->quantity * floatval($item->sale_price);
+                        $totalPrice +=$subtotal @endphp
+                    <td>{{$subtotal}}  AZN</td>
                 </tr>
+                @endforeach
+
                 </tbody>
             </table>
             <div class="cartTotal">
@@ -168,13 +67,19 @@
                 <div class="total">
                     <div class="totalItem">
                         <div class="left-total">Subtotal</div>
-                        <div class="right-total"><span>190</span>AZN</div>
+                        <div class="right-total"><span class="subtotalPrices">{{$totalPrice}}</span> AZN</div>
+                    </div>
+                </div>
+                <div class="total">
+                    <div class="totalItem">
+                        <div class="left-total">ƏDV  (18%)</div>
+                        <div class="right-total"><span class="totalPricesEDV"> {{$totalPrice*0.18}}</span> AZN</div>
                     </div>
                 </div>
                 <div class="total">
                     <div class="totalItem">
                         <div class="left-total">Total</div>
-                        <div class="right-total"><span>190</span>AZN</div>
+                        <div class="right-total"><span class="totalPrices"> {{ $totalPrice+($totalPrice*0.18) }}</span> AZN</div>
                     </div>
                 </div>
                 <div class="total">
@@ -188,6 +93,7 @@
 
 
 @section('js')
+
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="/assets/js/swiper.js"></script>
@@ -214,7 +120,6 @@
 
         })
 
-
         $('.qtyUp').on('click',function (e) {
             qty = parseInt(quantity.text())+1
             quantity.text(qty)
@@ -228,6 +133,99 @@
 
 
 
+
+        function  getmycartlist() {
+            $('.opencartitems').html('')
+            $('.carttablelist').html('')
+
+            $('.subtotalPrices').html(0)
+            $('.totalPricesEDV').html(0)
+            $('.totalPrices').html(0)
+
+            $.getJSON( "{{route('customer.getmycart')}}", function(data) {
+                let   totalprice = 0 ;
+                let subtotalPrices = 0;
+                let totalPricesEDV = 0;
+                let totalPrices = 0;
+
+                    $.each(data, function(i,item){
+                        totalprice+=data[i].quantity* parseFloat(data[i].sale_price) ;
+
+                        let cartproducts = '<div class="cartItem"> '+
+                            ' <div class="openLeftImg"> '+
+                            '     <img src="'+item.imagepath+'" /> '+
+                            ' </div> '+
+                            '<div class="openRightText"> '+
+                            '     <p>'+data[i].name+' </p> '+
+                            '     <p><span>'+data[i].quantity+'</span> x <span>'+  parseFloat(data[i].sale_price).toFixed(2)  +'</span> AZN</p>' +
+                            ' </div>' +
+                            ' <div   > '+
+                            '     <span class="cartremove" data-id="'+data[i].cart_id+'" ><i class="fas fa-times"></i></span> '+
+                            ' </div>' +
+                            '</div>';
+
+                        $('.opencartitems').append(cartproducts)
+                        $('.opencartTotalPrice').html(totalprice.toFixed(2))
+
+
+                        let carttablelist = '  <tr>'+
+                            '  <td scope="row">'+
+                            '      <span class="removeFromCart" data-id="'+data[i].cart_id+'" ><i class="fas fa-times"></i></span>'+
+                            '  </td>'+
+                            '  <td>'+
+                            '      <img src="'+item.imagepath+'" />'+
+                            '  </td>'+
+                            ' <td>'+data[i].name+'</td>'+
+                            ' <td> '+data[i].sale_price+' AZN</td>'+
+                            '  <td class="qty">'+
+                            '      <button type="button">'+data[i].quantity+'</button>'+
+                            '      <p>'+
+                            '          <span><i class="fas fa-angle-up"></i></span>'+
+                            '          <span><i class="fas fa-angle-down"></i></span>'+
+                            '      </p>'+
+                            '  </td>'+
+                            '  <td> '+  parseFloat(data[i].sale_price).toFixed(2)  +'  AZN</td>'+
+                            '  </tr>';
+
+                        $('.carttablelist').append(carttablelist)
+
+                        subtotalPrices+= (parseFloat(data[i].sale_price)*data[i].quantity) ;
+                        totalPricesEDV+=( parseFloat(data[i].sale_price)*data[i].quantity)*0.18;
+                        totalPrices += ((parseFloat(data[i].sale_price)*data[i].quantity)*0.18)+(parseFloat(data[i].sale_price)*data[i].quantity);
+
+
+                    });
+
+                $('.subtotalPrices').html(subtotalPrices.toFixed(2))
+                $('.totalPricesEDV').html(totalPricesEDV.toFixed(2))
+                $('.totalPrices').html(totalPrices.toFixed(2))
+            });
+        }
+
+        $(document).on('click','.removeFromCart',function (){
+            let prid =  $(this).attr('data-id');
+
+
+
+            $.ajax({
+                type: "GET",
+                url: "{{route('customer.removefromcart')}}",
+                data: ({id: prid }),
+                success: function(data) {
+                    data = JSON.parse(data);
+
+                    swal({
+                        title: data.title,
+                        text: data.text,
+                        icon: data.icon,
+                        button: data.button,
+                    });
+
+                    getmycartlist()
+
+                }
+            });
+        });
 
 
 

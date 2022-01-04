@@ -36,7 +36,7 @@
                 <div class="subTotal">
                     <p>Subtotal : <span class="opencartTotalPrice">0</span> <span>AZN</span></p>
                     <div>
-                        <a href="viewcart.html">ViewCart</a>
+                        <a href="{{route('customer.mycartpage')}}">ViewCart</a>
                         <a href="Checkout.html">Checkout</a>
                     </div>
                 </div>

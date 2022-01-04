@@ -64,7 +64,7 @@
                                     <input type="radio" id="star1" name="rate" value="1" />
                                     <label for="star1" title="text">1 star</label>
                                 </div>
-                                <p class="card-text"><span>28</span>AZN</p>
+                                <p class="card-text"><span>{{$product->sale_price}}</span>AZN</p>
 
                             </div>
                         </div>
