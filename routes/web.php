@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-    Route::group(['prefix'=>'idare-etme-paneli'],function (){
+    Route::group(['prefix'=>'adminpanel'],function (){
         Route::get('/giris','UserController@login')->name('login');
         Route::post('/giris','UserController@logincontrol');
 
@@ -183,6 +183,7 @@ if (adjustment()->multilang == 1){
                 Route::get('/sebete-elave-et','Site\CustomerController@addtocart')->name('customer.addtocart');
                 Route::get('/sebetim','Site\CustomerController@mycartpage')->name('customer.mycartpage');
                 Route::get('/sebetimdeki-mehsullar','Site\CustomerController@getmycart')->name('customer.getmycart');
+                Route::get('/sebet-mehsul-update','Site\CustomerController@updateCartQuantity')->name('customer.updatequantity');
                 Route::get('/sebetimden-cixart','Site\CustomerController@removefromcart')->name('customer.removefromcart');
 
             });

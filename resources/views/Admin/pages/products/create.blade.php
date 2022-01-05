@@ -250,19 +250,19 @@
 
                                     <div class="row">
 
-                                        <div class="form-group col-6">
-                                            <label for="">Qiymət </label>
-                                            <input type="number" class="form-control"  name="price"  >
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label for="">Endirimli Qiymət </label>
+{{--                                        <div class="form-group col-6">--}}
+{{--                                            <label for="">Qiymət </label>--}}
+{{--                                            <input type="number" class="form-control"  name="price"  >--}}
+{{--                                        </div>--}}
+                                        <div class="form-group col-12">
+                                            <label for="">  Qiymət </label>
                                             <input type="number" class="form-control"  name="sale_price"  >
                                         </div>
-                                        <div class="form-group col-6">
+                                        <div class="form-group col-12">
                                             <label for="">Stok sayısı </label>
                                             <input type="number" class="form-control"  name="stock"  >
                                         </div>
-                                        <div class="form-group col-6">
+                                        <div class="form-group col-12">
                                             <label for="">SKU </label>
                                             <input type="number" class="form-control"  name="sku"  >
                                         </div>

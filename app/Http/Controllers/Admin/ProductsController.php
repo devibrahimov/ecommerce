@@ -286,7 +286,7 @@ class ProductsController extends Controller
             $product = new Product();
 
             $product->category_id = $request->category;
-            $product->price = $request->price;
+         //   $product->price = $request->price;
             $product->sale_price = $request->sale_price;
             $product->stock = $request->stock;
             $product->sku = $request->sku;
@@ -395,9 +395,9 @@ class ProductsController extends Controller
 
             $product->category_id = $request->category;
 //            $product->price = $request->price;
-//            $product->sale_price = $request->sale_price;
+             $product->sale_price = $request->sale_price;
             $product->stock = $request->stock;
-//            $product->sku = $request->sku;
+            $product->sku = $request->sku;
 
             $product->save();
             # end step 1_________________________;

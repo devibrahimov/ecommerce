@@ -64,7 +64,7 @@
                    <div>{!! $product->content !!}</div>
                     @auth('customer')
                     <p>
-                        <i class="fas fa-heart  addtowishlist  @auth('customer') {{hasmywishlist($product->id,auth('customer')->user()->id)==true?'mywish' :''}}  @endauth"data-id="{{$product->id}}"  ></i>
+                        <i class="fas fa-heart  addtowishlist @auth('customer') {{hasmywishlist($product->id,auth('customer')->user()->id)==true?'mywish' :''}}  @endauth"data-id="{{$product->id}}"  ></i>
 
                         @if(hasmywishlist($product->id,auth('customer')->user()->id)==false)
                            <span class="wishcontent">  {{__('content.addtowishlist')}}</span>
@@ -181,16 +181,16 @@
                             <div class="card-body">
                                 <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
                                 <div class="rate">
-                                    <input type="radio" id="star5" name="rate" value="5" />
-                                    <label for="star5" title="text">5 stars</label>
-                                    <input type="radio" id="star4" name="rate" value="4" />
-                                    <label for="star4" title="text">4 stars</label>
-                                    <input type="radio" id="star3" name="rate" value="3" />
-                                    <label for="star3" title="text">3 stars</label>
-                                    <input type="radio" id="star2" name="rate" value="2" />
-                                    <label for="star2" title="text">2 stars</label>
-                                    <input type="radio" id="star1" name="rate" value="1" />
-                                    <label for="star1" title="text">1 star</label>
+
+                                    <label for="star5" title="text">  <input type="radio" id="star5" name="rate" value="5" /></label>
+
+                                    <label for="star4" title="text">  <input type="radio" id="star4" name="rate" value="4" /></label>
+
+                                    <label for="star3" title="text">  <input type="radio" id="star3" name="rate" value="3" /></label>
+
+                                    <label for="star2" title="text">  <input type="radio" id="star2" name="rate" value="2" /> </label>
+
+                                    <label for="star1" data-typeId="1" title="text">  <input type="radio" id="star1" name="rate" value="1" /></label>
                                 </div>
                                 <p class="card-text"><span>28</span>AZN</p>
                             </div>
@@ -314,7 +314,11 @@
 
         });
 
+   $(".rate label").on("click",function (e){
+       e.preventDefault()
+       console.log(e.target.getAttribute('data-typeId'));
 
+   })
 
 
     </script>

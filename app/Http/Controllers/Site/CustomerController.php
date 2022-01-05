@@ -174,4 +174,39 @@ class CustomerController extends Controller
     }
 
 
+
+    public function updateCartQuantity(Request $request){
+       $quantity =  $request->quantity ;
+       $cart_id =  $request->cart_id ;
+
+       $cart = Cart::find($cart_id);
+       $cart->quantity = $quantity;
+       $update = $cart->save();
+
+
+        $customer =  Auth::guard('customer')->user()->id;
+
+        $cartList = Cart::where('customer_id',$customer)
+            ->join('products','products.id','=','customer_cart.product_id')
+            ->get(['products.*' ,'customer_cart.*','customer_cart.id AS cart_id']);
+        $subtotalPrices= 0 ;
+        foreach ($cartList as $p){
+            $subtotalPrices+= $p->sale_price*$p->quantity ;
+        }
+
+
+
+       $data = [
+           'subtotal' => $cart->quantity*$cart->product->sale_price,
+           'subtotalPrices' =>   number_format( floatval($subtotalPrices), 2, '.', ''),
+           'totalPricesEDV' =>  number_format( floatval($subtotalPrices*0.18), 2, '.', '') ,
+           'totalPrices' =>   number_format( floatval($subtotalPrices+( $subtotalPrices*0.18)), 2, '.', '')
+       ];
+       if ($update){
+           return $data ;
+       }else{
+           return  $data;
+       }
+    }
+
 }

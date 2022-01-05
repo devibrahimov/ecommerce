@@ -42,21 +42,20 @@
                     <td scope="row">
                         <span class="removeFromCart" data-id="{{$item->cart_id}}" ><i class="fas fa-times"></i></span>
                     </td>
-                    <td>
-                        <img src="{{$item->imagepath}}" />
-                    </td>
+                    <td>  <img src="{{$item->imagepath}}"/> </td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->sale_price}} AZN</td>
-                    <td class="qty">
-                        <button type="button">{{$item->quantity}}</button>
+                    <td class="qty" data-cartid="{{$item->cart_id}}">
+                        <button type="button" class="quantity">{{$item->quantity}}</button>
                         <p>
-                            <span><i class="fas fa-angle-up"></i></span>
-                            <span><i class="fas fa-angle-down"></i></span>
+                            <span class="qtyUp"   ><i class="fas fa-angle-up"></i></span>
+                            <span class="qtyDown" ><i class="fas fa-angle-down"></i></span>
                         </p>
                     </td>
+
                     @php $subtotal = $item->quantity * floatval($item->sale_price);
                         $totalPrice +=$subtotal @endphp
-                    <td>{{$subtotal}}  AZN</td>
+                    <td class="subtotalTD" > <span class="subtotal">{{$subtotal}} </span> AZN</td>
                 </tr>
                 @endforeach
 
@@ -99,38 +98,33 @@
     <script src="/assets/js/swiper.js"></script>
     <script>
 
-        let quantity = $('.quantity');
-
         $('.qtyDown').on('click',function (e) {
 
-            if(parseInt(quantity.text())>1){
+            let quantitydata = $(this).parent().parent().children('.quantity');
 
-                qty = parseInt(quantity.text())-1
-                quantity.text(qty)
-                let etarget=$(e.currentTarget).parent().parent().children(".addtocart");
-                dataquantity = parseInt(etarget.attr('data-quantity'))-1;
-                etarget.attr('data-quantity',dataquantity)
-                daity =  etarget.attr('data-quantity');
-                console.log(daity)
+            quantityText =quantitydata.text()
+            quantity= parseInt(quantityText)
+            quantity-=1;
+            quantitydata.text(quantity)
+            let cart_id = $(this).parent().parent().attr('data-cartid');
+            // console.log(quantity) ;
+            // console.log(cart_id) ;
 
+            $.ajax({
+                type: "GET",
+                url: "{{route('customer.updatequantity')}}",
+                data: ({cart_id: cart_id , quantity:quantity }),
+                success: function(data){
+                    let ata = e.currentTarget.parentElement.parentElement.nextElementSibling.children[0]
+                    ata.innerText = parseFloat(data.subtotal).toFixed(2)
 
-            }else{
-                alert(quantity.text())
-            }
+                    $('.subtotalPrices').html(data.subtotalPrices)
+                    $('.totalPricesEDV').html(data.totalPricesEDV)
+                    $('.totalPrices').html(data.totalPrices)
+                }
+            });
 
         })
-
-        $('.qtyUp').on('click',function (e) {
-            qty = parseInt(quantity.text())+1
-            quantity.text(qty)
-            let etarget=$(e.currentTarget).parent().parent().children(".addtocart");
-            dataquantity = parseInt(etarget.attr('data-quantity'))+1;
-            etarget.attr('data-quantity',dataquantity)
-            daity =  etarget.attr('data-quantity');
-            console.log(daity)
-
-        });
-
 
 
 
@@ -143,10 +137,11 @@
             $('.totalPrices').html(0)
 
             $.getJSON( "{{route('customer.getmycart')}}", function(data) {
+
                 let   totalprice = 0 ;
-                let subtotalPrices = 0;
-                let totalPricesEDV = 0;
-                let totalPrices = 0;
+                let   subtotalPrices = 0 ;
+                let   totalPricesEDV = 0 ;
+                let   totalPrices = 0 ;
 
                     $.each(data, function(i,item){
                         totalprice+=data[i].quantity* parseFloat(data[i].sale_price) ;
@@ -184,14 +179,14 @@
                             '          <span><i class="fas fa-angle-down"></i></span>'+
                             '      </p>'+
                             '  </td>'+
-                            '  <td> '+  parseFloat(data[i].sale_price).toFixed(2)  +'  AZN</td>'+
+                            '  <td> '+  (parseFloat(data[i].sale_price)*data[i].quantity).toFixed(2)  +'  AZN</td>'+
                             '  </tr>';
 
                         $('.carttablelist').append(carttablelist)
 
                         subtotalPrices+= (parseFloat(data[i].sale_price)*data[i].quantity) ;
                         totalPricesEDV+=( parseFloat(data[i].sale_price)*data[i].quantity)*0.18;
-                        totalPrices += ((parseFloat(data[i].sale_price)*data[i].quantity)*0.18)+(parseFloat(data[i].sale_price)*data[i].quantity);
+                        totalPrices += ((parseFloat(data[i].sale_price)*data[i].quantity)*0.18)+( parseFloat(data[i].sale_price)*data[i].quantity );
 
 
                     });
@@ -204,8 +199,6 @@
 
         $(document).on('click','.removeFromCart',function (){
             let prid =  $(this).attr('data-id');
-
-
 
             $.ajax({
                 type: "GET",
@@ -227,6 +220,32 @@
             });
         });
 
+
+        $('.qtyUp').on('click',function (e) {
+
+            let quantitydata = $(this).parent().parent().children('.quantity');
+
+            quantityText =quantitydata.text()
+            quantity= parseInt(quantityText)
+            quantity+=1;
+            quantitydata.text(quantity)
+            let cart_id = $(this).parent().parent().attr('data-cartid');
+
+            $.ajax({
+                type: "GET",
+                url: "{{route('customer.updatequantity')}}",
+                data: ({cart_id: cart_id , quantity:quantity }),
+                success: function(data){
+                  let ata = e.currentTarget.parentElement.parentElement.nextElementSibling.children[0]
+                     ata.innerText = parseFloat(data.subtotal).toFixed(2)
+
+                    $('.subtotalPrices').html(data.subtotalPrices)
+                    $('.totalPricesEDV').html(data.totalPricesEDV)
+                    $('.totalPrices').html(data.totalPrices)
+                }
+            });
+
+        });
 
 
     </script>

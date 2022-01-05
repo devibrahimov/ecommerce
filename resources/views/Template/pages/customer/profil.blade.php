@@ -37,7 +37,7 @@
             </div>
 
             <div class="profil-box">
-                <a href="#" ><i class="fas fa-shopping-cart"></i> cart </a>
+                <a href="{{route('customer.mycartpage')}}" ><i class="fas fa-shopping-cart"></i> {{__('content.cart')}} </a>
             </div>
 
             <div class="profil-box">
@@ -51,7 +51,7 @@
         </div>
         <div class="right_itm">
             <div class="dashboard">
-                <h3>Hello Beyler!</h3>
+                <h3>{{__('content.hello',['username' => \auth('customer')->user()->name])}} </h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente error illum obcaecati at
                     exercitationem tenetur suscipit mollitia neque cupiditate cumque. Exercitationem aliquam maiores
                     aspernatur nesciunt.</p>

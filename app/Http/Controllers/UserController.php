@@ -32,7 +32,7 @@ class UserController extends Controller
           if ( $a= auth()->guard('administrator')->attempt(['email'=>$request->email,'password'=> $request->password]) ){
               request()->session()->regenerate();
 
-              return redirect()->intended('/') ;
+              return redirect()->intended(route('admin.index')) ;
           }else{
               $errors = ['email'=>'Yanlış giriş məlumatları'];
 

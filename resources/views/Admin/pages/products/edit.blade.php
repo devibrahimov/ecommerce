@@ -235,25 +235,23 @@
 
                                             <div class="row">
 
-                                                <div class="form-group col-6">
-                                                    <label for="">Qiymət </label>
-                                                    <input type="number" class="form-control"  name="price"  >
+{{--                                                <div class="form-group col-12">--}}
+{{--                                                    <label for="">Qiymət </label>--}}
+{{--                                                    <input type="number" class="form-control"  name="price"   value="{{$product->price}}">--}}
+{{--                                                </div>--}}
+                                                <div class="form-group col-12">
+                                                    <label for="">  Qiymət </label>
+                                                    <input type="number" class="form-control"  name="sale_price" value="{{$product->sale_price}}" >
                                                 </div>
-                                                <div class="form-group col-6">
-                                                    <label for="">Endirimli Qiymət </label>
-                                                    <input type="number" class="form-control"  name="sale_price"  >
-                                                </div>
-                                                <div class="form-group col-6">
+                                                <div class="form-group col-12">
                                                     <label for="">Stok sayısı </label>
-                                                    <input type="number" class="form-control"  name="stock"  >
+                                                    <input type="number" class="form-control"  name="stock"   value="{{$product->stock}}">
                                                 </div>
-                                                <div class="form-group col-6">
+                                                <div class="form-group col-12">
                                                     <label for="">SKU </label>
-                                                    <input type="number" class="form-control"  name="sku"  >
+                                                    <input type="number" class="form-control"  name="sku"   value="{{$product->sku}}"  >
                                                 </div>
                                             </div>
-
-
 
                                             {{--                            <div class="row">--}}
                                             {{--                                <div class="form-group col-6">--}}
