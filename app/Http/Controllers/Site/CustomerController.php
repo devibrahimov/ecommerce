@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Customer;
+use App\Models\Rate;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -207,6 +208,26 @@ class CustomerController extends Controller
        }else{
            return  $data;
        }
+    }
+
+
+
+
+    public function productComment(Request $request){
+       $rate = $request->rate;
+       $content = $request->comment;
+       $product_id = $request->product_id;
+
+           $review = [
+               'customer_id'  => \auth('customer')->user()->id,
+               'product_id'   => $product_id,
+               'comment'      =>  $content ,
+               'comment'      =>  $content ,
+               'rate'         =>  $rate ];
+           Rate::create($review);
+
+           return redirect()->back();
+
     }
 
 }

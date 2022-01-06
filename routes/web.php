@@ -186,6 +186,8 @@ if (adjustment()->multilang == 1){
                 Route::get('/sebet-mehsul-update','Site\CustomerController@updateCartQuantity')->name('customer.updatequantity');
                 Route::get('/sebetimden-cixart','Site\CustomerController@removefromcart')->name('customer.removefromcart');
 
+                Route::post('/mehsul-serh-et','Site\CustomerController@productComment')->name('customer.productComment');
+
             });
 
 

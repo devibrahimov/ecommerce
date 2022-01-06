@@ -182,7 +182,7 @@
     cursor: pointer;
 }
 .activeLi{
-    background:#112A4F !important; 
+    background:#112A4F !important;
     color: #fff !important;
 }
 .description{
@@ -226,8 +226,13 @@
 }
 .rating{
     display: flex;
-    margin-top: 20px;
-    padding-left: 68px;
+    margin: 15px 0px;
+}
+.rating span{
+    cursor: pointer;
+}
+.activeStar{
+    color:orange;
 }
 .reviews button{
     padding: 10px 24px;
@@ -294,7 +299,7 @@
 }
 .product-slide .slider-down{
     flex-basis: 84%;
-    height: auto; 
+    height: auto;
     display: flex;
     justify-content: flex-start;
     overflow-y: hidden;
@@ -508,7 +513,7 @@
     }
     /* product-slide */
     .left-empty {
-        flex-basis: 0%; 
+        flex-basis: 0%;
     }
     .product-slide .slider-down {
         flex-basis: 100%;
@@ -528,7 +533,7 @@
     .reviews form .form-row{
         flex-wrap:wrap!important;
     }
-    .reviews form .form-row div{ 
+    .reviews form .form-row div{
        flex-basis: 100%!important;
        margin:10px 0px;
     }
@@ -549,7 +554,7 @@
     }
     .productdetailPage h4{
         margin-bottom: 15px;
-    }       
+    }
     /* comment */
     .description {
         padding: 20px 8px;

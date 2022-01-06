@@ -8,6 +8,43 @@
         .mywish {
             color:#ed0b21 ;
         }
+
+
+        .comment-Content{
+            width:100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .comment-Content .userImg{
+            flex-basis:5%;
+        }
+        .userImg img{
+            width:50px;
+            height: 50px;
+            object-fit: cover;
+            object-position: center;
+            margin-bottom: 20px;
+        }
+        .comment-Content .userText{
+            flex-basis:92%;
+            padding:15px;
+            border:1px solid #ccc;
+        }
+        .userReview{
+            margin-top: 20px !important;
+        }
+        .jquery-ratings-star{
+            cursor: pointer;
+            width:20px;
+            height:20px;
+        }
+
+        .jquery-ratings-full{
+            color:orange;
+            width:20px;
+            height:20px;
+        }
     </style>
 @endsection
 
@@ -48,19 +85,19 @@
                     </div>
                     <div thumbsSlider="" class="swiper mySwiper">
                         <div class="swiper-wrapper">
-
                             @foreach( $product->images  as $image)
                                 <div class="swiper-slide">
                                     <img src="{{$image->imagepath}}" />
                                 </div>
                                 @endforeach
-
-
                         </div>
                     </div>
                 </div>
                 <div class="product-about">
                     <h4>{{$product->name}}  </h4>
+                    <div id="starRating">
+                        {!! rateStars($product->id) !!}
+                    </div>
                    <div>{!! $product->content !!}</div>
                     @auth('customer')
                     <p>
@@ -74,7 +111,7 @@
                     </p>
                     @endauth
                    @auth('customer')
-                   @if($product->stock >0)
+                   @if($product->stock > 0)
                     <p style="color:green"><i class="far fa-check-circle"></i> {{__('content.instock',['qty'=>$product->stock])}}   </p>
 
                     <div class="Qty">Qty:
@@ -83,7 +120,7 @@
                             <span class="qtyUp"><i class="fas fa-angle-up"></i></span>
                             <span class="qtyDown"><i class="fas fa-angle-down"></i></span>
                         </p>
-                        <a class="addtocart" data-quantity="1" data-id="{{$product->id}}">Add to Cart</a>
+                        <a class="addtocart" data-quantity="1" data-id="{{$product->id}}">{{__('content.addtocart')}}</a>
                     </div>
                     @endif
                     @endauth
@@ -107,47 +144,74 @@
                 </div>
                 <div class="reviews">
                     <h3>Reviews</h3>
+
+                    @foreach($reviews as $comment)
+                    <div class="comment-Content">
+                        <div class="userImg">
+                            <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" />
+                        </div>
+                        <div class="userText">
+                            <div id="starRating">
+                                @for($i = 1; $i<=5;$i++)
+                                <span class="jquery-ratings-star {{ $i<= $comment->rate ? 'jquery-ratings-full':''}} "  style="font-size:100%;">&starf;</span>
+                                @endfor
+                            </div>
+
+
+                            <h3 class="userReview">{{$comment->customer->name.' '. $comment->customer->surname}}</h3>
+                            <div class="description-user">
+
+                                <p>{{$comment->comment}}</p>
+
+                                @if($comment->feedback != null)
+                                <div class="comment-Content">
+                                    <div class="userImg">
+                                        <img  src="https://media.istockphoto.com/vectors/faces-avatars-icons-user-avatar-customer-service-icon-business-avatar-vector-id1126551708"/>
+                                    </div>
+                                    <div class="userText">
+                                        <h3 class="userReview">Protool Admin</h3>
+                                        <div class="description-user">
+                                            <p>{{$comment->feedback}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+
                     <p>There are no reviews yet.</p>
                     <p>Be The First To Review “AGV17-125XE ANGLE GRINDER IN2”</p>
                     <h4>Your email address will not be published. Required fields are marked *</h4>
-                    <form>
-                        <div class="form-row d-flex justify-content-between ">
-                            <div class="col-md-5 ">
-                                <label for="validationCustom01"> Name</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="col-md-5 ">
-                                <label for="inputEmail4">Email</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                            <label class="form-check-label" for="invalidCheck">
-                                Save my name, email, and website in this browser for the next time I comment.
-                            </label>
-                        </div>
-                        <div class="rating">
-                            <div class="rate ">
-                                <input type="radio" id="star5" name="rate" value="5" />
-                                <label for="star5" title="text">5 stars</label>
-                                <input type="radio" id="star4" name="rate" value="4" />
-                                <label for="star4" title="text">4 stars</label>
-                                <input type="radio" id="star3" name="rate" value="3" />
-                                <label for="star3" title="text">3 stars</label>
-                                <input type="radio" id="star2" name="rate" value="2" />
-                                <label for="star2" title="text">2 stars</label>
-                                <input type="radio" id="star1" name="rate" value="1" />
-                                <label for="star1" title="text">1 star</label>
-                            </div>
-                        </div>
+                    <form action="{{route('customer.productComment')}}" method="post" >
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{$product->id}}" >
                         <div class="form_group">
                             <div class="form-tema">
-                                <label for="exampleFormControlTextarea1" class="form-label">Your review *</label>
-                                <textarea class="form-control" rows="7"></textarea>
+                                <label   class="form-label">{{auth('customer')->user()->name . ' ' .auth('customer')->user()->surname}} *</label>
+
+                                <div id="starRating" style="padding:10px 15px 10px 15px;margin-bottom: 10px;border:1px solid  #adadad ; width: 170px">
+                                    <label class="jquery-ratings-star  star-rated  " style="font-size:100%;">&starf;
+                                        <input type="radio"name="rate" value="1" required style="display:none" >
+                                    </label>
+                                    <label class="jquery-ratings-star star-rated " style="font-size:100%;">&starf;
+                                        <input type="radio" name="rate" value="2" required style="display:none" >
+                                    </label>
+                                    <label class="jquery-ratings-star star-rated " style="font-size:100%;">&starf;
+                                        <input type="radio"name="rate" value="3" required style="display:none" >
+                                    </label>
+                                    <label class="jquery-ratings-star star-rated " style="font-size:100%;">&starf;
+                                        <input type="radio" name="rate" value="4" required style="display:none" >
+                                    </label>
+                                    <label class="jquery-ratings-star star-rated " style="font-size:100%;">&starf;
+                                        <input type="radio" name="rate" value="5"  required   style="display:none" >
+                                    </label>
+                                </div>
+                                <textarea class="form-control" name="comment" rows="7"></textarea>
                             </div>
                         </div>
-                        <button type="submit">Submit</button>
+                        <button type="submit">{{__('content.send')}}</button>
                     </form>
                 </div>
             </div>
@@ -160,6 +224,7 @@
             </li>
         </ul>
     </div>
+
     <div class="product-slide">
         <div class="left-empty"> </div>
         <div class="slider-down">
@@ -180,17 +245,12 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">4PCS HOOK + PICK SET -1PC</p>
-                                <div class="rate">
-
-                                    <label for="star5" title="text">  <input type="radio" id="star5" name="rate" value="5" /></label>
-
-                                    <label for="star4" title="text">  <input type="radio" id="star4" name="rate" value="4" /></label>
-
-                                    <label for="star3" title="text">  <input type="radio" id="star3" name="rate" value="3" /></label>
-
-                                    <label for="star2" title="text">  <input type="radio" id="star2" name="rate" value="2" /> </label>
-
-                                    <label for="star1" data-typeId="1" title="text">  <input type="radio" id="star1" name="rate" value="1" /></label>
+                                <div id="starRating">
+                                    <span  class="jquery-ratings-star  jquery-ratings-full"  style="font-size:100%;" >&starf;</span>
+                                    <span  class="jquery-ratings-star  jquery-ratings-full"  style="font-size:100%" >&starf;</span>
+                                    <span  class="jquery-ratings-star  jquery-ratings-full"  style="font-size:100%;" >&starf;</span>
+                                    <span  class="jquery-ratings-star  " style="font-size:100%;" >&starf;</span>
+                                    <span  class="jquery-ratings-star  " style="font-size:100%;">&starf;</span>
                                 </div>
                                 <p class="card-text"><span>28</span>AZN</p>
                             </div>
@@ -271,6 +331,8 @@
 @endsection
 
 
+
+
 @section('js')
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -285,7 +347,6 @@
         $('.qtyDown').on('click',function (e) {
 
             if(parseInt(quantity.text())>1){
-
                 qty = parseInt(quantity.text())-1
                 quantity.text(qty)
                 let etarget=$(e.currentTarget).parent().parent().children(".addtocart");
@@ -294,7 +355,6 @@
                 daity =  etarget.attr('data-quantity');
                 console.log(daity)
 
-
             }else{
                 alert(quantity.text())
             }
@@ -302,7 +362,7 @@
         })
 
 
-        $('.qtyUp').on('click',function (e) {
+        $('.qtyUp').on('click',function (e){
 
             qty = parseInt(quantity.text())+1
             quantity.text(qty)
@@ -319,7 +379,10 @@
        console.log(e.target.getAttribute('data-typeId'));
 
    })
-
+        $('.star-rated').click(function(){
+            $('.jquery-ratings-star').removeClass('jquery-ratings-full');
+            $(this).prevAll().addBack().addClass('jquery-ratings-full');
+        });
 
     </script>
 @endsection

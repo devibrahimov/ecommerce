@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\Rate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
@@ -105,9 +106,11 @@ class ProductsController extends Controller
         $product->images = Product::find($id)->images;
         $product->category = Product::find($id)->category->name;
 
+        $reviews = Rate::where('product_id',$id)->latest()->get();
+
         $page = 'products';
 
-        return View::make("Template.pages.productDetail",compact(['categories','product','page' ]));
+        return View::make("Template.pages.productDetail",compact(['categories','product','page','reviews' ]));
     }
 
 

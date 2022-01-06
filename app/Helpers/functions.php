@@ -211,3 +211,30 @@ function hasmywishlist($productid,$userid){
             })->inRandomOrder()->take(6)->get();
 
     }
+
+
+    function rateStars($id){
+       $rates = \App\Models\Rate::where('product_id',$id)->select('rate')->get()->toArray();
+
+        $total = 0 ;
+        if ($rates != []){
+
+            foreach ($rates as  $v) {
+                $total +=$v['rate'];
+            }
+            $total /= count($rates) ;
+        }
+       // return round($total) ;
+        $total = round($total) ;
+        $stars = '';
+        for($i=1; $i<=5; $i++){
+            if ( $i <= $total ){
+                $stars.=' <span  class="jquery-ratings-star jquery-ratings-full"  style="font-size:100%;" >&starf;</span>';
+            }else{
+                $stars.=' <span  class="jquery-ratings-star "  style="font-size:100%;color: dimgrey" >&starf;</span>';
+            }
+
+        }
+
+        return $stars ;
+    }

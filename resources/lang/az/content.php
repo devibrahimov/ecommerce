@@ -33,8 +33,10 @@ return
         'instock' => 'Stokda :qty ədəd qalıb',
         'cart' => 'Səbət',
         'mycart' => 'Səbətim',
+        'addtocart' => 'Səbətə At',
         'hello' => 'Salam :username !',
         'description' => 'Açıqlama Mətni',
+        'send' => 'Göndər',
 
         'name' => 'Ad',
         'surname' => 'Soyad',
