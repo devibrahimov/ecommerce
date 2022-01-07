@@ -214,6 +214,10 @@
 <script src="/admin/assets/js/feather.min.js"></script>
 <script src="/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
 <script src="/admin/assets/js/sidebarmenu.js"></script>
+
+
+<script src="/admin/assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
 <!--Custom JavaScript -->
 <script src="/admin/assets/js/custom.min.js"></script>
 <!--This page JavaScript -->
