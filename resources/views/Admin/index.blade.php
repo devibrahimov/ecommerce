@@ -225,6 +225,10 @@
 <script src="/admin/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
 <script src="/admin/assets/js/pages/dashboards/dashboard1.min.js"></script>
 
+<!--This page plugins -->
+<script src="/admin/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/admin/js/pages/datatable/datatable-basic.init.js"></script>
+
 <script src="/general/sweetalert.min.js"></script>
 @yield('js')
 @if(session()->has('feedback'))
