@@ -66,20 +66,13 @@ use Illuminate\Support\Facades\Route;
         Route::get('/sehife-deactive/{id}','Admin\CorporateController@servicedeactive')->name('servicedeactive');
 
 
-//        Route::get('/xidmətlərimiz','Admin\CorporateController@services')->name('adminservices');
-//        Route::get('/yeni-xidmət-yarat','Admin\CorporateController@newservice')->name('newservice');
-//        Route::post('/yeni-xidmət-yarat','Admin\CorporateController@servicestore');
-//        Route::get('/xidmət-redaktəsi/{id}','Admin\CorporateController@serviceedit')->name('serviceupdate');
-//        Route::post('/xidmət-redaktəsi/{id}','Admin\CorporateController@serviceupdate');
-//        Route::delete('/xidmət-sil/{id}','Admin\CorporateController@servicedelete')->name('servicedelete');
-//        Route::get('/xidmət-active/{id}','Admin\CorporateController@serviceactive')->name('serviceactive');
-//        Route::get('/xidmət-deactive/{id}','Admin\CorporateController@servicedeactive')->name('servicedeactive');
-//
 
         Route::get('/mehsul-kategoriyası/{id?}','Admin\ProductsController@product_categories')->name('product_categories');
         Route::post('/mehsul-kategoriyası/{id?}','Admin\ProductsController@product_category_store') ;
         Route::post('/mehsul-kategoriyası-update/{id}','Admin\ProductsController@product_category_update')->name('product_category_update') ;
         Route::delete('/mehsul-kategoriyası-sil/{id}','Admin\ProductsController@product_category_delete')->name('productcatdelete');
+
+
 
         Route::get('/mehsullarimiz','Admin\ProductsController@products')->name('adminproducts');
         Route::get('/mehsullarimiz/{id}','Admin\ProductsController@admincatproducts')->name('admincatproducts');
@@ -91,6 +84,21 @@ use Illuminate\Support\Facades\Route;
         Route::post('/mehsul-active-status','Admin\ProductsController@productactivestatus')->name('productactivestatus');
         Route::post('/mehsul-shekil-update','Admin\ProductsController@productimageupload')->name('productimageupload');
         Route::post('/mehsul-shekil-sil','Admin\ProductsController@productimagedelete')->name('productimagedelete');
+
+
+        Route::get('/mehsul-serhleri','Admin\ProductsController@comments')->name('product_comments');
+        Route::post('/admin-comment-feedback','Admin\ProductsController@commentAdminFeedback')->name('productCommentAdminFeedback');
+
+
+//        Route::get('/xidmətlərimiz','Admin\CorporateController@services')->name('adminservices');
+//        Route::get('/yeni-xidmət-yarat','Admin\CorporateController@newservice')->name('newservice');
+//        Route::post('/yeni-xidmət-yarat','Admin\CorporateController@servicestore');
+//        Route::get('/xidmət-redaktəsi/{id}','Admin\CorporateController@serviceedit')->name('serviceupdate');
+//        Route::post('/xidmət-redaktəsi/{id}','Admin\CorporateController@serviceupdate');
+//        Route::delete('/xidmət-sil/{id}','Admin\CorporateController@servicedelete')->name('servicedelete');
+//        Route::get('/xidmət-active/{id}','Admin\CorporateController@serviceactive')->name('serviceactive');
+//        Route::get('/xidmət-deactive/{id}','Admin\CorporateController@servicedeactive')->name('servicedeactive');
+//
 
         Route::get('/qaleriya','Admin\GeneralController@gallery')->name('gallery');
         Route::post('/qaleriya','Admin\GeneralController@gallerystore');

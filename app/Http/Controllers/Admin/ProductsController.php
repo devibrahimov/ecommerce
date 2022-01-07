@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductCategoryContent;
 use App\Models\ProductImage;
+use App\Models\Rate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -608,5 +609,30 @@ class ProductsController extends Controller
     #        END  product SECTION
     ################################################################
 
+
+
+    public function comments(){
+        $comments = Rate::all();
+        return view('Admin.pages.products.comments',compact('comments'));
+    }
+
+    public function commentAdminFeedback(Request $request){
+        $feedback = $request->feedback ;
+        $crid = $request->crid ;
+
+        if ( $request->see){
+            $rate = Rate::find(['id'=>$crid]);
+            $rate[0]->update([
+                'see'=>1
+            ]);
+        }else{
+            $rate = Rate::find(['id'=>$crid]);
+            $rate[0]->update([
+                'feedback'=>$feedback
+            ]);
+            return  $rate[0]->feedback ;
+        }
+
+    }
 
 }

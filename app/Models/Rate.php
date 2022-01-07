@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Rate extends Model
 {
     protected $table = 'customer_reviews' ;
-    protected $guarded = [] ;
     protected $primaryKey = 'cr_id';
     public $incrementing = true;
 
+    protected $guarded = [] ;
 
     public function customer(){
       return $this->belongsTo('App\Models\Customer' ,'customer_id' ,'id');

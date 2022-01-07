@@ -90,6 +90,13 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link" href="{{route('product_comments')}}"
+                       aria-expanded="false"><i  class="fas fa-comment-alt"></i><span
+                            class="hide-menu">Istifadəçi Şərhləri</span>
+                    </a>
+                </li>
+
                 <li class="list-divider"></li>
 
                 <li class="sidebar-item">

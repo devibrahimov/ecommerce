@@ -184,6 +184,7 @@
                     <p>There are no reviews yet.</p>
                     <p>Be The First To Review “AGV17-125XE ANGLE GRINDER IN2”</p>
                     <h4>Your email address will not be published. Required fields are marked *</h4>
+                    @auth('customer')
                     <form action="{{route('customer.productComment')}}" method="post" >
                         @csrf
                         <input type="hidden" name="product_id" value="{{$product->id}}" >
@@ -213,6 +214,7 @@
                         </div>
                         <button type="submit">{{__('content.send')}}</button>
                     </form>
+                    @endauth
                 </div>
             </div>
         </div>
