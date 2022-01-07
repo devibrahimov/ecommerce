@@ -145,18 +145,65 @@
 }
 
 
+
+.cartTotal{
+    width: 100%;
+    margin:50px auto;
+}
+.cartTotal h3{
+    text-align: right;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+.cartTotal .total{
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.cartTotal .totalItem{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    border:0.3px solid #ccc;
+}
+.total .left-total{
+    flex-basis:50%;
+    padding:7px 10px;
+    background:#f5f0f0;
+}
+.total .right-total{
+    flex-basis:50%;
+    padding:7px 10px;
+    color:#ed0a21;
+}
+.total a{
+    margin-top: 50px;
+    padding: 10px 20px;
+    border: none;
+    background: #b80a1b;
+    color:#fff;
+    transition: 0.3s;
+}
+.total a:hover{
+    color:#fff;
+    background: #193d73;
+}
+
+
+
+
 @media only screen and (max-width: 1700px){
     .CheckoutPage {
-        width: 80%;       
+        width: 80%;
     }
     .containers {
-        width: 80%;       
+        width: 80%;
     }
 }
 
 @media only screen and (max-width: 1600px){
     .CheckoutPage {
-        width: 90%;       
+        width: 90%;
     }
     /* containers */
     .containers {
@@ -164,7 +211,7 @@
     }
     .card-body .rate {
         left: -110px !important;
-    }  
+    }
 
 }
 
@@ -225,7 +272,7 @@
     .cartTotal .totalItem {
         width: 100%;
     }
-    
+
 }
 
 @media only screen and (max-width: 1024px) {
@@ -239,7 +286,7 @@
 }
 
 @media only screen and (max-width: 700px) {
-    .container_order thead, tbody, th, td, tr { 
+    .container_order thead, tbody, th, td, tr {
         text-align: left !important;
     }
 }
