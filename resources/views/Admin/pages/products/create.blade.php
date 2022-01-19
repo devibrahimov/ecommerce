@@ -174,7 +174,7 @@
                         </div>
 
 
-                        <div class="  col-9">
+                        <div class="col-9">
                             <div class="row">
                                 <div class=" col-6" style="position: relative">
                                     <label for="categories">Məhsul Kategoriyası</label>
@@ -182,11 +182,10 @@
                                     <input type="hidden" class="form-control" value="" name="category" required id="selectedCategoryId"  >
                                     <div class="category_menu">
                                         <ul class="ulMenu">
-
                                         @foreach($categories as $cat)
-                                                @php
-                                                    $children = (new \App\Models\ProductCategory())->categoryHasChildren($cat->id) ;
-                                                @endphp
+                                           @php
+                                               $children = (new \App\Models\ProductCategory())->categoryHasChildren($cat->id) ;
+                                           @endphp
                                             <li class="ulMenuLi" >
                                                 <div class="d-flex justify-content-between p-2">
                                                     <a href="#" class="a-click" @if( $children->isEmpty()) data-id="{{$cat->id}}"  @endif>{{$cat->name}}</a>

@@ -233,8 +233,46 @@ function hasmywishlist($productid,$userid){
             }else{
                 $stars.=' <span  class="jquery-ratings-star "  style="font-size:100%;color: dimgrey" >&starf;</span>';
             }
-
         }
-
         return $stars ;
+    }
+
+
+//
+//    function getcategorieslist($parentid = null,$list=[]){
+//
+//
+//     $category =  \App\Models\ProductCategory::where('id',$parentid)->first();
+//      $list[] = $category->id ;
+//
+//       if ($category->parent_id !=null){
+//
+//           getcategorieslist($category->parent_id,$list) ;
+//
+//       }
+//
+//       return $list;
+//
+//    }
+
+//
+//
+//    function getcategoryparentId($parent_id){
+//        $category =  \App\Models\ProductCategory::where('id',$parent_id)->first();
+//        return $category->id ;
+//    }
+
+
+function getcategorieslist($parent_category_id,array &$parents = []){
+
+    if(empty($parent_category_id)){
+        return [];
+    }
+    $parents[] = $parent_category_id;
+    $parent_category =  \App\Models\ProductCategory::where('id',$parent_category_id)->first();
+    if(!empty($parent_category->parent_id)) {
+        getcategorieslist($parent_category->parent_id,$parents);
+    }
+
+    return array_reverse( $parents);
     }

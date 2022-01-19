@@ -163,7 +163,9 @@
                                     <div class="row">
                                         <div class=" col-6" style="position: relative">
                                             <label for="categories">Məhsul Kategoriyası</label>
-                                            <input type="text" class="form-control" disabled id="selectedCategory"  value="{{  (new \App\Models\ProductCategory())->thiscategory($product->category_id)->name  }}" >
+                                            @php $cats = explode(',',str_replace( '"','',str_replace( '[','',str_replace( ']','',$product->category_id)))) @endphp
+
+                                            <input type="text" class="form-control" disabled id="selectedCategory"  value="{{  (new \App\Models\ProductCategory())->thiscategory(end($cats))->name  }}" >
                                             <input type="hidden" class="form-control" value="{{$product->category_id}}" name="category" required id="selectedCategoryId"  >
                                             <div class="category_menu">
                                                 <ul class="ulMenu">

@@ -285,8 +285,9 @@ class ProductsController extends Controller
         DB::beginTransaction();
         try {
             $product = new Product();
+            $category = getcategorieslist($request->category);
 
-            $product->category_id = $request->category;
+            $product->category_id = json_encode($category);
          //   $product->price = $request->price;
             $product->sale_price = $request->sale_price;
             $product->stock = $request->stock;
@@ -393,8 +394,9 @@ class ProductsController extends Controller
         try {
 
             $product = Product::find($id);
+            $category = getcategorieslist($request->category);
 
-            $product->category_id = $request->category;
+            $product->category_id = json_encode($category);
 //            $product->price = $request->price;
              $product->sale_price = $request->sale_price;
             $product->stock = $request->stock;

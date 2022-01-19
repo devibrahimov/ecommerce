@@ -171,14 +171,12 @@ if (adjustment()->multilang == 1){
                Route::get('/mehsul-axtarisi/{axtaris?}','Site\ProductsController@productsearch')->name('site.productsearch');
                Route::get('/mehsul-json/{id?}','Site\ProductsController@productjson')->name('site.productjson');
 
-
-
                Route::get('/kurslar-ve-xidmetler','Site\GeneralController@services')->name('site.services');
                Route::get('/istifadeci-qeydiyyati','Site\CustomerAuthController@register')->name('customer.register');
                Route::post('/istifadeci-qeydiyyati','Site\CustomerAuthController@registerstore') ;
 
 
-            Route::group(['middleware'=>'customerauth','prefix'=>'istifadeci'],function (){
+                Route::group(['middleware'=>'customerauth','prefix'=>'istifadeci'],function (){
 
                 Route::post('/cixisih-et','Site\CustomerAuthController@logout')->name('customer.logout');
                 Route::get('/', function (){
