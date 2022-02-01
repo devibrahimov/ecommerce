@@ -37,6 +37,7 @@ return
         'hello' => 'Salam :username !',
         'description' => 'Açıqlama Mətni',
         'send' => 'Göndər',
+        'View More Products' => 'Bütün Məhsulları Gör',
 
         'name' => 'Ad',
         'surname' => 'Soyad',

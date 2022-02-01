@@ -32,8 +32,11 @@ class GeneralController extends Controller
            ->leftjoin('carousel_content','carousel.id','=','carousel_content.carousel_id')
            ->orderBy('desk')->where('active',1)->get();
 
+        $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
+            ->where('lang',$locale)->where('active',1)->inRandomOrder()->take(8)->get();
+
         $page = 'index';
-        return View::make("Template.pages.home",compact(['page', 'carousel' ]));
+        return View::make("Template.pages.home",compact(['page', 'carousel','products' ]));
     }
 
 

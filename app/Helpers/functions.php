@@ -262,7 +262,15 @@ function hasmywishlist($productid,$userid){
 //        return $category->id ;
 //    }
 
+function searchForId($id, $array) {
 
+    foreach ($array as $key => $val) {
+
+      if ($val->id == $id)
+          return  $val->id;
+    }
+    return NULL;
+}
 function getcategorieslist($parent_category_id,array &$parents = []){
 
     if(empty($parent_category_id)){
@@ -276,3 +284,39 @@ function getcategorieslist($parent_category_id,array &$parents = []){
 
     return array_reverse( $parents);
     }
+
+
+    function getThisCategoryProductsCount($id , $lang){
+        return \App\Models\Product::where('category_id','Like','%'.$id.'%')->count();
+    }
+
+    function getProductCategories($cats){
+
+
+        $catList = '';
+        foreach (json_decode($cats) as $cat){
+            $catList .=\App\Models\ProductCategory::thiscategory($cat)->name . ', ' ;
+        }
+
+
+        return $catList ;
+    }
+
+
+
+
+function getProductCategory1C($categories){
+
+    $catList =[] ;
+    foreach (json_decode($categories) as $cat){
+        $catList[] = ["id"=>$cat->id,
+                        "name"=> \App\Models\ProductCategory::thiscategory($cat)->name,
+                        "slug" => \Illuminate\Support\Str::slug(\App\Models\ProductCategory::thiscategory($cat)->name) ] ;
+    }
+
+
+    return json_encode($catList,JSON_UNESCAPED_UNICODE) ;
+
+
+}
+

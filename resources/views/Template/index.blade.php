@@ -70,29 +70,8 @@
                 <th scope="col"></th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <img src="/assets/img/c3.jpg" />
-                </td>
-                <td class="tdText">1/4” 50pc Drive Ratchet & Socket Set –Metric Imperial</td>
-                <td>190AZN</td>
-                <td>Распродано</td>
-                <td scope="row">
-                    <span><i class="fas fa-times"></i></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="/assets/img/c3.jpg" />
-                </td>
-                <td class="tdText">1/4” 50pc Drive Ratchet & Socket Set –Metric Imperial</td>
-                <td>190AZN</td>
-                <td>Распродано</td>
-                <td scope="row">
-                    <span><i class="fas fa-times"></i></span>
-                </td>
-            </tr>
+            <tbody id="compareTable">
+
             </tbody>
         </table>
     </div>
@@ -109,6 +88,51 @@
 <script>
 
     $(document).ready(function(){
+
+
+         $('.compareOpen').on('click',function () {
+                 let prdct_id = $(this).attr('data-id');
+
+                 $.ajax({
+                     type: "POST",
+                     url: "{{route('addtoCorpare')}}",
+                     data: ({
+                         prdct_id: prdct_id,
+                         _token :"{{csrf_token()}}"
+                     }),
+                     success: function(data){
+
+                         $('#compareTable').html('');
+                         $('#compareTable').html(data)
+
+                     }
+                 });
+
+
+             });
+         $(document).on('click','.removeFromCompare',function () {
+                 let prdct_id = $(this).attr('data-id');
+
+                 $.ajax({
+                     type: "POST",
+                     url: "{{route('removeFromCompare')}}",
+                     data: ({
+                         prdct_id: prdct_id,
+                         _token :"{{csrf_token()}}"
+                     }),
+                     success: function(data){
+
+                         $('#compareTable').html('');
+                         $('#compareTable').html(data)
+
+                     }
+                 });
+
+
+             });
+
+
+
         function  getmycartlist() {
             $('.opencartitems').html('')
 

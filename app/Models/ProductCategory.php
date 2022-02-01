@@ -48,14 +48,15 @@ class ProductCategory extends Model
             ->where('lang',$locale);
     }
 
-    public function thiscategory($id){
+    public static function thiscategory($id){
         if ( adjustment()->multilang == 1) {
             $locale = LaravelLocalization::getCurrentLocale();
         }
         if ( adjustment()->multilang == 0){
             $locale = adjustment()->default_lang;
         }
-        return DB::table('product_categories')->leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
+        return DB::table('product_categories')
+            ->leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
             ->where('id',$id)->where('lang',$locale)->first();
     }
 }

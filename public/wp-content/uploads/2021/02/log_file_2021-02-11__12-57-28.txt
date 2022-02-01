@@ -1,0 +1,121 @@
+
+---Downloaded files---
+The import files for: Default Demo were successfully downloaded!
+Initial max execution time = 30
+Files info:
+Site URL = http://protool.az
+Data file = /var/www/html/wp-content/themes/toolsjet/demo-content/default/toolsjet.wordpress.xml
+Widget file = /var/www/html/wp-content/themes/toolsjet/demo-content/default/toolsjet_widgets_settings.wie
+Customizer file = /var/www/html/wp-content/themes/toolsjet/demo-content/default/toolsjet_customizer_export.dat
+Redux files:
+not defined!
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+---Importing widgets---
+Main Sidebar : 
+
+Search - No Title - Imported
+Recent Posts - No Title - Imported
+Recent Comments - No Title - Imported
+Archives - No Title - Imported
+Categories - No Title - Imported
+Meta - No Title - Imported
+
+Header Shopping Cart Widget Area : 
+
+Cart - Cart - Imported
+
+Header Search Widget Area : 
+
+Product Search - No Title - Imported
+
+First Footer Widget Area : 
+
+Text - No Title - Imported
+
+Second Footer Widget Area : 
+
+TM - Static Links Widget - Our company - Imported
+
+Third Footer Widget Area : 
+
+TM - Static Links Widget - Information - Imported
+
+Forth Footer Widget Area : 
+
+TM - Static Links Widget - Static Block - Imported
+
+Fifth Footer Widget Area : 
+
+TM - Footer Contact Us Widget - Store Information - Imported
+
+Footer Top Widget Area : 
+
+Newsletter - Stay Connected with our email updates - Imported
+TM - Follow Us Widget - No Title - Imported
+
+Header Service Widget Area : 
+
+TM - CMS Block Widget - No Title - Imported
+TM - CMS Block Widget - No Title - Imported
+
+Payment Methods Icons Widget Area : 
+
+WooCommerce Accepted Payment Methods - No Title - Imported
+
+Home Category Widget Area : 
+
+Product Categories - No Title - Imported
+
+Home Sidebar : 
+
+Products by Rating - Top rated products - Imported
+TM - Static Links Widget - Information - Imported
+TM - Left Banner Widget - No Title - Imported
+Text - What&#039;s People says - Imported
+Product Tag Cloud - Product tags - Imported
+
+Shop Sidebar : 
+
+Active Product Filters - Active Filters - Imported
+Filter Products by Attribute - Filter by - Imported
+Filter Products by Rating - Average rating - Imported
+Filter Products by Price - Filter by price - Imported
+Product Tag Cloud - Product Tags - Imported
+Products by Rating - Top rated products - Imported
+TM - Left Banner Widget - No Title - Imported
+
+
+
+---Importing customizer settings---
+Customizer settings import finished!
+
+---pt-ocdi/after_import---
+Slider processed

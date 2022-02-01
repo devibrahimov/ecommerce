@@ -247,7 +247,8 @@ class ProductsController extends Controller
         return view('Admin.pages.products.index',compact(['products','categories']));
     }
 
-
+//Go_art!2022 //gobustanrockart //gobustan-rockart.az
+//$#rf#@rA$i aniaz
     public function admincatproducts($id){
 
         if ( adjustment()->multilang == 1) {
@@ -258,7 +259,8 @@ class ProductsController extends Controller
         }
         $categories = ProductCategory::all();
 
-        $products = DB::table('products')->where('category_id',$id)
+        $products = DB::table('products')
+            ->where('category_id','LIKE','%'.$id.'%')
             ->leftjoin('products_content','products.id','=','products_content.product_id')
             ->leftJoin('products_images', function ($join) {
                 $join->on('products.id', '=', 'products_images.product_id')->where('cover','=',1);
@@ -293,8 +295,6 @@ class ProductsController extends Controller
             $product->stock = $request->stock;
             $product->sku = $request->sku;
             $product->save();
-
-            #image upload
 
             #image upload
             $images = $request->file('image');

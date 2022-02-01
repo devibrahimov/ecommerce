@@ -8,6 +8,7 @@ use App\Models\ProductCategory;
 use App\Models\Rate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -62,7 +63,7 @@ class ProductsController extends Controller
 
 
         $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
-            ->where('category_id',$id)
+            ->where('category_id','LIKE','%'.$id.'%')
             ->where('lang',$locale)->where('active',1)->paginate(20);
         $page = 'products';
 
@@ -104,7 +105,7 @@ class ProductsController extends Controller
             ->leftjoin('products_content','products.id','=','products_content.product_id')
             ->where('lang',$locale)->find($id);
         $product->images = Product::find($id)->images;
-        $product->category = Product::find($id)->category->name;
+      //  $product->category = Product::find($id)->category->name;
 
         $reviews = Rate::where('product_id',$id)->latest()->get();
 
@@ -114,9 +115,7 @@ class ProductsController extends Controller
     }
 
 
-
     public function productjson($id){
-
         if ( adjustment()->multilang == 1) {
             $locale = LaravelLocalization::getCurrentLocale();
         }
@@ -129,8 +128,101 @@ class ProductsController extends Controller
         $product->images = Product::find($id)->images;
         $product->category = Product::find($id)->category->name;
 
-
         return  json_encode($product, JSON_UNESCAPED_UNICODE );
     }
 
+
+    public function addtoCorpare(Request $request){
+      // Session::forget('Compare');
+        if ( adjustment()->multilang == 1) {
+            $locale = LaravelLocalization::getCurrentLocale();
+        }
+        if ( adjustment()->multilang == 0){
+            $locale = adjustment()->default_lang;
+        }
+
+        $comparesProducts = [] ;
+
+        $cureentCompare = Session::get('Compare') ;
+
+        if ($cureentCompare != null )
+        {
+            foreach ($cureentCompare as $cp){
+                array_push($comparesProducts ,$cp   );
+            }
+        }
+
+        $id = $request->prdct_id ;
+
+        if(searchForId($id, $comparesProducts) == NULL ){
+            $product  = DB::table('products')
+                ->leftjoin('products_content','products.id','=','products_content.product_id')
+                ->where('lang',$locale)
+                ->select(['products.id','products.sale_price', 'products.stock','products_content.name'])->find($id);
+            $product->images = Product::find($id)->images;
+
+            array_push($comparesProducts ,$product ) ;
+
+            Session::put('Compare',$comparesProducts);
+        }
+
+
+
+      $compareSession = Session::get('Compare') ;
+
+          $htmldata  = '';
+            foreach ($compareSession as $pro){
+                $htmldata .= ' <tr>
+                <td>
+                    <img src="'.$pro->images[0]->imagepath.'" />
+                </td>
+                <td class="tdText">'.$pro->name.'</td>
+                <td>'.$pro->sale_price.' AZN</td>
+                <td>'.$pro->stock.'</td>
+                <td scope="row">
+                    <span  class="removeFromCompare" data-id="'.$pro->id.'"><i class="fas fa-times"></i></span>
+                </td>
+            </tr>';
+            }
+
+       return $htmldata  ;
+
+    //   json_encode($compareSession,JSON_UNESCAPED_UNICODE);
+
+    }
+
+
+    public function removeFromCompare(Request $request){
+        $comparesProducts = [] ;
+        $id = $request->prdct_id ;
+
+        $cureentCompare = Session::get('Compare') ;
+
+        if ($cureentCompare != null )
+        {
+            foreach ($cureentCompare as $cp){
+                if ($cp->id != $id)
+                    array_push($comparesProducts ,$cp);
+            }
+        }
+
+        Session::put('Compare',$comparesProducts);
+        $compareSession = Session::get('Compare') ;
+
+        $htmldata  = '';
+        foreach ($compareSession as $pro){
+            $htmldata .= '<tr>
+                <td>
+                    <img src="'.$pro->images[0]->imagepath.'" />
+                </td>
+                <td class="tdText">'.$pro->name.'</td>
+                <td>'.$pro->sale_price.' AZN</td>
+                <td>'.$pro->stock.'</td>
+                <td scope="row">
+                    <span class="removeFromCompare" data-id="'.$pro->id.'"><i class="fas fa-times"></i></span>
+                </td>
+            </tr>';
+        }
+        return $htmldata  ;
+    }
 }

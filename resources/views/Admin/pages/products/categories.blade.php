@@ -7,7 +7,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
                         <h3>Yeni Kateqoriya Əlavə Et</h3>
@@ -43,7 +43,7 @@
                    </div>
                 </div>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-8">
 
                 <div class="card">
                     <div class="card-header">
@@ -54,6 +54,7 @@
                           <table class="table table-striped">
                               <thead>
                               <tr>
+                                  <th scope="col">Məhsul Sayı</th>
                                   <th scope="col">Başlıq</th>
                                   <th scope="col">Şəkil</th>
                                   <th scope="col">Əməliyyatlar</th>
@@ -63,6 +64,9 @@
                               @if(isset($items))
                                   @foreach($items as $item)
                                       <tr>
+                                          <td>
+                                              {{ getThisCategoryProductsCount($item->id) }}
+                                          </td>
                                           <td>
                                               {{isset(getproductcategorycontent($item->id,defaultLang())->name)? getproductcategorycontent($item->id,defaultLang())->name: ''}}
                                           </td>

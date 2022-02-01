@@ -169,23 +169,18 @@
                                             <input type="hidden" class="form-control" value="{{$product->category_id}}" name="category" required id="selectedCategoryId"  >
                                             <div class="category_menu">
                                                 <ul class="ulMenu">
-
                                                     @foreach($categories as $cat)
                                                         @php
                                                             $children = (new \App\Models\ProductCategory())->categoryHasChildren($cat->id) ;
                                                         @endphp
-                                                        <li class="ulMenuLi" >
+                                                        <li class="ulMenuLi">
                                                             <div class="d-flex justify-content-between p-2">
                                                                 <a href="#" class="a-click" @if( $children->isEmpty()) data-id="{{$cat->id}}"  @endif>{{$cat->name}}</a>
                                                                 @if(!$children->isEmpty())
-
                                                                     <span class="ulMenuLi_span"><i class="fas  fas fa-hand-point-up"></i></span>
                                                                 @endif
                                                             </div>
-
                                                             @if(!$children->isEmpty())
-
-
                                                                 <ul class="ulSubmenu">
                                                                     @foreach($children as $ch)
 

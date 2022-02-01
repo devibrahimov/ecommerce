@@ -152,6 +152,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
+        Route::post('/addtoCorpare','Site\ProductsController@addtoCorpare')->name('addtoCorpare');
+        Route::post('/removeFromCompare','Site\ProductsController@removeFromCompare')->name('removeFromCompare');
 
 if (adjustment()->multilang == 1){
 
@@ -246,3 +248,9 @@ Route::get('/clear',function (){
     Artisan::call('view:clear');
 
 }) ;
+
+
+
+        //API
+        Route::get('/wp-json/wc/v3/products','API\BirC_ConnectController@get') ;
+        Route::post('/wp-json/wc/v3/products/batch','API\BirC_ConnectController@update') ;

@@ -48,7 +48,6 @@
     </style>
 @endsection
 
-
 @section('content')
 
 
@@ -125,7 +124,8 @@
                     @endif
                     @endauth
                     <p><b>SKU:</b> {{$product->sku}} </p>
-                    <p><b>{{__('content.category')}}:</b> {{$product->category }}</p>
+
+                    <p><b>{{__('content.category')}}:</b> {{ getProductCategories($product->category_id ) }} </p>
                 </div>
             </div>
             <div class="comment">
@@ -159,6 +159,7 @@
 
 
                             <h3 class="userReview">{{$comment->customer->name.' '. $comment->customer->surname}}</h3>
+
                             <div class="description-user">
 
                                 <p>{{$comment->comment}}</p>

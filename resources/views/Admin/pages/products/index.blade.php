@@ -501,7 +501,7 @@
                     <div class="card-body">
 
                         <div class="row">
-                            <div class="col-lg-3 border-right pr-0">
+                            <div class="col-lg-3 border-right pr-0" >
                                 <div class="card-body border-bottom">
                                     <div class="btn-list">
                                         <a href="{{route('newproduct')}}" class="btn btn-success"><i
@@ -511,7 +511,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12" style="height: 100vh;overflow: auto">
                                             <div id="calendar-events" class="">
 
                                                 <div class="calendar-events mb-3" data-class="bg-info">
@@ -545,9 +545,9 @@
 
                                     {{--                                <a href="{{route('newproduct')}}" class="btn btn-success"><i class="fas fa-plus-circle"></i>--}}
                                     {{--                                    Yeni Məhsul Əlavə Edin </a>--}}
-                                    <a href="{{route('newproduct')}}" class="btn btn-secondary"><i
-                                            class=" fas fa-file-code"> </i>
-                                        1C Entegrasiyası</a>
+{{--                                    <a href="{{route('newproduct')}}" class="btn btn-secondary"><i--}}
+{{--                                            class=" fas fa-file-code"> </i>--}}
+{{--                                        1C Entegrasiyası</a>--}}
                                     <a href="{{route('newproduct')}}" class="btn btn-danger"><i
                                             class="fas fa-file-excel"> </i>
                                         Excel Çıxdısı al </a>
@@ -560,15 +560,16 @@
                                         <input type="text" class="form-control" placeholder="Axtar" aria-label="Input group example" aria-describedby="btnGroupAddon">
                                     </div>
                                 </div>
+
                                 <div class="card-body b-l calender-sidebar">
 
                                     <div class="row productslist-card">
 
                                         {{--products items--}}
                                         @foreach($products as $product)
-                                            <div class=" col-md-3 col-lg-x-2 col-sm-12 ">
+                                            <div class=" col-md-3 col-lg-x-3 col-sm-12 ">
                                                 <div class="card " style="bg-color:20px">
-                                                    <img id="file-ip-1-preview" src="{{$product->imagepath}}"
+                                                    <img id="file-ip-1-preview" src="{{isset($product->imagepath)?$product->imagepath : '/wp-content/uploads/woocommerce-placeholder-300x300.png'}}"
                                                          class="card-img-top">
 
                                                     <div class="card-body ">
