@@ -10,6 +10,10 @@ use Illuminate\Support\Str;
 class BirC_ConnectController extends Controller
 {
 
+    //consumer_key aaa0c9402fa7539d359abc00b1e8ad51af40b095f165a763680510c5b47402f4
+    //consumer_secret cs_9829116bf184bdab46fb34281fb5a9ee16679437
+    //permissions read_write
+    //truncated_key 88854ac
 
     public function get(){
 
@@ -18,7 +22,6 @@ class BirC_ConnectController extends Controller
         $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
             ->where('lang','ru')
             ->paginate(100);
-
 
         foreach ($products as $product){
 
@@ -37,18 +40,18 @@ class BirC_ConnectController extends Controller
                 "stock_quantity" => $product->stock ,
                 "meta_data"=> $product->meta_content ,
                 "stock_status"=> $product->stock <1?"outofstock" :"instock" ,
-                "date_on_sale_from"=> null ,
+                "date_on_sale_from"=> null,
                 "date_on_sale_from_gmt"=> null ,
-                "date_on_sale_to"=> null ,
-                "date_on_sale_to_gmt"=> null ,
-                "on_sale" => false ,
-                "purchasable" => false ,
-                "total_sales" => 0 ,
-                "virtual" => false ,
-                "downloadable" => false ,
-                "downloads"=> [] ,
-                "download_limit"=> -1 ,
-                "download_expiry"=> -1 ,
+                "date_on_sale_to"=> null,
+                "date_on_sale_to_gmt"=> null,
+                "on_sale" => false,
+                "purchasable" => false,
+                "total_sales" => 0,
+                "virtual" => false,
+                "downloadable" => false,
+                "downloads"=> [],
+                "download_limit"=> -1,
+                "download_expiry"=> -1,
                 "external_url"=> "" ,
                 "button_text"=> "" ,
                 "tax_status"=> "taxable" ,
@@ -80,7 +83,6 @@ class BirC_ConnectController extends Controller
                 "menu_order"=> 0 ,
                 "price_html"=> "" ,
                 "related_ids"=> [12631,12532,12655,12652,12637] ,
-
             ];
 
             array_push($productsArray,$productdata);

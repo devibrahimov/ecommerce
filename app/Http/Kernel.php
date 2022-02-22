@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'administrator' => \App\Http\Middleware\AdministratorMiddleware::class,
         'customerauth' => \App\Http\Middleware\CustomerMidlleware::class,
+        'CunsomerKeyandSecret' => \App\Http\Middleware\CunsomerKeyMiddleware::class,
 
     ];
 }

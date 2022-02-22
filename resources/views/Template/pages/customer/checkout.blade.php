@@ -146,8 +146,12 @@
                             <div class="right-total"><span class="totalPrices"> {{ $totalPrice+($totalPrice*0.18) }}</span> AZN</div>
                         </div>
                     </div>
+                    @php
+                    \Illuminate\Support\Facades\Session::put('total_Price',$totalPrice+($totalPrice*0.18))
+                    @endphp
+
                     <div class="total">
-                        <a href="#">Proceed to checkout</a>
+                        <a href="{{route('customer.shipping')}}">Proceed to checkout</a>
                     </div>
                 </div>
             </div>

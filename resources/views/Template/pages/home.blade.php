@@ -109,11 +109,14 @@
                                     <li data-id="{{$product->id}}" class="compareOpen"><a ><i class="fas fa-compress-alt"></i></a></li>
                                     <li><a  class="addtocart" data-quantity="1" data-id="{{$product->id}}"><i class="fas fa-shopping-cart"></i></a></li>
                                 </ul>
-                                <a class="soldout" href="{{route('site.productDetail',['id'=>$product->id,'slug'=>\Illuminate\Support\Str::slug($product->name)])}}">
+                                    @if($product->stock_status != 'instock')
+                                <span class="soldout" >
                                         <span>Stokda bitib</span>
-                                </a>
+                                </span>
+                                    @endif
                                 <div class="card-body " >
-                                    <p class="card-text">{{$product->name}}</p>
+                                    <p class="card-text"> <a  href="{{route('site.productDetail',['id'=>$product->id,'slug'=>\Illuminate\Support\Str::slug($product->name)])}}">
+                                  {{$product->name}} </a></p>
                                     <div id="starRating">
                                         {!! rateStars($product->id) !!}
                                     </div>

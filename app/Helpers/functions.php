@@ -286,13 +286,19 @@ function getcategorieslist($parent_category_id,array &$parents = []){
     }
 
 
-    function getThisCategoryProductsCount($id , $lang){
+    function getThisCategoryProductsCount($id , $lang=null){
+        if ($lang == null){
+            if ( adjustment()->multilang == 1) {
+                $locale = LaravelLocalization::getCurrentLocale();
+            }
+            if ( adjustment()->multilang == 0){
+                $locale = adjustment()->default_lang;
+            }
+        }
         return \App\Models\Product::where('category_id','Like','%'.$id.'%')->count();
     }
 
     function getProductCategories($cats){
-
-
         $catList = '';
         foreach (json_decode($cats) as $cat){
             $catList .=\App\Models\ProductCategory::thiscategory($cat)->name . ', ' ;

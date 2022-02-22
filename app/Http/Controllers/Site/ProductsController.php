@@ -23,7 +23,6 @@ class ProductsController extends Controller
         if ( adjustment()->multilang == 0){
             $locale = adjustment()->default_lang;
         }
-
         $categories = DB::table('product_categories')
             ->leftjoin('product_categories_content','product_categories.id','=','product_categories_content.base_id')
             ->where('parent_id',$id)->where('lang',$locale)->get();
@@ -32,7 +31,6 @@ class ProductsController extends Controller
     }
 
     public function products(){
-
         if ( adjustment()->multilang == 1) {
             $locale = LaravelLocalization::getCurrentLocale();
         }
@@ -80,8 +78,6 @@ class ProductsController extends Controller
             $locale = adjustment()->default_lang;
         }
 
-
-
         $products = Product::leftjoin('products_content','products.id','=','products_content.product_id')
             ->where('name','LIKE','%'.$request->axtaris.'%')
             ->where('lang',$locale)->where('active',1)->paginate(20);
@@ -122,11 +118,10 @@ class ProductsController extends Controller
         if ( adjustment()->multilang == 0){
             $locale = adjustment()->default_lang;
         }
-
         $product = Product::leftjoin('products_content','products.id','=','products_content.product_id')
             ->where('lang',$locale)->find($id);
         $product->images = Product::find($id)->images;
-        $product->category = Product::find($id)->category->name;
+        $product->category = getProductCategories($product->category_id);
 
         return  json_encode($product, JSON_UNESCAPED_UNICODE );
     }

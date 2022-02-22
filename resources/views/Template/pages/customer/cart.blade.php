@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="total">
-                    <a href="#">Proceed to checkout</a>
+                    <a href="{{route('customer.checkout')}}">Proceed to checkout</a>
                 </div>
             </div>
         </div>

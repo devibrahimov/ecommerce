@@ -195,8 +195,9 @@ if (adjustment()->multilang == 1){
                 Route::get('/sebetimden-cixart','Site\CustomerController@removefromcart')->name('customer.removefromcart');
 
                 Route::get('/sifarishi-tamamla','Site\CheckoutController@checkout')->name('customer.checkout');
+                Route::get('/odenis-et','API\PaymentController@createOrder')->name('customer.shipping');
 
-               // Route::post('/mehsula-serh-yaz','Site\CustomerController@productComment')->name('customer.productComment');
+                    // Route::post('/mehsula-serh-yaz','Site\CustomerController@productComment')->name('customer.productComment');
 
             });
 
@@ -252,5 +253,8 @@ Route::get('/clear',function (){
 
 
         //API
-        Route::get('/wp-json/wc/v3/products','API\BirC_ConnectController@get') ;
-        Route::post('/wp-json/wc/v3/products/batch','API\BirC_ConnectController@update') ;
+        Route::group(['middleware'=>'CunsomerKeyandSecret'],function (){
+            Route::get('/wp-json/wc/v3/products','API\BirC_ConnectController@get') ;
+            Route::post('/wp-json/wc/v3/products/batch','API\BirC_ConnectController@update') ;
+        });
+
