@@ -110,7 +110,7 @@
                     </p>
                     @endauth
                    @auth('customer')
-                   @if($product->stock > 0)
+{{--                   @if($product->stock > 0)--}}
                     <p style="color:green"><i class="far fa-check-circle"></i> {{__('content.instock',['qty'=>$product->stock])}}   </p>
 
                     <div class="Qty">Qty:
@@ -121,7 +121,7 @@
                         </p>
                         <a class="addtocart" data-quantity="1" data-id="{{$product->id}}">{{__('content.addtocart')}}</a>
                     </div>
-                    @endif
+{{--                    @endif--}}
                     @endauth
                     <p><b>SKU:</b> {{$product->sku}} </p>
 

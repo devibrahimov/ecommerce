@@ -24,6 +24,7 @@
             @include('Template.layouts.leftcontainer')
         </div>
         <div class="right-container">
+            @if(!$cartproducts->isEmpty())
             <table class="table table-wish">
                 <thead>
                 <tr>
@@ -37,6 +38,7 @@
                 </thead>
                 <tbody class="carttablelist">
                 @php $totalPrice = 0; @endphp
+
                 @foreach($cartproducts as $item)
                 <tr>
                     <td scope="row">
@@ -62,29 +64,32 @@
                 </tbody>
             </table>
             <div class="cartTotal">
-                <h3>Cart totals</h3>
+{{--                <h3>Cart totals</h3>--}}
+{{--                <div class="total">--}}
+{{--                    <div class="totalItem">--}}
+{{--                        <div class="left-total">Subtotal</div>--}}
+{{--                        <div class="right-total"><span class="subtotalPrices">{{$totalPrice}}</span> AZN</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="total">--}}
+{{--                    <div class="totalItem">--}}
+{{--                        <div class="left-total">ƏDV  (18%)</div>--}}
+{{--                        <div class="right-total"><span class="totalPricesEDV"> {{$totalPrice*0.18}}</span> AZN</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="total">--}}
+{{--                    <div class="totalItem">--}}
+{{--                        <div class="left-total">Total</div>--}}
+{{--                        <div class="right-total"><span class="totalPrices"> {{ $totalPrice+($totalPrice*0.18) }}</span> AZN</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="total">
-                    <div class="totalItem">
-                        <div class="left-total">Subtotal</div>
-                        <div class="right-total"><span class="subtotalPrices">{{$totalPrice}}</span> AZN</div>
-                    </div>
-                </div>
-                <div class="total">
-                    <div class="totalItem">
-                        <div class="left-total">ƏDV  (18%)</div>
-                        <div class="right-total"><span class="totalPricesEDV"> {{$totalPrice*0.18}}</span> AZN</div>
-                    </div>
-                </div>
-                <div class="total">
-                    <div class="totalItem">
-                        <div class="left-total">Total</div>
-                        <div class="right-total"><span class="totalPrices"> {{ $totalPrice+($totalPrice*0.18) }}</span> AZN</div>
-                    </div>
-                </div>
-                <div class="total">
-                    <a href="{{route('customer.checkout')}}">Proceed to checkout</a>
+                    <a href="{{route('customer.checkout')}}">{{__('content.go to payment')}}</a>
                 </div>
             </div>
+            @else
+            <center>Səbətə hansısa məhsul yükləməmisiniz.buradan <a href="{{route('site.products')}}">{{__('content.products')}}</a> səhifəsinə keçid edin</center>
+            @endif
         </div>
     </div>
 

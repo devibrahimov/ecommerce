@@ -26,79 +26,52 @@
             @include('Template.layouts.leftcontainer')
         </div>
         <div class="right-container">
+            <form action="{{route('customer.shipping')}}" >
             <div class="forms-checkout">
                 <div class="left_form ">
                     <h4>Billing details</h4>
-                    <form>
+
                         <div class="form_group">
                             <div class="left-input">
                                 <label for="exampleFormControlInput1" class="form-label">Ad</label>
-                                <input type="text" class="form-control" value="{{auth('customer')->user()->name}}" >
+                                <input type="text" name="name" class="form-control" value="{{auth('customer')->user()->name}}" >
                             </div>
                             <div class="right-input">
                                 <label for="exampleFormControlInput1" class="form-label">Soyad</label>
-                                <input type="text" class="form-control" value="{{auth('customer')->user()->surname}}" >
+                                <input type="text" class="form-control" name="surname"  value="{{auth('customer')->user()->surname}}" >
                             </div>
                         </div>
-{{--                        <div class="form_group">--}}
-{{--                            <div class="form-tema">--}}
-{{--                                <label for="exampleFormControlInput1" class="form-label">Mövzu</label>--}}
-{{--                                <input type="text" class="form-control" >--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="form_group">--}}
-{{--                            <div class="form-tema">--}}
-{{--                                <label for="exampleFormControlInput1" class="form-label">country</label>--}}
-{{--                                <select class="form-select form-select-sm" aria-label=".form-select-md example">--}}
-{{--                                    <option selected>Azerbaycan</option>--}}
-{{--                                    <option value="1">One</option>--}}
-{{--                                    <option value="2">Two</option>--}}
-{{--                                    <option value="3">Three</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                         <div class="form_group">
                             <div class="form-tema">
                                 <label for="exampleFormControlInput1" class="form-label">Adres</label>
-                                <input type="text" class="form-control" value="{{auth('customer')->user()->adress}}" >
+                                <input type="text" class="form-control"  name="adress"  value="{{auth('customer')->user()->adress}}" >
                             </div>
                         </div>
-{{--                        <div class="form_group">--}}
-{{--                            <div class="form-tema">--}}
-{{--                                <label for="exampleFormControlInput1" class="form-label">city</label>--}}
-{{--                                <input type="text" class="form-control" >--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="form_group">--}}
-{{--                            <div class="form-tema">--}}
-{{--                                <label for="exampleFormControlInput1" class="form-label">state</label>--}}
-{{--                                <input type="text" class="form-control">--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+
                         <div class="form_group">
                             <div class="form-tema">
                                 <label for="exampleFormControlInput1" class="form-label">phone</label>
-                                <input type="text" class="form-control"  value="{{auth('customer')->user()->phone_number}}">
+                                <input type="text" class="form-control" name="phone"   value="{{auth('customer')->user()->phone_number}}">
                             </div>
                         </div>
                         <div class="form_group">
                             <div class="form-tema">
                                 <label for="exampleFormControlInput1" class="form-label">email</label>
-                                <input type="email" class="form-control" value="{{auth('customer')->user()->email}}">
+                                <input type="email" class="form-control" name="email"  value="{{auth('customer')->user()->email}}">
                             </div>
                         </div>
-                    </form>
+
                 </div>
-                <div class="right_form">
-                    <h4>add info</h4>
-                    <div class="form_group">
-                        <div class="form-tema">
-                            <label for="exampleFormControlTextarea1" class="form-label">Mesajınız (istəyə
-                                görə)</label>
-                            <textarea class="form-control" rows="6" ></textarea>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="right_form">--}}
+{{--                    <h4>add info</h4>--}}
+{{--                    <div class="form_group">--}}
+{{--                        <div class="form-tema">--}}
+{{--                            <label for="exampleFormControlTextarea1" class="form-label">Mesajınız (istəyə--}}
+{{--                                görə)</label>--}}
+{{--                            <textarea class="form-control"  name="message"  rows="6" ></textarea>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
             <div class="container_order">
                 <h4>your order</h4>
@@ -130,7 +103,7 @@
                     <h3>Cart totals</h3>
                     <div class="total">
                         <div class="totalItem">
-                            <div class="left-total">Subtotal</div>
+                            <div class="left-total">Toplam məbləğ</div>
                             <div class="right-total"><span class="subtotalPrices">{{$totalPrice}}</span> AZN</div>
                         </div>
                     </div>
@@ -142,7 +115,7 @@
                     </div>
                     <div class="total">
                         <div class="totalItem">
-                            <div class="left-total">Total</div>
+                            <div class="left-total">Ödəniləcək toplam məbləğ</div>
                             <div class="right-total"><span class="totalPrices"> {{ $totalPrice+($totalPrice*0.18) }}</span> AZN</div>
                         </div>
                     </div>
@@ -150,9 +123,7 @@
                     \Illuminate\Support\Facades\Session::put('total_Price',$totalPrice+($totalPrice*0.18))
                     @endphp
 
-                    <div class="total">
-                        <a href="{{route('customer.shipping')}}">Proceed to checkout</a>
-                    </div>
+
                 </div>
             </div>
             <div class="bank">
@@ -171,8 +142,11 @@
                 </div>
             </div>
             <div class="check-btn">
-                <button type="button"> Place Order</button>
+                <div class="total">
+                    <button type="submit">Ödəməyə Keçid edin </button>
+                </div>
             </div>
+            </form>
         </div>
     </div>
 @endsection

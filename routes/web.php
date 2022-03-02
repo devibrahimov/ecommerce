@@ -147,8 +147,9 @@ use Illuminate\Support\Facades\Route;
 
     });
 
-
-
+    Route::match(['get','post'],'/kapital/approve/{id}','API\PaymentController@approveUrl')->name('approve');
+    Route::match(['get','post'],'/kapital/decline/{id}','API\PaymentController@declineUrl')->name('decline');
+    Route::match(['get','post'],'/kapital/cancel/{id}','API\PaymentController@cancelUrl')->name('cancel');
 
 
 
@@ -156,7 +157,6 @@ use Illuminate\Support\Facades\Route;
         Route::post('/removeFromCompare','Site\ProductsController@removeFromCompare')->name('removeFromCompare');
 
 if (adjustment()->multilang == 1){
-
         Route::group(
             [
                'prefix' => LaravelLocalization::setLocale(),
@@ -194,15 +194,14 @@ if (adjustment()->multilang == 1){
                 Route::get('/sebet-mehsul-update','Site\CustomerController@updateCartQuantity')->name('customer.updatequantity');
                 Route::get('/sebetimden-cixart','Site\CustomerController@removefromcart')->name('customer.removefromcart');
 
+                Route::get('/sifarishlerim','Site\CustomerController@myorders')->name('customer.myorders');
                 Route::get('/sifarishi-tamamla','Site\CheckoutController@checkout')->name('customer.checkout');
                 Route::get('/odenis-et','API\PaymentController@createOrder')->name('customer.shipping');
+                Route::get('/faktura-no{order_id}','Site\CustomerController@invoice')->name('customer.invoice');
 
-                    // Route::post('/mehsula-serh-yaz','Site\CustomerController@productComment')->name('customer.productComment');
+                Route::post('/mehsula-serh-yaz','Site\CustomerController@productComment')->name('customer.productComment');
 
             });
-
-
-
 
 //               Route::get('/hakkimizda','Site\GeneralController@about')->name('site.about');
 //               Route::get('/metbuatda','Site\GeneralController@press')->name('site.press');
@@ -247,7 +246,6 @@ Route::get('/clear',function (){
     Artisan::call('cache:clear');
     Artisan::call('route:clear');
     Artisan::call('view:clear');
-
 }) ;
 
 

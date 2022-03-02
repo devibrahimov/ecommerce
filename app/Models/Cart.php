@@ -10,7 +10,7 @@ class Cart extends Model
       protected $table = 'customer_cart';
       protected $guarded = [] ;
 
-
+        protected $with = ['product'];
 
     public function product(){
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Rate;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
@@ -153,7 +154,7 @@ class CustomerController extends Controller
     }
 
     public function getmycart(){
-          if ( adjustment()->multilang == 1) {
+        if ( adjustment()->multilang == 1) {
             $locale = LaravelLocalization::getCurrentLocale();
         }
         if ( adjustment()->multilang == 0){
@@ -210,9 +211,6 @@ class CustomerController extends Controller
        }
     }
 
-
-
-
     public function productComment(Request $request){
        $rate = $request->rate;
        $content = $request->comment;
@@ -229,5 +227,40 @@ class CustomerController extends Controller
            return redirect()->back();
 
     }
+
+
+    public function myorders(){
+    if ( adjustment()->multilang == 1) {
+        $locale = LaravelLocalization::getCurrentLocale();
+    }
+    if ( adjustment()->multilang == 0){
+        $locale = adjustment()->default_lang;
+    }
+
+    $customer =  Auth::guard('customer')->user()->id;
+
+
+    $orders = Order::where('user_id',$customer)->get();
+
+//    $products = Cart::where('customer_id',$customer)
+//        ->join('products','products.id','=','customer_cart.product_id')
+//        ->join('products_content','customer_cart.product_id', '=', 'products_content.product_id')->where('lang',$locale)
+//        ->leftJoin('products_images',function($join){
+//            $join->on('products.id', '=', 'products_images.product_id')->where('cover','=',1);
+//        })
+//        ->orderBy('customer_cart.id', 'desc')->take(5)
+//        ->get(['products.*','products_content.*','products_images.*','customer_cart.*','customer_cart.id AS cart_id']);
+        return view('Template.pages.customer.myorders' ,compact(['orders']));
+    }
+
+
+    public function invoice($oreder_id){
+        $order = Order::where('payment_order_id',$oreder_id)
+                 ->join('payment','orders.payment_order_id','=','payment.order_id')
+                 ->first();
+
+        return view('Template.pages.customer.invoice', compact(['order']));
+    }
+
 
 }

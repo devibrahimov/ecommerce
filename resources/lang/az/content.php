@@ -38,6 +38,7 @@ return
         'description' => 'Açıqlama Mətni',
         'send' => 'Göndər',
         'View More Products' => 'Bütün Məhsulları Gör',
+        'orders' => 'Sifarişlər',
 
         'name' => 'Ad',
         'surname' => 'Soyad',
@@ -49,6 +50,8 @@ return
         'category' => 'Kateqoriya',
         'addtowishlist' => 'Favorilərimə əlavə et',
         'removefromwishlist' => 'Favorilərimdən çıxart',
+        'go to payment' => 'Ödəməyə Çek',
+        'Finish the payment' => 'Ödəməni Tamamla',
 
         'otherServices' => 'Digər Xidmətlər',
         'aboutimagetext' => 'Hakkımızda Səhifəsi Şəkilin altındakı kiçik yazı mətni buraya yazılacaq',

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Payment;
-use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -15,28 +17,27 @@ use SimpleXMLElement;
 class PaymentController extends Controller
 {
     protected $serviceUrl = 'https://e-commerce.kapitalbank.az:5443/Exec';
-    protected $cert = "testmerchant.csr";
+    protected $cert = "testmerchant.crt";
     protected $key = "merchant_name.key";
-    protected $merchant_id = ' E1000010';
+    protected $merchant_id = 'E1000010';
     protected $language = 'AZ';
     const PORT = 5443;
 
     public function __construct()
     {
-//dd(file_exists(realpath(base_path($this->cert))) );
-//dd(file_exists(realpath(base_path($this->key))) );
-        if (file_exists(realpath(base_path($this->cert))) ) {
-            $this->cert = realpath(base_path($this->cert)) ;
+        if (file_exists(base_path($this->cert)) ) {
+            $this->cert = base_path($this->cert) ;
 
         } else {
             throw new \Exception("Certificate does not exists: $this->cert");
         }
-        if ( file_exists(realpath(base_path($this->key))) ) {
-            $this->key =  realpath(base_path($this->key)) ;
+        if ( file_exists( base_path($this->key)) ) {
+            $this->key =   base_path($this->key) ;
         } else {
             throw new \Exception("Key does not exists:  " . base_path($this->key));
         }
     }
+
     public function curl($xml){
         $url = $this->serviceUrl;
         $ch = curl_init();
@@ -55,12 +56,12 @@ class PaymentController extends Controller
 
         //Error handling and return result
         $data = curl_exec($ch);
+
         if ($data ==  false)
         {$result = curl_error($ch);   }
         else{$result = $data;}
         // Close handle
         curl_close($ch);
-
 
         return $result;
     }
@@ -69,20 +70,24 @@ class PaymentController extends Controller
     public function index(){
         return 'index';
     }
-    public function createOrder(Request $request){
 
+
+    public function createOrder(Request $request){
         $amount = Session::get('total_Price');
-//        $request->validate([
-//            'amount' => 'required|numeric',
-//        ]);
-        //echo header("Location: ");
+
         $order_data = array(
             'merchant' => $this->merchant_id,
             'amount' => $amount*100,
             'currency' => 944,
-            'description' => Auth::guard('customer')->user()->name." ".Auth::guard('customer')->user()->surname." | Məhsulların satın alınması",
+            'description' => "Ad: ".Auth::guard('customer')->user()->name.", Soyad: ".Auth::guard('customer')->user()->surname
+                .", Adres: ".$request->adress.", Telefon: ".$request->phone.", Mesaj: ".$request->message,
             'lang' => 'AZ'
         );
+
+        $approve = route('approve',Auth::guard('customer')->user()->id) ;
+        $decline = route('decline',Auth::guard('customer')->user()->id) ;
+        $cancel = route('cancel',Auth::guard('customer')->user()->id) ;
+
         $xml = '<?xml version="1.0" encoding="UTF-8"?>
                 <TKKPG>
                       <Request>
@@ -94,13 +99,12 @@ class PaymentController extends Controller
                                     <Amount>'.$order_data['amount'].'</Amount>
                                     <Currency>'.$order_data['currency'].'</Currency>
                                     <Description>'.$order_data['description'].'</Description>
-                                    <ApproveURL>https://127.0.0.1:8000/api/kapital/approve/'.Auth::guard('customer')->user()->id.'</ApproveURL>
-                                    <CancelURL>https://127.0.0.1:8000/api/kapital/cancel/'.Auth::guard('customer')->user()->id.'</CancelURL>
-                                    <DeclineURL>https://127.0.0.1:8000/api/kapital/decline/'.Auth::guard('customer')->user()->id.'</DeclineURL>
+                                    <ApproveURL>'.$approve.'</ApproveURL>
+                                    <CancelURL>'.$decline.'</CancelURL>
+                                    <DeclineURL>'.$cancel.'</DeclineURL>
                               </Order>
                       </Request>
-                </TKKPG>
-        ';
+                </TKKPG> ';
         //return $xml;
 
         $result = $this->curl($xml);
@@ -109,18 +113,16 @@ class PaymentController extends Controller
     }
 
     public function handleCurlResponse($inital_data, $data){
-         dd($data);
-        $oXML = new SimpleXMLElement($data);
 
+        $oXML = new SimpleXMLElement($data);
 
         $OrderID = $oXML->Response->Order->OrderID;
         $SessionID = $oXML->Response->Order->SessionID;
         $paymentBaseUrl = $oXML->Response->Order->URL;
 
-
         Payment::create([
-            'user_id' => Auth::guard('tuser')->user()->id,
-            'amount' => $inital_data['amount'],
+            'user_id' => Auth::guard('customer')->user()->id,
+            'amount' =>  number_format($inital_data['amount']/100, 2,',', '.'),
             'order_id' => $OrderID,
             'session_id' => $SessionID,
             'payment_url' => $paymentBaseUrl,
@@ -131,13 +133,12 @@ class PaymentController extends Controller
         ]);
 
         $redirectUrl = $paymentBaseUrl."?ORDERID=".$OrderID."&SESSIONID=".$SessionID."&";
-        //dd($redirectUrl);
-        //echo $redirectUrl;
-        return redirect()->to($redirectUrl);;
 
-        //return header("Location: ");
-
+        return redirect()->to($redirectUrl);
     }
+
+
+
 
     public function approveUrl(Request $request){
 
@@ -145,22 +146,60 @@ class PaymentController extends Controller
 
         $getPaymentRow = Payment::where('order_id', '=', $xmlmsg->OrderID)->first();
 
-        $user = User::find($getPaymentRow->user_id);
+        $user = Customer::find($getPaymentRow->user_id);
+
+        Auth::guard('customer')->login($user);
+
+        $basket_products = Cart::where('customer_id',$getPaymentRow->user_id)->get();
+
         if($getPaymentRow){
             $getPaymentRow->update([
                 'order_status' => $xmlmsg->OrderStatus,
             ]);
-            User::where(['id'=>$getPaymentRow->user_id])->update(['balance'=>$user->balance+$getPaymentRow->amount*0.01]);
-            $this->getOrderStatus($getPaymentRow);
         }
 
-        return redirect('/balans')->with('flash_message_success','Ödəniş uğurla başa çatmışdır');
+        $order_information = [];
+
+        foreach($basket_products as $item){
+
+            $data = [
+                'quantity' =>$item->quantity,
+                'lang' =>$item->product->lang,
+                'name' => $item->product->name,
+                'product_id' => $item->product->product_id,
+                'price' => $item->product->sale_price,
+            ];
+            array_push($order_information,$data);
+
+        }
+
+        $order_data = [
+            'user_id'=>$getPaymentRow->user_id ,
+            'payment_order_id'=>$getPaymentRow->order_id ,
+            'user_information' => $xmlmsg->OrderDescription,
+            'order_information' => json_encode($order_information),
+            'status' => 0
+        ];
+
+       $saveOrder = Order::create($order_data);
+
+       $delete = Cart::where('customer_id',$getPaymentRow->user_id)->delete();
+
+        $feedbackdata = ['title' => 'Ödənişiniz uğurla başa çatmışdır!',
+            'text' => 'Sifarişiniz uğurla başa çatmışdır.Tərəfimizdən sizinlə əlaqə saxlanılacaqdır' ,
+            'icon' => 'success',
+            'button' => 'Bağla',];
+
+        return  redirect()->route('customer.invoice',$getPaymentRow->order_id )->with('feedback', $feedbackdata);
+     redirect()->route('site.index')->with('feedback', $feedbackdata);
+
     }
 
-    public function cancelUrl(Request $request){
-        //echo $request->xmlmsg;
-        $xmlmsg = new SimpleXMLElement($request->xmlmsg);
 
+
+    public function cancelUrl(Request $request){
+
+        $xmlmsg = new SimpleXMLElement($request->xmlmsg);
 
         $getPaymentRow = Payment::where('order_id', '=', $xmlmsg->OrderID)->first();
 
@@ -170,11 +209,11 @@ class PaymentController extends Controller
             ]);
         }
 
-        return redirect('/balans')->with('flash_message_error','Ödəniş ləğv edildi');
+        return redirect()->route('site.index')->with('flash_message_error','Ödəniş ləğv edildi');
     }
 
     public function declineUrl(Request $request){
-        //dd($request->all());
+
         if ($request->filled('xmlmsg')){
             $xmlmsg = new SimpleXMLElement($request->xmlmsg);
             //dd($xmlmsg->OrderStatus);
@@ -185,7 +224,8 @@ class PaymentController extends Controller
                 ]);
             }
         }
-        return redirect('/balans')->with('flash_message_error','Ödəniş rədd edildi');
+
+        return redirect()->route('site.index')->with('flash_message_error','Ödəniş rədd edildi');
     }
 
 

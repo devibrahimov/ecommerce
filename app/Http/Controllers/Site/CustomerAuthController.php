@@ -42,7 +42,6 @@ class CustomerAuthController extends Controller
            return redirect()->intended('/') ;
         }else{
             $errors = ['email'=>'Yanlış giriş məlumatları'];
-
             return back()->withErrors($errors);
         }
 

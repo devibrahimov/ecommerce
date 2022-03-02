@@ -93,10 +93,6 @@ class BirC_ConnectController extends Controller
     }
 
 
-
-
-
-
     public function update(Request $request){
 
         foreach ($request->update[0] as $product){

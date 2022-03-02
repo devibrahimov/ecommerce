@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/wp-json/wc/v3/products/batch',
-        '/wp-json/wc/v3/products'
+        '/wp-json/wc/v3/products',
+        'kapital/*',
     ];
 }
