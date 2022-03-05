@@ -129,7 +129,6 @@ class CustomerController extends Controller
     }
 
 
-
     public function mycartpage(){
         if ( adjustment()->multilang == 1) {
             $locale = LaravelLocalization::getCurrentLocale();
@@ -255,6 +254,7 @@ class CustomerController extends Controller
 
 
     public function invoice($oreder_id){
+
         $order = Order::where('payment_order_id',$oreder_id)
                  ->join('payment','orders.payment_order_id','=','payment.order_id')
                  ->first();

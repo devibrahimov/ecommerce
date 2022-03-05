@@ -90,6 +90,11 @@ use Illuminate\Support\Facades\Route;
         Route::post('/admin-comment-feedback','Admin\ProductsController@commentAdminFeedback')->name('productCommentAdminFeedback');
 
         Route::get('/istifadeciler','Admin\CustomersController@index')->name('customers_index');
+
+        Route::get('/sifarisler','Admin\OrderController@index')->name('admin.orders');
+
+
+
 //        Route::get('/xidmətlərimiz','Admin\CorporateController@services')->name('adminservices');
 //        Route::get('/yeni-xidmət-yarat','Admin\CorporateController@newservice')->name('newservice');
 //        Route::post('/yeni-xidmət-yarat','Admin\CorporateController@servicestore');

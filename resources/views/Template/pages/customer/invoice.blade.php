@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="/assets/css/invoice.css">
 @endsection
 
-
 @section('content')
     <div class="page-content container">
     <div class="page-header text-blue-d2">
@@ -143,7 +142,7 @@
 
                     <div class="payNow">
                         <span class="text-secondary-d1 text-105">Bizi Seçdiyiniz üçün təşəkkür edirik</span>
-                        <a href="#" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Pay Now</a>
+{{--                        <a href="#" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Pay Now</a>--}}
                     </div>
                 </div>
             </div>

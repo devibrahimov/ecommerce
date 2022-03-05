@@ -135,7 +135,7 @@
                             <a data-list="description" class="activeLi">{{__('content.description')}}</a>
                         </li>
                         <li>
-                            <a data-list="reviews">Reviews (0)</a>
+                            <a data-list="reviews">Şərhlər </a>
                         </li>
                     </ul>
                 </div>

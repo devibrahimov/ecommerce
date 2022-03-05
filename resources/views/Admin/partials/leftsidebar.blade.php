@@ -11,7 +11,7 @@
                             class="hide-menu">Dashboard</span></a></li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="#"
+                    <a class="sidebar-link sidebar-link" href="{{route('admin.orders')}}"
                        aria-expanded="false"><i  class="fas fa-th-large"></i><span
                             class="hide-menu">Sifarişlər</span>
                     </a>
@@ -100,7 +100,7 @@
                 <li class="list-divider"></li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="#"
+                    <a class="sidebar-link sidebar-link" href="{{route('customers_index')}}"
                        aria-expanded="false"><i  class="fas fa-th-large"></i><span
                             class="hide-menu">İstifadəçilər Siyahısı</span>
                     </a>
